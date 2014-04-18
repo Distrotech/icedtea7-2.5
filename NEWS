@@ -28,6 +28,7 @@ New in release 2.5.0 (2014-XX-XX):
   - S7124320: [TEST_BUG] [macosx] JComboBox doesn't change selection on mouse over
   - S7124338: [macosx] Selection lost if a selected item removed from a java.awt.List
   - S7129133: [macosx] Accelerators are displayed as Meta instead of the Command symbol
+  - S7131153: GetDC called way too many times - causes bad performance.
   - S7133122: SA throws sun.jvm.hotspot.debugger.UnmappedAddressException when it should not
   - S7133146: [macosx] closed/javax/swing/JInternalFrame/4193219/IconCoord fails on MacOS
   - S7133154: [TEST_BUG] [macosx] closed/javax/swing/JInternalFrame/4251301/bug4251301.java fails on MacOS
@@ -35,8 +36,10 @@ New in release 2.5.0 (2014-XX-XX):
   - S7147084: (process) appA hangs when read output stream of appB which starts appC that runs forever
   - S7171591: getDefaultScopeID() in src/solaris/native/java/net/net_util_md.c should return a value
   - S7173464: Clipboard.getAvailableDataFlavors: Comparison method violates contract
+  - S7176574: sun/security/krb5/auto/TcpTimeout.java failed with solaris-i586
   - S7186887: Test T6567415.java can fail on a slow machine
   - S7187554: JSR 292: JVMTI PopFrame needs to handle appendix arguments
+  - S7190349: [macosx] Text (Label) is incorrectly drawn with a rotated g2d
   - S7191817: -XX:+UseSerialGC -XX:+UseLargePages crashes with SIGFPE on MacOS X
   - S7194607: VerifyLocalVariableTableOnRetransformTest.sh fails after JSR-292 merge
   - S7197210: java/lang/invoke/CallSiteTest.java failing on armsflt.
@@ -78,6 +81,7 @@ New in release 2.5.0 (2014-XX-XX):
   - S8014240: G1: Add remembered set size information to output of G1PrintRegionLivenessInfo
   - S8014288: perf regression in nashorn JDK-8008448.js test after 8008511 changes
   - S8014394: (fs) WatchService failing when watching \\server\$d
+  - S8014460: Need to check for non-empty EXT_LIBS_PATH before using it
   - S8014555: G1: Memory ordering problem with Conc refinement and card marking
   - S8015092: SchemaFactory cannot parse schema if whitespace added within patterns in Selector XPath expression
   - S8015243: SchemaFactory does not catch enum. value that is not in the value space of the base type, anyURI
@@ -85,6 +89,7 @@ New in release 2.5.0 (2014-XX-XX):
   - S8015599: [TEST_BUG] [macosx] Test closed/javax/swing/Popup/TaskbarPositionTest.java fails since JDK 8 b75 on MacOSX
   - S8015600: [TEST_BUG] [macosx] Test closed/javax/swing/plaf/basic/BasicMenuUI/4983388/bug4983388.java fails since JDK 8 b75 on MacOSX
   - S8016018: Typo in AbstractStringBuilder#indexOf and #lastIndexOf descriptions
+  - S8016110: Japanese char (MS932) 0x5C cannot be used as an argument when quoted
   - S8016271: wsimport -clientjar does not create portable jars on Windows due to hardcoded backslash
   - S8016328: Regression : Javadoc i18n regression caused by fix for 8012375
   - S8016500: Unlocalized warnings.
@@ -101,7 +106,6 @@ New in release 2.5.0 (2014-XX-XX):
   - S8020191: System.getProperty("os.name") returns "Windows NT (unknown)" on Windows 8.1
   - S8020530: Non heap memory size calculated incorrectly
   - S8020791: [TESTBUG] runtime/jsig/Test8017498.sh failed to compile native code
-  - S8021257: com.sun.corba.se.** should be on restricted package list
   - S8021296: [TESTBUG] Test8017498.sh fails to find "gcc" and fails to compile on some Linux releases
   - S8021368: Launch of Java Web Start app fails with ClassCircularityError exception in 7u25
   - S8021898: Broken JIT compiler optimization for loop unswitching
@@ -111,7 +115,6 @@ New in release 2.5.0 (2014-XX-XX):
   - S8022507: SIGSEGV at ParMarkBitMap::verify_clear()
   - S8022584: Memory leak in some NetworkInterface methods
   - S8022585: VM crashes when ran with -XX:+PrintInlining
-  - S8022698: javax/script/GetInterfaceTest.java fails since 7u45 b04 with -agentvm option
   - S8022993: Convert MAX_UNROLL constant to LoopMaxUnroll C2 flag
   - S8023004: JSR 292: java.lang.RuntimeException: Original target method was called.
   - S8023130: (process) ProcessBuilder#inheritIO does not work on Windows
@@ -140,6 +143,7 @@ New in release 2.5.0 (2014-XX-XX):
   - S8025305: Cleanup CardTableModRefBS usage in G1
   - S8025512: NPE with logging while launching webstart on jre7u40 if logging is disabled
   - S8025541: G1: assert "assert(thread < _num_vtimes) failed: just checking" fails when G1ConcRefinementThreads > ParallelGCThreads
+  - S8025588: [macosx] Frozen AppKit thread in 7u40
   - S8025713: Syncing indendation/comment/copyright year differences with upstream projects
   - S8025775: JNI warnings in TryXShmAttach
   - S8025860: new hotspot build - hs24.60-b02
@@ -150,10 +154,12 @@ New in release 2.5.0 (2014-XX-XX):
   - S8026405: javax/xml/ws/clientjar/TestWsImport.java failing on JDK 8 nightly aurora test runs
   - S8026486: Significant slowdown due to transparent huge pages
   - S8026502: java/lang/invoke/MethodHandleConstants.java fails on all platforms
+  - S8026705: [TEST_BUG] java/beans/Introspector/TestTypeResolver.java failed
   - S8026794: Test tools/pack200/TimeStamp.java fails while opening golden.jar.native.IST on linux-ppc(v2)
   - S8026848: -XX:+G1SummarizeRSetStats can result in wrong exit code and crash
   - S8027066: XMLDecoder in java 7 cannot properly deserialize object arrays
   - S8027172: new hotspot build - hs24.60-b03
+  - S8027196: Increment minor version of HSx for 7u55 and initialize the build number
   - S8027351: (ref) Private finalize method invoked in preference to protected superclass method
   - S8027426: String.toLowerCase incorrectly increases length, if string contains \u0130 char
   - S8027454: Do not traverse string table during G1 remark when treating them as strong roots during initial mark
@@ -181,21 +187,40 @@ New in release 2.5.0 (2014-XX-XX):
   - S8029903: Add a type safe alternative for working with counter based data
   - S8030061: new hotspot build - hs24.60-b05
   - S8030070: Test java/io/File/CheckPermission.java fails due to unfinished recursion (java.lang.StackOverflowError) when JIT'ed code (-client,-server) is running
+  - S8030655: Regression: 14_01 Security fix 8024306 causes test failures
   - S8030698: Several GUI labels in jconsole need correction
+  - S8030813: Signed applet fails to load when CRLs are stored in an LDAP directory
+  - S8030822: (tz) Support tzdata2013i
+  - S8031050: (thread) Change Thread initialization so that thread name is set before invoking SecurityManager
+  - S8031394: (sl) Fix exception handling in ServiceLoader
+  - S8031462: Fonts with morx tables are broken with latest ICU fixes
   - S8031787: Remove fix JDK-8026887 from 7u60
   - S8031980: Add new j.u.l deadlock test for JDK-8027670 and JDK-8029281
   - S8032013: new hotspot build - hs24.60-b08
   - S8032207: C2: assert(VerifyOops || MachNode::size(ra_) <= (3+1)*4) failed: bad fixed size
+  - S8032740: Need to create SE Embedded Source Bundles in 7 Release
   - S8032771: The flag VerifySilently misses a test case
   - S8032960: Running forms URL throws NullPointerException in Javaconsole.
   - S8032986: new hotspot build - hs24.60-b09
   - S8033294: javac, spurious warning for instanceof operator
   - S8033443: Test8000311 fails after latest changes to parallelize string and symbol table unlink
   - S8033487: Improve GC option handling
+  - S8034181: SIGBUS in SctpChannelImpl receive
+  - S8034772: JDK-8028795 brought a specification change to 7u55 release and caused JCK7 signature test failure
+  - S8035283: Second phase of branch shortening doesn't account for loop alignment
+  - S8035618: Four api/org_omg/CORBA TCK tests fail under plugin only
   - S8035893: JVM_GetVersionInfo fails to zero structure
   - S8035897: Better memory allocation for file descriptors greater than 1024 on macosx
+  - S8035963: The failed Kerberos tests due to timeouts
   - S8035988: 7u60 l10n resource file translation update 1
+  - S8036027: Increment hsx 24.51 build to b04 for 7u51-b34
+  - S8036147: Increment hsx 24.55 build to b02 for 7u55-b11
   - S8036584: Review comments from 8035897
+  - S8036837: Increment hsx 24.55 build to b03 for 7u55-b12
+  - S8037012: (tz) Support tzdata2014a
+  - S8037340: Linux semaphores to use CLOCK_REALTIME
+  - S8037510: CMM Testing: Min/MaxHeapFreeRatio flags should be manageable through the API
+  - S8039097: Some tests fail with NPE since 7u60 b12
 * Backports
   - S7103549: Remove dependencies on libjava and libjvm from security libraries
   - S8000204: Memory leak in com/sun/security/auth/module/Unix.c
@@ -229,8 +254,9 @@ New in release 2.5.0 (2014-XX-XX):
   - Add new files from 8019229
   - Remove duplicate ElfFuncDescTable code in elfSymbolTable.cpp
   - Remove duplicate ElfFuncDescTable code in elfSymbolTable.hpp
-  - PR1726: configure fails looking for ecj.jar before even trying to find javac
   - PR1699: Support building the SunEC provider with system NSS
+  - PR1393: JPEG support in build is broken on non-system-libjpeg builds
+  - Fix merge duplication in com.sun.script.javascript.RhinoTopLevel
 * PPC & AIX port
   - Add AIX-specific build instructions to README-ppc.html
   - Added AIX as testing platform for more jtreg tests written in shell-script
@@ -449,6 +475,8 @@ New in release 2.5.0 (2014-XX-XX):
   - Use macosx's BsdVirtualMachine implementation to provide tools/attach on AIX platform.
   - Use stubs to implement safefetch.
   - Use the solaris' approach of doing IsXRenderAvailable check for AIX
+* ARM port
+  - Fix accidental reversion of PR1188 for armel
 * JamVM
   - JVM_NewMultiArray: element class may be an array
   - jtreg test java/lang/reflect/Array/ExceedMaxDim

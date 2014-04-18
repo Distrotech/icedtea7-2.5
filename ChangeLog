@@ -1,3 +1,31 @@
+2014-04-18  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
+	* Makefile.am:
+	(BUILD_VERSION): Bump to b15.
+	(CORBA_CHANGESET): Update to icedtea-2.5pre04 tag.
+	(JAXP_CHANGESET): Likewise.
+	(JAXWS_CHANGESET): Likewise.
+	(JDK_CHANGESET): Likewise.
+	(LANGTOOLS_CHANGESET): Likewise.
+	(OPENJDK_CHANGESET): Likewise.
+	(CORBA_SHA256SUM): Likewise.
+	(JAXP_SHA256SUM): Likewise.
+	(JAXWS_SHA256SUM): Likewise.
+	(JDK_SHA256SUM): Likewise.
+	(LANGTOOLS_SHA256SUM): Likewise.
+	(OPENJDK_SHA256SUM): Likewise.
+	(ICEDTEA_PATCHES): Temporarily disable systemtap_gc
+	patch which breaks build.
+	* NEWS: Updated.
+	* configure.ac: Bump to pre04.
+	* hotspot.map: Update to icedtea-2.5pre04.
+	* patches/boot/ecj-autoboxing.patch: Regenerated.
+	* patches/boot/ecj-diamond.patch: Regenerated and
+	new cases added for JDK13Services, SubjectDelegator
+	and ScriptEngineManager.
+	* patches/boot/ecj-trywithresources.patch: Regenerated.
+	* patches/rhino.patch: Likewise.
+
 2014-03-27  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
 	* acinclude.m4:

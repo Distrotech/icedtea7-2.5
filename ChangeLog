@@ -1,3 +1,24 @@
+2014-04-24  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
+	Use of -fdevirtualize on macroAssembler_x86.o (via -O2)
+	with gcc 4.9.0 creates broken VM
+	* Makefile.am,
+	(CORBA_CHANGESET): Update to icedtea-2.5pre05 tag.
+	(JAXP_CHANGESET): Likewise.
+	(JAXWS_CHANGESET): Likewise.
+	(JDK_CHANGESET): Likewise.
+	(LANGTOOLS_CHANGESET): Likewise.
+	(OPENJDK_CHANGESET): Likewise.
+	(CORBA_SHA256SUM): Likewise.
+	(JAXP_SHA256SUM): Likewise.
+	(JAXWS_SHA256SUM): Likewise.
+	(JDK_SHA256SUM): Likewise.
+	(LANGTOOLS_SHA256SUM): Likewise.
+	(OPENJDK_SHA256SUM): Likewise.
+	* NEWS: Updated with S8041658 and extension.
+	* configure.ac: Bump to pre05.
+	* hotspot.map: Update to icedtea-2.5pre05 tag.
+
 2014-04-18  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
 	* Makefile.am:

@@ -257,6 +257,8 @@ New in release 2.5.0 (2014-XX-XX):
   - PR1699: Support building the SunEC provider with system NSS
   - PR1393: JPEG support in build is broken on non-system-libjpeg builds
   - Fix merge duplication in com.sun.script.javascript.RhinoTopLevel
+  - S8041658: Use of -fdevirtualize on macroAssembler_x86.o (via -O2) with gcc 4.9.0 creates broken VM
+  - Extend 8041658 to all files in the HotSpot build.
 * PPC & AIX port
   - Add AIX-specific build instructions to README-ppc.html
   - Added AIX as testing platform for more jtreg tests written in shell-script

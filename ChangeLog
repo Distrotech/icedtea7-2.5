@@ -1,3 +1,31 @@
+2014-06-04  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
+	* INSTALL: Replace documentation of
+	--with-abs-install-dir with --prefix.
+	* Makefile.am:
+	(CORBA_CHANGESET): Update to icedtea-2.5pre06 tag.
+	(JAXP_CHANGESET): Likewise.
+	(JAXWS_CHANGESET): Likewise.
+	(JDK_CHANGESET): Likewise.
+	(LANGTOOLS_CHANGESET): Likewise.
+	(CORBA_SHA256SUM): Likewise.
+	(JAXP_SHA256SUM): Likewise.
+	(JAXWS_SHA256SUM): Likewise.
+	(JDK_SHA256SUM): Likewise.
+	(LANGTOOLS_SHA256SUM): Likewise.
+	(ICEDTEA_ENV): Set INSTALL_LOCATION to prefix.
+	* NEWS: Updated.
+	* configure.ac: Bump to pre06. Drop abs-install-dir
+	option and use prefix in ABS_CLIENT_LIBJVM_SO and
+	ABS_SERVER_LIBJVM_SO instead.
+	* hotspot.map: Update to icedtea-2.5pre06 tag.
+	* patches/boot/jaxws-langtools-dependency.patch:
+	Regenerated.
+	* tapset/hotspot.stp.in,
+	* tapset/hotspot_jni.stp.in,
+	* tapset/jstack.stp.in:
+	Replace ABS_JAVA_HOME_DIR with prefix.
+
 2014-04-24  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
 	Use of -fdevirtualize on macroAssembler_x86.o (via -O2)

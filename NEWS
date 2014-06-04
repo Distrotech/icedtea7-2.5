@@ -229,6 +229,7 @@ New in release 2.5.0 (2014-XX-XX):
   - S8007607: security native code doesn't always use malloc, realloc, and calloc correctly
   - S8008509: 6588413 changed JNIEXPORT visibility for GCC on HSX, jdk's jni_md.h needs similar change
   - S8014307: Memory leak ... security/jgss/wrapper/GSSLibStub.c
+  - S8038392, RH1064383: Generating prelink cache breaks JAVA 'jinfo' utility normal behavior
 * Bug fixes
   - Fix implicit function declarations in j2secmod_md.c introduced by 7103549.
   - PR1617: Include defs.make in vm.make so zeroshark.make is included
@@ -259,6 +260,12 @@ New in release 2.5.0 (2014-XX-XX):
   - Fix merge duplication in com.sun.script.javascript.RhinoTopLevel
   - S8041658: Use of -fdevirtualize on macroAssembler_x86.o (via -O2) with gcc 4.9.0 creates broken VM
   - Extend 8041658 to all files in the HotSpot build.
+  - Correct placement of S8041658 fix
+  - PR1753: Ant does not respect JAVA_HOME/jdk.home setting
+  - PR1757: register_method usage in sharkCompiler.cpp needs to be adjusted following S7196199
+  - PR1781: NSS PKCS11 provider fails to handle multipart AES encryption
+  - RH1059925: RFE: Version Java libraries to allow using multiple Java versions with Linux capabilities enabled
+  - RH905128: [CRASH] OpenJDK-1.7.0 while using NSS security provider and kerberos
 * PPC & AIX port
   - Add AIX-specific build instructions to README-ppc.html
   - Added AIX as testing platform for more jtreg tests written in shell-script
@@ -335,6 +342,7 @@ New in release 2.5.0 (2014-XX-XX):
   - Fixed JTreg failure from java/util/ResourceBundle/Control/ExpirationTest.sh
   - Fixed memory handling/bookkeeping of mmaped memory on AIX
   - Fixed sun/nio/ch implementation on AIX
+  - Fix handling of scalar replaced objects.
   - Fix IA64 preprocessor conditionals on AIX!!!
   - Fix iconv encoding problem on AIX < 7.1 in SplashConvertStringAlloc
   - Fix JTreg failure from java/nio/charset/Charset/NIOCharsetAvailabilityTest.java
@@ -375,6 +383,7 @@ New in release 2.5.0 (2014-XX-XX):
   - Memory ordering as required for platforms with weak memory ordering (PPC)
   - Memory ordering: introduce functions to specify platform properties.
   - method handles: some smaller fixes and extensions for ppc
+  - New files for template interpreter
   - New HS24 JSR292 implementation for PPC64
   - opto: adapt assertion in postaloc.cpp for ppc.
   - opto: Basic fixes for the ppc C2 port
@@ -425,6 +434,7 @@ New in release 2.5.0 (2014-XX-XX):
   - PPC specific C2 flags: add macro PD_C2_FLAGS to global flag definitions.
   - PPC specific flags: add macro PD_FLAGS to global flag definitions.
   - ppc: support for g1, cOops
+  - PPC64: Support for ABI_ELFv2.
   - Propagate HOTSPOT_BUILD_JOBS and PARALLEL_COMPILE_JOBS from the top-level make to the corresponding sub-makes.
   - Recent changes to ppc files, especially to ppc.ad file.
   - Recent improvements by SAP.
@@ -441,7 +451,22 @@ New in release 2.5.0 (2014-XX-XX):
   - S8003853 opto: specify offset of IC load in java_to_interp stub.
   - S8005055: pass outputStream to more opto debug routines
   - S8006971 rt: Improve handling of memory ordering in taskqueue.hpp.
+  - S8016491: PPC64 (part 2): Clean up PPC defines.
+  - S8016586: PPC64 (part 3): basic changes for PPC64
+  - S8016696: PPC64 (part 4): add relocation for trampoline stubs
+  - S8017313: PPC64 (part 6): stack handling improvements
+  - S8017317: PPC64 (part 7): cppInterpreter: implement support for biased locking
+  - S8019517: PPC64 (part 102): cppInterpreter: implement G1 support
   - S8019929: PPC64 (part 107): Extend ELF-decoder to support PPC64 function descriptor tables
+  - S8019973: PPC64 (part 11): Fix IA64 preprocessor conditionals on AIX.
+  - S8024344: PPC64 (part 112): C argument in register AND stack slot.
+  - S8024468: PPC64 (part 201): cppInterpreter: implement bytecode profiling
+  - S8033168: PPC64: gcc 4.8 warning in output_c.cpp
+  - S8035396: Introduce accessor for tmp_oop in frame.
+  - S8036767: PPC64: Support for little endian execution model
+  - S8036976: PPC64: implement the template interpreter
+  - S8037915: PPC64/AIX: Several smaller fixes
+  - S8042309: Some bugfixes for the ppc64 port
   - Several NIO fixes for AIX to pass JCK tests
   - shared assembler: fix DelayedConstant.
   - shared: Basic non-functional fixes needed for the ppc port.

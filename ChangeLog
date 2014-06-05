@@ -1,3 +1,12 @@
+2014-05-09  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
+	PR1762: Undefined references when building with NSS 3.16.1
+	* NEWS: Updated.
+	* acinclude.m4:
+	(IT_ENABLE_SUNEC): For NSS >= 3.16.1, add -lfreebl
+	to SUNEC_LIBS, not SUNEC_CFLAGS, and use NSS_LIBS as
+	the base, not NSS_SOFTOKN_LIBS.
+
 2014-06-04  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
 	* Makefile.am:

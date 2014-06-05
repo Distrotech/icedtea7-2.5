@@ -275,6 +275,7 @@ New in release 2.5.0 (2014-XX-XX):
   - PR1756: Bootstrap with IcedTea broken
   - PR1758: Support PPC64 JIT on ppc64le
   - PR1763: ppc64 JIT doesn't support class data sharing
+  - PR1765: Boot JDK on ppc64le uses differently named arch directory to final build
 * PPC & AIX port
   - Add AIX-specific build instructions to README-ppc.html
   - Added AIX as testing platform for more jtreg tests written in shell-script

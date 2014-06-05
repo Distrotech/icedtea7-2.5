@@ -272,6 +272,7 @@ New in release 2.5.0 (2014-XX-XX):
   - PR1742: Allow SunEC provider to be built with changes in NSS >= 3.16.1
   - PR1762: Undefined references when building with NSS 3.16.1
   - PR1737: Support prefixed variants of GNU tools used on *BSD systems
+  - PR1756: Bootstrap with IcedTea broken
 * PPC & AIX port
   - Add AIX-specific build instructions to README-ppc.html
   - Added AIX as testing platform for more jtreg tests written in shell-script

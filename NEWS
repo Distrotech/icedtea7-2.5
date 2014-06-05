@@ -271,6 +271,7 @@ New in release 2.5.0 (2014-XX-XX):
   - RH905128: [CRASH] OpenJDK-1.7.0 while using NSS security provider and kerberos
   - PR1742: Allow SunEC provider to be built with changes in NSS >= 3.16.1
   - PR1762: Undefined references when building with NSS 3.16.1
+  - PR1737: Support prefixed variants of GNU tools used on *BSD systems
 * PPC & AIX port
   - Add AIX-specific build instructions to README-ppc.html
   - Added AIX as testing platform for more jtreg tests written in shell-script

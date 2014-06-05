@@ -217,9 +217,11 @@ New in release 2.5.0 (2014-XX-XX):
   - S8036147: Increment hsx 24.55 build to b02 for 7u55-b11
   - S8036584: Review comments from 8035897
   - S8036837: Increment hsx 24.55 build to b03 for 7u55-b12
+  - S8036861: Application can't be loaded fine,the save dialog can't show up.
   - S8037012: (tz) Support tzdata2014a
   - S8037340: Linux semaphores to use CLOCK_REALTIME
   - S8037510: CMM Testing: Min/MaxHeapFreeRatio flags should be manageable through the API
+  - S8038306: (tz) Support tzdata2014b
   - S8039097: Some tests fail with NPE since 7u60 b12
 * Backports
   - S7103549: Remove dependencies on libjava and libjvm from security libraries
@@ -228,6 +230,7 @@ New in release 2.5.0 (2014-XX-XX):
   - S8001579: Cleanup warnings in security native code
   - S8007607: security native code doesn't always use malloc, realloc, and calloc correctly
   - S8008509: 6588413 changed JNIEXPORT visibility for GCC on HSX, jdk's jni_md.h needs similar change
+  - S8012224: AWT_TopLevels/TopLevelEvents/Automated/WindowIconifyDeiconifyEventsTest02 fails on Ubuntu 12.04 Unity shell
   - S8014307: Memory leak ... security/jgss/wrapper/GSSLibStub.c
   - S8038392, RH1064383: Generating prelink cache breaks JAVA 'jinfo' utility normal behavior
 * Bug fixes
@@ -266,6 +269,7 @@ New in release 2.5.0 (2014-XX-XX):
   - PR1781: NSS PKCS11 provider fails to handle multipart AES encryption
   - RH1059925: RFE: Version Java libraries to allow using multiple Java versions with Linux capabilities enabled
   - RH905128: [CRASH] OpenJDK-1.7.0 while using NSS security provider and kerberos
+  - PR1742: Allow SunEC provider to be built with changes in NSS >= 3.16.1
 * PPC & AIX port
   - Add AIX-specific build instructions to README-ppc.html
   - Added AIX as testing platform for more jtreg tests written in shell-script

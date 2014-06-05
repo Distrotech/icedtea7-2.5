@@ -1,4 +1,4 @@
-AC_INIT([icedtea], [2.5pre06], [distro-pkg-dev@openjdk.java.net])
+AC_INIT([icedtea], [2.5pre07], [distro-pkg-dev@openjdk.java.net])
 AM_INIT_AUTOMAKE([1.9 tar-pax foreign])
 AC_CONFIG_FILES([Makefile])
 
@@ -53,6 +53,7 @@ IT_DISABLE_TESTS
 IT_DISABLE_HOTSPOT_TESTS
 IT_DISABLE_LANGTOOLS_TESTS
 IT_DISABLE_JDK_TESTS
+IT_ENABLE_SUNEC
 
 # Use xvfb-run if found to run gui tests (check-jdk).
 AC_CHECK_PROG(XVFB_RUN_CMD, xvfb-run, [xvfb-run -a -e xvfb-errors], [])
@@ -74,7 +75,6 @@ AC_ARG_ENABLE([docs],
 AM_CONDITIONAL([ENABLE_DOCS], [test x$ENABLE_DOCS = xyes])
 AC_MSG_RESULT(${ENABLE_DOCS})
 
-IT_LOCATE_NSS
 IT_GET_PKGVERSION
 IT_GET_LSB_DATA
 

@@ -1,5 +1,63 @@
 2014-06-04  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
+	* Makefile.am:
+	(BUILD_VERSION): Bump to b30.
+	(CORBA_CHANGESET): Update to icedtea-2.5pre07 tag.
+	(JAXP_CHANGESET): Likewise.
+	(JAXWS_CHANGESET): Likewise.
+	(JDK_CHANGESET): Likewise.
+	(LANGTOOLS_CHANGESET): Likewise.
+	(OPENJDK_CHANGESET): Likewise.
+	(CORBA_SHA256SUM): Likewise.
+	(JAXP_SHA256SUM): Likewise.
+	(JAXWS_SHA256SUM): Likewise.
+	(JDK_SHA256SUM): Likewise.
+	(LANGTOOLS_SHA256SUM): Likewise.
+	(OPENJDK_SHA256SUM): Likewise.
+	* NEWS: Updated.
+	* configure.ac: Bump to pre07.
+	* hotspot.map: Update to icedtea-2.5pre07tag.
+
+2014-04-23  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
+	PR1742: Allow SunEC provider to be built with changes
+	in NSS >= 3.16.1
+	* Makefile.am:
+	(ICEDTEA_ENV): Use SUNEC_LIBS and SUNEC_CFLAGS
+	instead of NSS_LIBS and NSS_CFLAGS respectively.
+	* acinclude.m4:
+	(IT_ENABLE_SUNEC): Use SUNEC_CFLAGS and SUNEC_LIBS
+	for clarity as NSS_CFLAGS and NSS_LIBS are also set
+	by the NSS detection.
+
+2014-04-18  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
+	PR1699: Support building the SunEC provider with system NSS
+	* Makefile.am:
+	(ICEDTEA_ENV): Only add DISABLE_INTREE_EC if
+	ENABLE_SUNEC is not set. Set SYSTEM_NSS in both
+	cases and NSS_LIBS, NSS_CFLAGS and ECC_JUST_SUITE_B
+	when ENABLE_SUNEC is set.
+	* acinclude.m4:
+	(IT_LOCATE_NSS): Fix wording to make it clear that
+	this is the PKCS11 provider, using NSS as the
+	implementation.
+	(IT_ENABLE_SUNEC): Allow the Sun elliptic curve
+	crypto provider to be enabled.
+	* configure.ac:
+	Replace IT_LOCATE_NSS with IT_ENABLE_SUNEC (which
+	depends on the former).
+	* fsg.sh:
+	Only delete the SunEC implementation code at this
+	level. This is the part that is legally dubious,
+	due to the use of many more elliptic curves than
+	those provided by the NSS version.
+	* remove-intree-libraries.sh.in:
+	Include the remaining SunEC deletion from fsg.sh
+	here and make it optional.
+
+2014-06-04  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
 	* INSTALL: Replace documentation of
 	--with-abs-install-dir with --prefix.
 	* Makefile.am:

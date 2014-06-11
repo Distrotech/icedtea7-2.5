@@ -1,5 +1,6 @@
 AC_INIT([icedtea], [2.5pre07], [distro-pkg-dev@openjdk.java.net])
 AM_INIT_AUTOMAKE([1.9 tar-pax foreign])
+AM_MAINTAINER_MODE([enable])
 AC_CONFIG_FILES([Makefile])
 
 # Older automake doesn't generate these correctly

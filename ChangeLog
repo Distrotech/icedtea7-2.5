@@ -1,5 +1,19 @@
 2014-06-12  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
+	* .hgignore: Add compile script added by
+	recent version of Automake.
+	* scripts/create_tarballs.sh: New script
+	to create tarballs using Mercurial, as used
+	for the drops created for the previous bump.
+	* scripts/gen_changeset_and_sha256sums.sh:
+	Updated to latest local version, with support
+	for tarballs created by create_tarballs.sh.
+	* scripts/update_tarballs.sh:
+	Updated to latest local version with support
+	for OpenJDK 8.
+
+2014-06-12  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
 	* AUTHORS:
 	Add authors of infinality patch. Websites are used
 	as present as couldn't find any e-mail addresses.

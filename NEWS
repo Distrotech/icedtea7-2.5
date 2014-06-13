@@ -12,7 +12,7 @@ JEPX - http://openjdk.java.net/jeps/X
 
 CVE-XXXX-YYYY: http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=XXXX-YYYY
 
-New in release 2.5.0 (2014-XX-XX):
+New in release 2.5.0 (2014-06-13):
 
 * OpenJDK
   - S5049299: (process) Use posix_spawn, not fork, on S10 to avoid swap exhaustion

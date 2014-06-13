@@ -1,5 +1,14 @@
 2014-06-13  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
+	Update aarch64 port to jdk7u60_b04_aarch64_832
+	* Makefile.am:
+	(ICEDTEA_PATCHES): Add back systemtap_gc patch
+	just for aarch64. Now included in default tree.
+	* hotspot.map:
+	Bump aarch64 port and switch to drop as with default.
+
+2014-06-13  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
 	* configure.ac: Set to 2.5.0.
 	* NEWS: Set release date to today.
 

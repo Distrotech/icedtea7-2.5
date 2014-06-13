@@ -266,11 +266,6 @@ ICEDTEA_PATCHES += \
 	patches/cacao/ignore-tests.patch
 endif
 
-if ENABLE_SYSTEMTAP
-#ICEDTEA_PATCHES += \
-#	patches/hotspot/$(HSBUILD)/systemtap_gc.patch
-endif
-
 if ENABLE_NSS
 ICEDTEA_PATCHES += patches/nss-config.patch \
 	patches/rh1022017.patch
@@ -284,6 +279,10 @@ endif
 
 if WITH_ALT_HSBUILD
 ICEDTEA_PATCHES += patches/hotspot/aarch64/werror.patch
+if ENABLE_SYSTEMTAP
+ICEDTEA_PATCHES += \
+	patches/hotspot/aarch64/systemtap_gc.patch
+endif
 endif
 
 ICEDTEA_PATCHES += $(DISTRIBUTION_PATCHES)

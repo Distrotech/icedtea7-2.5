@@ -278,7 +278,9 @@ endif
 endif
 
 if WITH_ALT_HSBUILD
-ICEDTEA_PATCHES += patches/hotspot/aarch64/werror.patch
+ICEDTEA_PATCHES += patches/hotspot/aarch64/werror.patch \
+	patches/hotspot/aarch64/20140415-8029858-enhance_array_copies.patch \
+	patches/hotspot/aarch64/20140415-8034926-attribute_classes_properly.patch
 if ENABLE_SYSTEMTAP
 ICEDTEA_PATCHES += \
 	patches/hotspot/aarch64/systemtap_gc.patch
@@ -577,6 +579,13 @@ endif
 if ENABLE_INFINALITY
 ICEDTEA_ENV += \
        INFINALITY_SUPPORT="true"
+endif
+
+# This seems illogical, but it actually just
+# turns off the creation of separate debuginfo files.
+if WITH_ALT_HSBUILD
+ICEDTEA_ENV += \
+	FULL_DEBUG_SYMBOLS=0
 endif
 
 # OpenJDK boot build environment.

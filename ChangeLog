@@ -1,3 +1,14 @@
+2014-03-28  Andrew John Hughes  <gnu.andrew@redhat.com>
+
+	* Makefile.am:
+	(ICEDTEA_PATCHES): Add HotSpot security fixes for
+	AArch64 port.
+	(ICEDTEA_ENV): Set FULL_DEBUG_SYMBOLS=0 in AArch64
+	build to avoid generating .diz files.
+	* patches/hotspot/aarch64/20140415-8029858-enhance_array_copies.patch,
+	* patches/hotspot/aarch64/20140415-8034926-attribute_classes_properly.patch:
+	HotSpot security fixes for AArch64 port.
+
 2014-06-13  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
 	PR1848: Removal of project support leaves

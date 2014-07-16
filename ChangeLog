@@ -1,5 +1,9 @@
 2014-07-16  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
+	* NEWS: Set release date for 2.5.1.
+
+2014-07-16  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
 	PR1867: Turn the infinality patch off by default
 	* NEWS: Updated.
 	* acinclude.m4:

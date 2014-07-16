@@ -77,6 +77,12 @@ New in release 2.5.1 (2014-07-XX):
   - PR1853: Revert PR729 from minor release
   - PR1864: PCSC + OpenJDK 1.7 crash on Fedora 20
   - PR1868: Avoid x86 workaround when running Zero rather than a JIT
+* AArch64 port
+  - Common frame handling for C1/C2 which correctly handle all frame sizes
+  - Fix register misuse in verify_method_data_pointer
+  - Fix register usage in generate_verify_oop().
+  - Restrict default ReservedCodeCacheSize to 128M
+  - Use explicit barrier instructions in C1.
 
 New in release 2.5.0 (2014-06-13):
 

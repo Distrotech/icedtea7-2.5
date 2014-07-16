@@ -1,5 +1,12 @@
 2014-07-16  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
+	PR1867: Turn the infinality patch off by default
+	* NEWS: Updated.
+	* acinclude.m4:
+	(IT_ENABLE_INFINALITY): Set default to no.
+
+2014-07-16  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
 	* patches/hotspot/aarch64/20140415-8029858-enhance_array_copies.patch,
 	* patches/hotspot/aarch64/20140415-8034926-attribute_classes_properly.patch:
 	Removed, as applied upstream.

@@ -12,6 +12,8 @@ JEPX - http://openjdk.java.net/jeps/X
 
 CVE-XXXX-YYYY: http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=XXXX-YYYY
 
+New in release 2.5.2 (2014-10-XX):
+
 New in release 2.5.1 (2014-07-16):
 
 * Security fixes

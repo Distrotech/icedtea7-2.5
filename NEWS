@@ -12,7 +12,7 @@ JEPX - http://openjdk.java.net/jeps/X
 
 CVE-XXXX-YYYY: http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=XXXX-YYYY
 
-New in release 2.5.2 (2014-10-XX):
+New in release 2.5.2 (2014-08-29):
 
 * Backports
   - S8049480: Current versions of Java can't verify jars signed and timestamped with Java 9

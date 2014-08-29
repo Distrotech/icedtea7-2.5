@@ -14,6 +14,21 @@ CVE-XXXX-YYYY: http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=XXXX-YYYY
 
 New in release 2.5.2 (2014-10-XX):
 
+* Backports
+  - S8049480: Current versions of Java can't verify jars signed and timestamped with Java 9
+  - S8051012, LP1360392: Regression in verifier for <init> method call from inside of a branch
+* Bug fixes
+  - PR1903: [REGRESSION] Bug reports now lack IcedTea version & distribution packaging information
+  - PR1948: Only try and symlink debuginfo if STRIP_POLICY is other than no_strip
+  - PR1948: Fix indenting
+  - RH1015432: java-1.7.0-openjdk: Fails on PPC with StackOverflowError (revised fix for PPC32)
+* PPC & AIX port
+  - Adapt AIX port to 5049299: (process) Use posix_spawn, not fork, on S10 to avoid swap exhaustion
+  - Adapt aix to 8022507
+  - Fix aix after 8022507: SIGSEGV at ParMarkBitMap::verify_clear()
+  - S8050942: PPC64: implement template interpreter for ppc64le
+  - S8050972: Concurrency problem in PcDesc cache
+
 New in release 2.5.1 (2014-07-16):
 
 * Security fixes

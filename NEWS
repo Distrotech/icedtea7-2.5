@@ -1,6 +1,6 @@
 Key:
 
-SX  - http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=X
+SX  - https://bugs.openjdk.java.net/browse/JDK-X
 PRX - http://icedtea.classpath.org/bugzilla/show_bug.cgi?id=X
 RHX - https://bugzilla.redhat.com/show_bug.cgi?id=X
 DX  - http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=X
@@ -21,6 +21,7 @@ New in release 2.5.2 (2014-10-XX):
   - PR1903: [REGRESSION] Bug reports now lack IcedTea version & distribution packaging information
   - PR1948: Only try and symlink debuginfo if STRIP_POLICY is other than no_strip
   - PR1948: Fix indenting
+  - PR1966: Move to new OpenJDK bug URL format
   - RH1015432: java-1.7.0-openjdk: Fails on PPC with StackOverflowError (revised fix for PPC32)
 * PPC & AIX port
   - Adapt AIX port to 5049299: (process) Use posix_spawn, not fork, on S10 to avoid swap exhaustion

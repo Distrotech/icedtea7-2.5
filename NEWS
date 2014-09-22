@@ -22,6 +22,8 @@ New in release 2.5.3 (2014-10-XX):
   - PR1988: C++ Interpreter should no longer be used on ppc64
   - PR1989: Make jdk_generic_profile.sh handle missing programs better and be more verbose
   - PR1992, RH735336: Support retrieving proxy settings on GNOME 3.12.2
+  - PR2000: Synchronise HEAD tarball paths with release branch paths
+  - PR2002: Fix references to hotspot.map following PR2000
   - PR2003: --disable-system-gtk option broken by refactoring in PR1736
   - PR2009: Checksum of policy JAR files changes on every build
 

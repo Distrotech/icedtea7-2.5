@@ -17,6 +17,7 @@ New in release 2.5.3 (2014-10-XX):
 * Backports
   - S4963723: Implement SHA-224
   - S7044060: Need to support NSA Suite B Cryptography algorithms
+  - S7122142: (ann) Race condition between isAnnotationPresent and getAnnotations
   - S8006935: Need to take care of long secret keys in HMAC/PRF compuation
 * Bug fixes
   - PR1988: C++ Interpreter should no longer be used on ppc64
@@ -26,6 +27,8 @@ New in release 2.5.3 (2014-10-XX):
   - PR2002: Fix references to hotspot.map following PR2000
   - PR2003: --disable-system-gtk option broken by refactoring in PR1736
   - PR2009: Checksum of policy JAR files changes on every build
+  - PR2025: LCMS_CFLAGS & LCMS_LIBS should not be used unless SYSTEM_LCMS is enabled
+  - RH1015432: java-1.7.0-openjdk: Fails on PPC with StackOverflowError (revised comprehensive fix)
 
 New in release 2.5.2 (2014-08-29):
 

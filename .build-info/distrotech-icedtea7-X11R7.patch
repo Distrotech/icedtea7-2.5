@@ -9,3 +9,14 @@
  endif
  
  # DEVTOOLS_PATH: for other tools required for building (such as zip, etc.)
+--- a/openjdk/jdk/make/sun/gtk/Makefile	2014-10-03 20:56:49.907928619 +0200
++++ b/openjdk/jdk/make/sun/gtk/Makefile	2014-10-03 20:56:56.505928046 +0200
+@@ -54,7 +54,7 @@
+ vpath %.c   $(PLATFORM_SRC)/native/common/deps/gtk2
+ endif
+ 
+-OTHER_LDLIBS = -lX11
++OTHER_LDLIBS = -L=$(OPENWIN_LIB) -lX11
+ 
+ ifeq ($(SYSTEM_GTK), true)
+   OTHER_LDLIBS += $(GTK_LIBS)

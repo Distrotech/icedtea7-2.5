@@ -127,23 +127,36 @@ host_triplet = @host@
 @ENABLE_CACAO_TRUE@am__append_11 = \
 @ENABLE_CACAO_TRUE@	patches/cacao/ignore-tests.patch
 
-@ENABLE_PULSE_JAVA_TRUE@am__append_12 = \
-@ENABLE_PULSE_JAVA_TRUE@	patches/pulse-soundproperties.patch
+@ENABLE_NSS_TRUE@am__append_12 = patches/nss-config.patch \
+@ENABLE_NSS_TRUE@	patches/rh1022017.patch
 
-@ENABLE_SYSTEMTAP_TRUE@am__append_13 = \
-@ENABLE_SYSTEMTAP_TRUE@	patches/systemtap_gc.patch
+@ENABLE_NSS_FALSE@@ENABLE_SUNEC_TRUE@am__append_13 = patches/rh1022017.patch
+@WITH_ALT_HSBUILD_TRUE@am__append_14 = patches/hotspot/aarch64/werror.patch \
+@WITH_ALT_HSBUILD_TRUE@	patches/hotspot/aarch64/20140715-8030763-validate_global_memory_allocation.patch \
+@WITH_ALT_HSBUILD_TRUE@	patches/hotspot/aarch64/20140715-8032536-jvm_resolves_wrong_method.patch \
+@WITH_ALT_HSBUILD_TRUE@	patches/hotspot/aarch64/20140715-8036800-attribute_oom_to_right_code.patch \
+@WITH_ALT_HSBUILD_TRUE@	patches/hotspot/aarch64/20140715-8035119-fix_exceptions_to_bytecode_verification.patch \
+@WITH_ALT_HSBUILD_TRUE@	patches/hotspot/aarch64/20140715-8037076-check_constant_pool_constants.patch \
+@WITH_ALT_HSBUILD_TRUE@	patches/hotspot/aarch64/20140715-8037157-verify_init_call.patch \
+@WITH_ALT_HSBUILD_TRUE@	patches/hotspot/aarch64/20140715-8043454-8037157_test_case_fix.patch \
+@WITH_ALT_HSBUILD_TRUE@	patches/hotspot/aarch64/20140715-8037167-better_method_signature_resolution.patch
 
-@ENABLE_NSS_TRUE@am__append_14 = patches/nss-config.patch
-@WITH_PAX_TRUE@am__append_15 = \
-@WITH_PAX_TRUE@	patches/test_gamma.patch \
-@WITH_PAX_TRUE@	patches/pax-mark-rmic-java.patch
+@ENABLE_SYSTEMTAP_TRUE@@WITH_ALT_HSBUILD_TRUE@am__append_15 = \
+@ENABLE_SYSTEMTAP_TRUE@@WITH_ALT_HSBUILD_TRUE@	patches/hotspot/aarch64/systemtap_gc.patch
 
-@DISABLE_BOOTSTRAP_TOOLS_TRUE@am__append_16 = patches/boot/openjdk6-prefer_source.patch
-@DISABLE_BOOTSTRAP_TOOLS_FALSE@am__append_17 = patches/boot/bootstrap-tools.patch
-@VM_SUPPORTS_XBOOTCLASSPATH_FALSE@am__append_18 = \
+@DISABLE_BOOTSTRAP_TOOLS_FALSE@am__append_16 = \
+@DISABLE_BOOTSTRAP_TOOLS_FALSE@	patches/boot/bootstrap-tools.patch \
+@DISABLE_BOOTSTRAP_TOOLS_FALSE@	patches/boot/ant-javac.patch
+
+@LACKS_COM_SUN_MIRROR_TYPE_TYPEMIRROR_TRUE@am__append_17 = \
+@LACKS_COM_SUN_MIRROR_TYPE_TYPEMIRROR_TRUE@	patches/boot/jaxws-langtools-dependency.patch
+
+@LACKS_COM_SUN_NET_HTTPSERVER_HEADERS_TRUE@am__append_18 = \
+@LACKS_COM_SUN_NET_HTTPSERVER_HEADERS_TRUE@	patches/boot/jaxws-jdk-dependency.patch
+
+@VM_SUPPORTS_XBOOTCLASSPATH_FALSE@am__append_19 = \
 @VM_SUPPORTS_XBOOTCLASSPATH_FALSE@	patches/boot/xbootclasspath.patch
 
-@WITH_PAX_FALSE@am__append_19 = patches/boot/test_gamma.patch
 @CP39408_JAVAH_TRUE@am__append_20 = patches/boot/pr39408.patch
 @CP40188_JAVAH_TRUE@am__append_21 = patches/boot/pr40188.patch \
 @CP40188_JAVAH_TRUE@	patches/boot/javah.patch
@@ -180,58 +193,35 @@ host_triplet = @host@
 @WITH_RHINO_TRUE@am__append_38 = \
 @WITH_RHINO_TRUE@	RHINO_JAR="$(abs_top_builddir)/rhino/rhino.jar"
 
-@USE_SYSTEM_ZLIB_TRUE@am__append_39 = \
-@USE_SYSTEM_ZLIB_TRUE@	SYSTEM_ZLIB="true" \
-@USE_SYSTEM_ZLIB_TRUE@	ZLIB_LIBS="${ZLIB_LIBS}" \
-@USE_SYSTEM_ZLIB_TRUE@	ZLIB_CFLAGS="${ZLIB_CFLAGS}"
+@WITH_PAX_TRUE@am__append_39 = \
+@WITH_PAX_TRUE@	PAX_COMMAND="${PAX_COMMAND}"
 
-@USE_SYSTEM_LCMS_TRUE@am__append_40 = \
-@USE_SYSTEM_LCMS_TRUE@	USE_SYSTEM_LCMS="true" \
-@USE_SYSTEM_LCMS_TRUE@	LCMS_LIBS="${LCMS2_LIBS}" \
-@USE_SYSTEM_LCMS_TRUE@	LCMS_CFLAGS="${LCMS2_CFLAGS}"
+@ENABLE_SUNEC_TRUE@am__append_40 = \
+@ENABLE_SUNEC_TRUE@	SYSTEM_NSS="true" \
+@ENABLE_SUNEC_TRUE@	NSS_LIBS="${SUNEC_LIBS}" \
+@ENABLE_SUNEC_TRUE@	NSS_CFLAGS="${SUNEC_CFLAGS}" \
+@ENABLE_SUNEC_TRUE@	ECC_JUST_SUITE_B="true"
 
-@USE_SYSTEM_JPEG_TRUE@am__append_41 = \
-@USE_SYSTEM_JPEG_TRUE@	USE_SYSTEM_JPEG="true" \
-@USE_SYSTEM_JPEG_TRUE@	JPEG_LIBS="${JPEG_LIBS}" \
-@USE_SYSTEM_JPEG_TRUE@	JPEG_CFLAGS="${JPEG_CFLAGS}"
+@ENABLE_SUNEC_FALSE@am__append_41 = \
+@ENABLE_SUNEC_FALSE@	SYSTEM_NSS="false" \
+@ENABLE_SUNEC_FALSE@	DISABLE_INTREE_EC="true"
 
-@USE_SYSTEM_PNG_TRUE@am__append_42 = \
-@USE_SYSTEM_PNG_TRUE@	USE_SYSTEM_PNG="true" \
-@USE_SYSTEM_PNG_TRUE@	PNG_LIBS="${PNG_LIBS}" \
-@USE_SYSTEM_PNG_TRUE@	PNG_CFLAGS="${PNG_CFLAGS}"
+@ENABLE_NATIVE_DEBUGINFO_TRUE@am__append_42 = \
+@ENABLE_NATIVE_DEBUGINFO_TRUE@	DEBUG_BINARIES="true"
 
-@USE_SYSTEM_GIF_TRUE@am__append_43 = \
-@USE_SYSTEM_GIF_TRUE@	USE_SYSTEM_GIF="true" \
-@USE_SYSTEM_GIF_TRUE@	GIF_LIBS="${GIF_LIBS}" \
-@USE_SYSTEM_GIF_TRUE@	GIF_CFLAGS="${GIF_CFLAGS}"
+@ENABLE_JAVA_DEBUGINFO_TRUE@am__append_43 = \
+@ENABLE_JAVA_DEBUGINFO_TRUE@	DEBUG_CLASSFILES="true"
 
-@USE_SYSTEM_GTK_TRUE@am__append_44 = \
-@USE_SYSTEM_GTK_TRUE@	USE_SYSTEM_GTK="true" \
-@USE_SYSTEM_GTK_TRUE@	GTK_LIBS="${GTK_LIBS}" \
-@USE_SYSTEM_GTK_TRUE@	GTK_CFLAGS="${GTK_CFLAGS}"
+@ENABLE_INFINALITY_TRUE@am__append_44 = \
+@ENABLE_INFINALITY_TRUE@       INFINALITY_SUPPORT="true"
 
-@USE_SYSTEM_GIO_TRUE@am__append_45 = \
-@USE_SYSTEM_GIO_TRUE@	USE_SYSTEM_GIO="true" \
-@USE_SYSTEM_GIO_TRUE@	GIO_LIBS="${GIO_LIBS}" \
-@USE_SYSTEM_GIO_TRUE@	GIO_CFLAGS="${GIO_CFLAGS}"
 
-@USE_SYSTEM_FONTCONFIG_TRUE@am__append_46 = \
-@USE_SYSTEM_FONTCONFIG_TRUE@	USE_SYSTEM_FONTCONFIG="true" \
-@USE_SYSTEM_FONTCONFIG_TRUE@	FONTCONFIG_LIBS="${FONTCONFIG_LIBS}" \
-@USE_SYSTEM_FONTCONFIG_TRUE@	FONTCONFIG_CFLAGS="${FONTCONFIG_CFLAGS}"
+# This seems illogical, but it actually just
+# turns off the creation of separate debuginfo files.
+@WITH_ALT_HSBUILD_TRUE@am__append_45 = \
+@WITH_ALT_HSBUILD_TRUE@	FULL_DEBUG_SYMBOLS=0
 
-@USE_SYSCALL_COMPILATION_TRUE@am__append_47 = \
-@USE_SYSCALL_COMPILATION_TRUE@	COMPILE_AGAINST_SYSCALLS="true"
-
-@ENABLE_JAR_COMPRESSION_TRUE@am__append_48 = \
-@ENABLE_JAR_COMPRESSION_TRUE@	COMPRESS_JARS="true"
-
-@USE_SYSTEM_KERBEROS_TRUE@am__append_49 = \
-@USE_SYSTEM_KERBEROS_TRUE@	SYSTEM_KRB5="true" \
-@USE_SYSTEM_KERBEROS_TRUE@	KRB5_LIBS="${KRB5_LIBS}" \
-@USE_SYSTEM_KERBEROS_TRUE@	KRB5_CFLAGS="${KRB5_CFLAGS}"
-
-@ADD_SHARK_BUILD_TRUE@am__append_50 = \
+@ADD_SHARK_BUILD_TRUE@am__append_46 = \
 @ADD_SHARK_BUILD_TRUE@	--enable-shark
 
 subdir = .
@@ -297,7 +287,6 @@ am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
 ABS_CLIENT_LIBJVM_SO = @ABS_CLIENT_LIBJVM_SO@
-ABS_JAVA_HOME_DIR = @ABS_JAVA_HOME_DIR@
 ABS_SERVER_LIBJVM_SO = @ABS_SERVER_LIBJVM_SO@
 ACLOCAL = @ACLOCAL@
 ALSA_CFLAGS = @ALSA_CFLAGS@
@@ -353,6 +342,8 @@ ECJ_JAR = @ECJ_JAR@
 EGREP = @EGREP@
 ENABLE_CACAO = @ENABLE_CACAO@
 ENABLE_JAMVM = @ENABLE_JAMVM@
+ENABLE_JAR_COMPRESSION = @ENABLE_JAR_COMPRESSION@
+ENABLE_SHARK = @ENABLE_SHARK@
 ENABLE_SYSCALL_COMPILATION = @ENABLE_SYSCALL_COMPILATION@
 ENABLE_SYSTEM_FONTCONFIG = @ENABLE_SYSTEM_FONTCONFIG@
 ENABLE_SYSTEM_GIF = @ENABLE_SYSTEM_GIF@
@@ -361,6 +352,7 @@ ENABLE_SYSTEM_GTK = @ENABLE_SYSTEM_GTK@
 ENABLE_SYSTEM_JPEG = @ENABLE_SYSTEM_JPEG@
 ENABLE_SYSTEM_KERBEROS = @ENABLE_SYSTEM_KERBEROS@
 ENABLE_SYSTEM_LCMS = @ENABLE_SYSTEM_LCMS@
+ENABLE_SYSTEM_PCSC = @ENABLE_SYSTEM_PCSC@
 ENABLE_SYSTEM_PNG = @ENABLE_SYSTEM_PNG@
 ENABLE_SYSTEM_ZLIB = @ENABLE_SYSTEM_ZLIB@
 ENABLE_WARNINGS = @ENABLE_WARNINGS@
@@ -411,8 +403,6 @@ LDFLAGS = @LDFLAGS@
 LIBFFI_CFLAGS = @LIBFFI_CFLAGS@
 LIBFFI_LIBS = @LIBFFI_LIBS@
 LIBOBJS = @LIBOBJS@
-LIBPULSE_CFLAGS = @LIBPULSE_CFLAGS@
-LIBPULSE_LIBS = @LIBPULSE_LIBS@
 LIBS = @LIBS@
 LINUX32 = @LINUX32@
 LLVM_CFLAGS = @LLVM_CFLAGS@
@@ -421,13 +411,18 @@ LLVM_LDFLAGS = @LLVM_LDFLAGS@
 LLVM_LIBS = @LLVM_LIBS@
 LSB_RELEASE = @LSB_RELEASE@
 LTLIBOBJS = @LTLIBOBJS@
+MAINT = @MAINT@
 MAKE = @MAKE@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
 NATIVE2ASCII = @NATIVE2ASCII@
 NSS_CFLAGS = @NSS_CFLAGS@
+NSS_JAVA_CFLAGS = @NSS_JAVA_CFLAGS@
+NSS_JAVA_LIBS = @NSS_JAVA_LIBS@
 NSS_LIBDIR = @NSS_LIBDIR@
 NSS_LIBS = @NSS_LIBS@
+NSS_SOFTOKN_CFLAGS = @NSS_SOFTOKN_CFLAGS@
+NSS_SOFTOKN_LIBS = @NSS_SOFTOKN_LIBS@
 OBJEXT = @OBJEXT@
 OPENJDK_BUILD_DIR = @OPENJDK_BUILD_DIR@
 OPENJDK_SRC_DIR = @OPENJDK_SRC_DIR@
@@ -444,21 +439,26 @@ PATCH = @PATCH@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PAX_COMMAND = @PAX_COMMAND@
 PAX_COMMAND_ARGS = @PAX_COMMAND_ARGS@
+PCSC_CFLAGS = @PCSC_CFLAGS@
+PCSC_LIBS = @PCSC_LIBS@
 PKGVERSION = @PKGVERSION@
 PKG_CONFIG = @PKG_CONFIG@
 PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
 PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 PNG_CFLAGS = @PNG_CFLAGS@
 PNG_LIBS = @PNG_LIBS@
-PROJECT_NAME = @PROJECT_NAME@
 RHINO_JAR = @RHINO_JAR@
 RMIC = @RMIC@
+SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHA256SUM = @SHA256SUM@
 SHELL = @SHELL@
 STRIP = @STRIP@
+SUNEC_CFLAGS = @SUNEC_CFLAGS@
+SUNEC_LIBS = @SUNEC_LIBS@
 SYSTEM_JDK_DIR = @SYSTEM_JDK_DIR@
 TAR = @TAR@
+TOOLS_JAR = @TOOLS_JAR@
 TZDATA_DIR = @TZDATA_DIR@
 UNZIP = @UNZIP@
 USING_CACAO = @USING_CACAO@
@@ -493,7 +493,6 @@ abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
-ac_ct_FASTJAR = @ac_ct_FASTJAR@
 am__include = @am__include@
 am__leading_dot = @am__leading_dot@
 am__quote = @am__quote@
@@ -540,48 +539,41 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-JDK_UPDATE_VERSION = 51
-BUILD_VERSION = b31
+JDK_UPDATE_VERSION = 65
+BUILD_VERSION = b32
 COMBINED_VERSION = $(JDK_UPDATE_VERSION)-$(BUILD_VERSION)
-CORBA_CHANGESET = 3594dbde270d
-JAXP_CHANGESET = 8fe156ad49e2
-JAXWS_CHANGESET = 32ea8b1ed91a
-JDK_CHANGESET = 9db88c18e114
-LANGTOOLS_CHANGESET = dabd37b7e295
-OPENJDK_CHANGESET = 410eb7fef869
-CORBA_SHA256SUM = d1f97e143fe94ae3a56b45bb5a90f8ab10ec2be4ff770a788f0a1ac677e27a7d
-JAXP_SHA256SUM = 0a2a40186cedfbeb8f87b0bc86bea2830943943081d4289fc74f7a783b2e1af3
-JAXWS_SHA256SUM = 08a169b6b02883759ec7a412aa91aa3e37480761cb50b95d092dbcdb2fc9a3d0
-JDK_SHA256SUM = 285e5b8ccbb29f3f9f9ea9ea7856d1ed97465c57d091fbcd9b2e55a1ffbb543e
-LANGTOOLS_SHA256SUM = 86cb370ce2084c4b699d8c002ebe6c026e86206ffa82a2f3d7906aadb94ed79f
-OPENJDK_SHA256SUM = 2de151c7275d91ef082e63fcc0957c5f9290404ec6e20ecfa1e752e16bfab707
+CORBA_CHANGESET = 06663e4cfbbe
+JAXP_CHANGESET = d77720c6a36f
+JAXWS_CHANGESET = aac78bd724c4
+JDK_CHANGESET = 1e6a8564aa34
+LANGTOOLS_CHANGESET = f444e2a77643
+OPENJDK_CHANGESET = de1fbcb08558
+CORBA_SHA256SUM = f6afe3f5dbec8723d650ac4ecbaf6aa41cd90759eb6503f0397248098a9e1c77
+JAXP_SHA256SUM = abd68afe382a92b51a45547bd272c12569cf0d166a1f2f00cc3a9ef0fa988a4b
+JAXWS_SHA256SUM = 069def5538e1e52ed831f9657a9b9ea8e9401788390b54290f2fd7c1bd0b6ccc
+JDK_SHA256SUM = 992a726be72bce1ad9a275b1fc1782c0beb0f80c50de35a989258a56fdfd2ffd
+LANGTOOLS_SHA256SUM = 5f04fffdcbb4a76cd57c8319c676537c9481625e0c686e172a152deeb7871811
+OPENJDK_SHA256SUM = a0f1e39980d4774fec4d6d1096a7c6c5858920536977dec294ec14c5c93d4fb9
+DROP_URL = http://icedtea.classpath.org/download/drops
 CACAO_VERSION = e215e36be9fc
 CACAO_SHA256SUM = 4966514c72ee7ed108b882d9b6e65c3adf8a8f9c2dccb029f971b3c8cb4870ab
-CACAO_BASE_URL = http://icedtea.classpath.org/download/drops/cacao
+CACAO_BASE_URL = $(DROP_URL)/cacao
 CACAO_URL = $(CACAO_BASE_URL)/$(CACAO_VERSION).tar.gz
 CACAO_SRC_ZIP = cacao-$(CACAO_VERSION).tar.gz
-JAMVM_VERSION = ac22c9948434e528ece451642b4ebde40953ee7e
-JAMVM_SHA256SUM = 4662da1fe3e0e11d8fa685c7f2fc748576b9f3d3e37dc56b798dd6a5bd6b61e7
-JAMVM_BASE_URL = http://icedtea.classpath.org/download/drops/jamvm
+JAMVM_VERSION = ec18fb9e49e62dce16c5094ef1527eed619463aa
+JAMVM_SHA256SUM = 31810266666c23822942aac62a78019c2c4589e1c5ee48329cbf42652d4437bc
+JAMVM_BASE_URL = $(DROP_URL)/jamvm
 JAMVM_URL = $(JAMVM_BASE_URL)/jamvm-$(JAMVM_VERSION).tar.gz
 JAMVM_SRC_ZIP = jamvm-$(JAMVM_VERSION).tar.gz
-ICEDTEA_PREFIX = icedtea7-forest-2.4
+ICEDTEA_MAJOR = icedtea7
+ICEDTEA_BRANCH = 2.5
+ICEDTEA_PREFIX = $(ICEDTEA_MAJOR)-forest-$(ICEDTEA_BRANCH)
 ICEDTEA_HG_URL = http://icedtea.classpath.org/hg/release/$(ICEDTEA_PREFIX)
-OPENJDK_HG_URL = http://hg.openjdk.java.net/jdk7/jdk7
-CVMI_HG_URL = http://hg.openjdk.java.net/cvmi/cvmi/
-CLOSURES_HG_URL = http://hg.openjdk.java.net/closures/closures/
-CACIOCAVALLO_HG_URL = http://hg.openjdk.java.net/caciocavallo/jdk7/
-BSD_HG_URL = http://hg.openjdk.java.net/bsd-port/bsd-port
-NIO2_HG_URL = http://hg.openjdk.java.net/nio/nio/
-OPENJDK_URL = $(ICEDTEA_HG_URL)
-CORBA_URL = $(ICEDTEA_HG_URL)/corba
-JAXP_URL = $(ICEDTEA_HG_URL)/jaxp
-JAXWS_URL = $(ICEDTEA_HG_URL)/jaxws
-JDK_URL = $(ICEDTEA_HG_URL)/jdk
-LANGTOOLS_URL = $(ICEDTEA_HG_URL)/langtools
-HS_SHA256SUM = "`$(AWK) 'version==$$1 {print $$4}' version=$(HSBUILD) $(abs_top_srcdir)/hotspot.map`"
-HS_CHANGESET = "`$(AWK) 'version==$$1 {print $$3}' version=$(HSBUILD) $(abs_top_srcdir)/hotspot.map`"
-HS_URL = "`$(AWK) 'version==$$1 {print $$2}' version=$(HSBUILD) $(abs_top_srcdir)/hotspot.map`"
+ICEDTEA_URL = $(DROP_URL)/$(ICEDTEA_MAJOR)/$(PACKAGE_VERSION)
+HS_TYPE = "`$(AWK) 'version==$$1 {print $$2}' version=$(HSBUILD) $(abs_top_srcdir)/hotspot.map`"
+HS_URL = "`$(AWK) 'version==$$1 {print $$3}' version=$(HSBUILD) $(abs_top_srcdir)/hotspot.map`"
+HS_CHANGESET = "`$(AWK) 'version==$$1 {print $$4}' version=$(HSBUILD) $(abs_top_srcdir)/hotspot.map`"
+HS_SHA256SUM = "`$(AWK) 'version==$$1 {print $$5}' version=$(HSBUILD) $(abs_top_srcdir)/hotspot.map`"
 
 # Build directories
 BUILD_DIR = @OPENJDK_BUILD_DIR@
@@ -608,16 +600,6 @@ SOLARIS = openjdk-boot/jdk/src/solaris/classes
 LANGTOOLS = openjdk-boot/langtools/src/share/classes
 CORBA = openjdk-boot/corba/src/share/classes
 JAXWS = openjdk-boot/jaxws/src/share/jaxws_classes:openjdk-boot/jaxws/src/share/jaf_classes
-PULSE_JAVA_DIR = $(abs_top_srcdir)/pulseaudio
-PULSE_JAVA_NATIVE_SRCDIR = $(PULSE_JAVA_DIR)/src/native
-PULSE_JAVA_NATIVE_SRCS = $(wildcard $(PULSE_JAVA_NATIVE_SRCDIR)/*.c)
-PULSE_JAVA_BUILDDIR = $(abs_top_builddir)/pulseaudio.build
-PULSE_JAVA_NATIVE_BUILDDIR = $(PULSE_JAVA_BUILDDIR)/native
-PULSE_JAVA_NATIVE_OBJECTS = \
-	$(subst $(PULSE_JAVA_NATIVE_SRCDIR),$(PULSE_JAVA_NATIVE_BUILDDIR),$(patsubst %.c,%.o,$(PULSE_JAVA_NATIVE_SRCS)))
-
-PULSE_JAVA_JAVA_SRCDIR = $(PULSE_JAVA_DIR)/src/java
-PULSE_JAVA_CLASS_DIR = $(PULSE_JAVA_BUILDDIR)/classes
 OPENJDK_SOURCEPATH_DIRS = \
         $(SHARE):$(SOLARIS):$(LANGTOOLS):$(CORBA):$(JAXWS)
 
@@ -638,23 +620,23 @@ IT_JAVACFLAGS = $(IT_JAVAC_SETTINGS) -source $(IT_LANGUAGE_SOURCE_VERSION) -targ
 
 # Flags
 IT_CFLAGS = $(CFLAGS) $(ARCHFLAG)
-@USE_HG_FALSE@OPENJDK_SRC_ZIP = openjdk.tar.gz
+@USE_HG_FALSE@OPENJDK_SRC_ZIP = openjdk.tar.bz2
 
 # Conditional defintions
 @USE_HG_TRUE@OPENJDK_SRC_ZIP = 
-@USE_HG_FALSE@CORBA_SRC_ZIP = corba.tar.gz
+@USE_HG_FALSE@CORBA_SRC_ZIP = corba.tar.bz2
 @USE_HG_TRUE@CORBA_SRC_ZIP = 
-@USE_HG_FALSE@JAXP_SRC_ZIP = jaxp.tar.gz
+@USE_HG_FALSE@JAXP_SRC_ZIP = jaxp.tar.bz2
 @USE_HG_TRUE@JAXP_SRC_ZIP = 
-@USE_HG_FALSE@JAXWS_SRC_ZIP = jaxws.tar.gz
+@USE_HG_FALSE@JAXWS_SRC_ZIP = jaxws.tar.bz2
 @USE_HG_TRUE@JAXWS_SRC_ZIP = 
-@USE_HG_FALSE@JDK_SRC_ZIP = jdk.tar.gz
+@USE_HG_FALSE@JDK_SRC_ZIP = jdk.tar.bz2
 @USE_HG_TRUE@JDK_SRC_ZIP = 
-@USE_HG_FALSE@LANGTOOLS_SRC_ZIP = langtools.tar.gz
+@USE_HG_FALSE@LANGTOOLS_SRC_ZIP = langtools.tar.bz2
 @USE_HG_TRUE@LANGTOOLS_SRC_ZIP = 
-@USE_HG_FALSE@HOTSPOT_SRC_ZIP = hotspot.tar.gz
+@USE_HG_FALSE@HOTSPOT_SRC_ZIP = hotspot.tar.bz2
 @USE_HG_TRUE@HOTSPOT_SRC_ZIP = 
-@ENABLE_PULSE_JAVA_TRUE@PULSE_JAVA_TARGET = stamps/pulse-java.stamp
+@WITH_HGREV_TRUE@REV_ARG = -r $(HGREV)
 @BOOTSTRAPPING_FALSE@MEMORY_LIMIT = -J-Xmx1024m
 
 # This should not depend on bootstrapping
@@ -705,15 +687,14 @@ ICEDTEA_PATCHES = $(am__append_8) $(am__append_9) $(am__append_10) \
 
 # Bootstrapping patches
 ICEDTEA_BOOT_PATCHES = patches/boot/javafiles.patch \
-	patches/boot/ant-javac.patch patches/boot/corba-idlj.patch \
-	patches/boot/corba-no-gen.patch patches/boot/corba-orb.patch \
-	patches/boot/demos.patch patches/boot/fphexconstants.patch \
+	patches/boot/corba-idlj.patch patches/boot/corba-no-gen.patch \
+	patches/boot/corba-orb.patch patches/boot/demos.patch \
+	patches/boot/fphexconstants.patch \
 	patches/boot/fontconfig.patch \
 	patches/boot/generated-comments.patch \
 	patches/boot/icedteart.patch patches/boot/jar.patch \
 	patches/boot/symbols.patch patches/boot/tobin.patch \
 	patches/boot/tools.jar.patch patches/boot/jopt.patch \
-	patches/boot/jaxp-dependency.patch \
 	patches/boot/genstubs-nofork.patch \
 	patches/boot/getannotation-cast.patch \
 	patches/boot/break-processbuilder-dependency.patch \
@@ -721,10 +702,9 @@ ICEDTEA_BOOT_PATCHES = patches/boot/javafiles.patch \
 	patches/boot/revert-6941137.patch \
 	patches/boot/ecj-stringswitch.patch \
 	patches/boot/langtools-force-old-jdk.patch \
+	patches/boot/dependencies.patch \
 	patches/boot/corba-dependencies.patch \
-	patches/boot/jaxws-langtools-dependency.patch \
-	patches/boot/jaxws-jdk-dependency.patch \
-	patches/boot/hotspot/${HSBUILD}/jdk-dependency.patch \
+	patches/boot/hotspot-jdk-dependency.patch \
 	patches/boot/ecj-multicatch.patch \
 	patches/boot/ecj-trywithresources.patch \
 	patches/boot/ecj-autoboxing.patch patches/boot/xsltproc.patch \
@@ -752,6 +732,8 @@ ICEDTEA_NAME = IcedTea
 @HAS_PKGVERSION_TRUE@ICEDTEA_PKG = $(EMPTY) (${PKGVERSION})
 @ENABLE_WERROR_FALSE@WERROR_STATUS = false
 @ENABLE_WERROR_TRUE@WERROR_STATUS = true
+@ENABLE_ARM32JIT_FALSE@ARM32JIT_STATUS = false
+@ENABLE_ARM32JIT_TRUE@ARM32JIT_STATUS = true
 ICEDTEA_ENV = ALT_JDK_IMPORT_PATH="$(BOOT_DIR)" ANT="$(ANT)" \
 	BUILD_NUMBER="$(BUILD_VERSION)" \
 	JDK_UPDATE_VERSION="$(JDK_UPDATE_VERSION)" \
@@ -775,21 +757,40 @@ ICEDTEA_ENV = ALT_JDK_IMPORT_PATH="$(BOOT_DIR)" ANT="$(ANT)" \
 	JDK_HOME="" QUIETLY="" ANT_RESPECT_JAVA_HOME="TRUE" \
 	DISTRIBUTION_ID="$(DIST_ID)" DERIVATIVE_ID="$(ICEDTEA_NAME) \
 	$(PACKAGE_VERSION)$(ICEDTEA_REV)" \
-	ALT_JIBX_LIBS_PATH="$(JIBX_DEPS_DIR)" DEBUG_CLASSFILES="true" \
-	DEBUG_BINARIES="true" DISABLE_INTREE_EC="true" \
+	ALT_JIBX_LIBS_PATH="$(JIBX_DEPS_DIR)" \
 	ALT_OUTPUTDIR="$(BUILD_OUTPUT_DIR)" VERBOSE="$(VERBOSE)" \
 	STATIC_CXX="false" BUILD_GCC="$(CC)" BUILD_CXX="$(CXX)" \
-	USE_SYSTEM_CUPS="true" CUPS_LIBS="${CUPS_LIBS}" \
+	SYSTEM_CUPS="true" CUPS_LIBS="${CUPS_LIBS}" \
 	CUPS_CFLAGS="${CUPS_CFLAGS}" STRIP_POLICY=no_strip \
 	JAVAC_WARNINGS_FATAL="$(WERROR_STATUS)" \
 	COMPILER_WARNINGS_FATAL="$(WERROR_STATUS)" \
-	UNLIMITED_CRYPTO="true" $(am__append_32) $(am__append_33) \
-	$(am__append_34) $(am__append_35) $(am__append_36) \
-	$(am__append_37) $(am__append_38) $(am__append_39) \
-	$(am__append_40) $(am__append_41) $(am__append_42) \
-	$(am__append_43) $(am__append_44) $(am__append_45) \
-	$(am__append_46) $(am__append_47) $(am__append_48) \
-	$(am__append_49)
+	UNLIMITED_CRYPTO="true" SYSTEM_ZLIB="${ENABLE_SYSTEM_ZLIB}" \
+	ZLIB_LIBS="${ZLIB_LIBS}" ZLIB_CFLAGS="${ZLIB_CFLAGS}" \
+	SYSTEM_LCMS="${ENABLE_SYSTEM_LCMS}" LCMS_LIBS="${LCMS2_LIBS}" \
+	LCMS_CFLAGS="${LCMS2_CFLAGS}" \
+	SYSTEM_JPEG="${ENABLE_SYSTEM_JPEG}" JPEG_LIBS="${JPEG_LIBS}" \
+	JPEG_CFLAGS="${JPEG_CFLAGS}" SYSTEM_PNG="${ENABLE_SYSTEM_PNG}" \
+	PNG_LIBS="${PNG_LIBS}" PNG_CFLAGS="${PNG_CFLAGS}" \
+	SYSTEM_GIF="${ENABLE_SYSTEM_GIF}" GIF_LIBS="${GIF_LIBS}" \
+	GIF_CFLAGS="${GIF_CFLAGS}" SYSTEM_GTK="${ENABLE_SYSTEM_GTK}" \
+	GTK_LIBS="${GTK_LIBS}" GTK_CFLAGS="${GTK_CFLAGS}" \
+	SYSTEM_GIO="${ENABLE_SYSTEM_GIO}" GIO_LIBS="${GIO_LIBS}" \
+	GIO_CFLAGS="${GIO_CFLAGS}" \
+	SYSTEM_FONTCONFIG="${ENABLE_SYSTEM_FONTCONFIG}" \
+	FONTCONFIG_LIBS="${FONTCONFIG_LIBS}" \
+	FONTCONFIG_CFLAGS="${FONTCONFIG_CFLAGS}" \
+	COMPILE_AGAINST_SYSCALLS="${ENABLE_SYSCALL_COMPILATION}" \
+	SYSTEM_KRB5="${ENABLE_SYSTEM_KERBEROS}" \
+	KRB5_LIBS="${KRB5_LIBS}" KRB5_CFLAGS="${KRB5_CFLAGS}" \
+	SYSTEM_PCSC="${ENABLE_SYSTEM_PCSC}" PCSC_LIBS="${PCSC_LIBS}" \
+	PCSC_CFLAGS="${PCSC_CFLAGS}" \
+	COMPRESS_JARS="${ENABLE_JAR_COMPRESSION}" \
+	ARM32JIT="${ARM32JIT_STATUS}" INSTALL_LOCATION="${prefix}" \
+	$(am__append_32) $(am__append_33) $(am__append_34) \
+	$(am__append_35) $(am__append_36) $(am__append_37) \
+	$(am__append_38) $(am__append_39) $(am__append_40) \
+	$(am__append_41) $(am__append_42) $(am__append_43) \
+	$(am__append_44) $(am__append_45)
 
 # OpenJDK boot build environment.
 ICEDTEA_ENV_BOOT = $(ICEDTEA_ENV) \
@@ -948,28 +949,13 @@ JTREG_SRCS = $(top_srcdir)/test/jtreg/com/sun/javatest/cof/i18n.properties \
 	$(top_srcdir)/test/jtreg/JavaTest.cmdMgrs.lst \
 	$(top_srcdir)/test/jtreg/excludelist.langtools.jtx 
 
-PULSEAUDIO_SRCS = $(top_srcdir)/pulseaudio/src/java/org/classpath/icedtea/pulseaudio/*.java \
-	$(top_srcdir)/pulseaudio/src/java/META-INF/services/javax.sound.sampled.spi.MixerProvider \
-	$(top_srcdir)/pulseaudio/src/native/*.h \
-	$(top_srcdir)/pulseaudio/src/native/*.c \
-	$(top_srcdir)/pulseaudio/TODO \
-	$(top_srcdir)/pulseaudio/README \
-	$(top_srcdir)/pulseaudio/testsounds/README \
-	$(top_srcdir)/pulseaudio/testsounds/startup.wav \
-	$(top_srcdir)/pulseaudio/testsounds/logout.wav \
-	$(top_srcdir)/pulseaudio/testsounds/error.wav \
-	$(top_srcdir)/pulseaudio/unittests/org/classpath/icedtea/pulseaudio/*.java \
-	$(top_srcdir)/pulseaudio/COPYING
-
 EXTRA_DIST = $(GENERATED_FILES) $(top_srcdir)/patches/*.patch \
 	$(top_srcdir)/patches/boot/*.patch \
 	$(top_srcdir)/patches/cacao/*.patch \
-	$(top_srcdir)/patches/boot/hotspot/*/*.patch \
+	$(top_srcdir)/patches/hotspot/*/*.patch \
 	tools-copy contrib overlays \
-	javaws.png javaws.desktop \
 	jconsole.desktop policytool.desktop \
-	$(JTREG_SRCS) \
-	HACKING $(PULSEAUDIO_SRCS) fsg.sh \
+	$(JTREG_SRCS) HACKING fsg.sh \
 	hotspot.map autogen.sh \
 	tapset/hotspot.stp.in \
 	tapset/hotspot_jni.stp.in \
@@ -984,14 +970,14 @@ EXTRA_DIST = $(GENERATED_FILES) $(top_srcdir)/patches/*.patch \
 
 ADD_ZERO_CONFIGURE_ARGS =  \
 	--with-jdk-home=$(BUILD_OUTPUT_DIR)/j2sdk-image \
-	--disable-bootstrap --enable-zero $(am__append_50) \
+	--disable-bootstrap --enable-zero $(am__append_46) \
 	--disable-docs $(filter-out '--with-jdk-home=% '--with-ecj=% \
 	'--with-java=% '--with-javah=% '--with-javac=% '--with-javac=% \
 	'--with-rmic=% '--with-additional-vms=% '--disable-bootstrap% \
 	'--enable-bootstrap% , $(CONFIGURE_ARGS)) $(foreach i, openjdk \
 	hotspot corba jaxp jaxws jdk langtools, $(if $(findstring \
 	--with-$(i)-src-zip=, $(CONFIGURE_ARGS)),, \
-	--with-$(i)-src-zip=$(abs_top_builddir)/$(i).tar.gz))
+	--with-$(i)-src-zip=$(abs_top_builddir)/$(i).tar.bz2))
 ADD_ZERO_EXTRA_BUILD_ENV = \
 	BUILD_LANGTOOLS=false ALT_LANGTOOLS_DIST=$(BUILD_OUTPUT_DIR)/langtools/dist \
 	BUILD_JAXP=false      ALT_JAXP_DIST=$(BUILD_OUTPUT_DIR)/jaxp/dist \
@@ -1004,7 +990,7 @@ ADD_ZERO_EXTRA_BUILD_ENV = \
 # FIXME: this might need some adjustment for other OS than Linux
 jtreg_processes = ps x -ww -o pid,ppid,args \
 	| awk '$$2 == 1 && $$3 ~ /^$(subst /,\/,/scratch)/' \
-	| sed 's,$(CURDIR)/$(sdkimg),<sdkimg>,g;s,$(CURDIR),<pwd>,g'
+	| $(SED) 's,$(CURDIR)/$(sdkimg),<sdkimg>,g;s,$(CURDIR),<pwd>,g'
 
 jtreg_pids = ps x --no-headers -ww -o pid,ppid,args \
 	| awk '$$2 == 1 && $$3 ~ /^$(subst /,\/,$(CURDIR)/$(sdkimg))/ {print $$1}'
@@ -1014,7 +1000,7 @@ all: all-am
 .SUFFIXES:
 am--refresh: Makefile
 	@:
-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -1041,9 +1027,9 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	$(SHELL) ./config.status --recheck
 
-$(top_srcdir)/configure:  $(am__configure_deps)
+$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 	$(am__cd) $(srcdir) && $(AUTOCONF)
-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
+$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	$(am__cd) $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 $(am__aclocal_m4_deps):
 nss.cfg: $(top_builddir)/config.status $(srcdir)/nss.cfg.in
@@ -1372,15 +1358,15 @@ clean-tests: clean-jtreg clean-tapset-report clean-jtreg-reports
 	  fi \
 	fi
 
-clean-local: clean-tests clean-pulse-java \
+clean-local: clean-tests \
  clean-icedtea clean-icedtea-boot clean-clone clean-clone-boot \
  clean-bootstrap-directory-stage1 clean-bootstrap-directory-stage2 \
  clean-bootstrap-directory-symlink-stage1 clean-bootstrap-directory-symlink-stage2 \
- clean-extract clean-generated clean-native-ecj clean-hgforest clean-icedtea-stage2 \
+ clean-extract clean-generated clean-native-ecj clean-icedtea-stage2 \
  clean-icedtea-debug-stage2 clean-icedtea-stage1 clean-add-zero clean-add-zero-debug \
  clean-add-cacao clean-add-cacao-debug clean-rt clean-rewrite-rhino clean-rewriter \
- clean-add-systemtap clean-add-systemtap-debug clean-add-pulseaudio clean-add-pulseaudio-debug \
- clean-add-nss clean-add-tzdata-support clean-add-tzdata-support-debug clean-cryptocheck
+ clean-add-systemtap clean-add-systemtap-debug clean-add-nss clean-add-tzdata-support \
+ clean-add-tzdata-support-debug clean-cryptocheck
 	if [ -e bootstrap ]; then \
 	  rmdir bootstrap ; \
 	fi
@@ -1411,11 +1397,12 @@ install:
 	clean-jamvm clean-extract-jamvm clean-add-jamvm clean-add-jamvm-debug \
 	clean-extract-hotspot clean-sanitise-openjdk \
 	clean-tests clean-tapset-report clean-add-systemtap \
-	clean-add-systemtap-debug clean-add-pulseaudio clean-add-pulseaudio-debug \
+	clean-add-systemtap-debug clean-add-systemtap-boot \
 	clean-add-nss clean-add-tzdata-support clean-add-tzdata-support-debug \
-	clean-add-systemtap-boot clean-add-pulseaudio-boot clean-add-tzdata-support-boot \
+	clean-add-tzdata-support-boot \
 	clean-check-crypto clean-check-crypto-debug clean-check-crypto-boot \
-	clean-add-archive clean-add-archive-debug clean-add-archive-boot clean-cryptocheck
+	clean-add-archive clean-add-archive-debug clean-add-archive-boot clean-cryptocheck \
+	clean-download-hotspot
 
 env:
 	@echo 'unset JAVA_HOME'
@@ -1445,164 +1432,127 @@ dist-openjdk-fsg-xz: stamps/patch-fsg.stamp
 # OpenJDK Source Preparation Targets
 # ==================================
 
-# Check for forest support
-
-stamps/hgforest.stamp:
-@USE_HG_TRUE@	if ! $(HG) fclone -h; \
-@USE_HG_TRUE@          then \
-@USE_HG_TRUE@          echo "No forest extension found. Please refer to" \
-@USE_HG_TRUE@            "http://selenic.com/mercurial/wiki/index.cgi/ForestExtension"; \
-@USE_HG_TRUE@          exit 1; \
-@USE_HG_TRUE@        fi;
-	mkdir -p stamps 
-	touch $@
-
-clean-hgforest:
-	rm -f stamps/hgforest.stamp
-
 # Download OpenJDK sources.
 
 stamps/download.stamp: stamps/download-openjdk.stamp \
- stamps/download-cacao.stamp stamps/download-jamvm.stamp
+ stamps/download-cacao.stamp stamps/download-jamvm.stamp stamps/download-hotspot.stamp
 	mkdir -p stamps
 	touch $@
 
 clean-download: clean-download-openjdk clean-download-cacao clean-download-jamvm
 	rm -f stamps/download.stamp
 
-stamps/download-openjdk.stamp: stamps/hgforest.stamp
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_CLOSURES_TRUE@	$(HG) fclone $(CLOSURES_HG_URL) openjdk; 
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_TRUE@	$(HG) fclone $(CVMI_HG_URL) openjdk; 
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_CACIOCAVALLO_TRUE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@	$(HG) fclone $(CACIOCAVALLO_HG_URL) openjdk;
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_TRUE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@	$(HG) fclone $(BSD_HG_URL) openjdk;
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_NIO2_TRUE@	hg fclone $(NIO2_HG_URL) openjdk;
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_JDK7_TRUE@@USE_NIO2_FALSE@	hg fclone $(OPENJDK_HG_URL) openjdk;
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_TRUE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@@WITH_HGREV_TRUE@	$(HG) fclone -r $(HGREV) $(ICEDTEA_HG_URL) openjdk;
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_TRUE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@@WITH_HGREV_FALSE@	$(HG) fclone $(ICEDTEA_HG_URL) openjdk;
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_ALT_OPENJDK_SRC_ZIP_TRUE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	ln -sf $(ALT_OPENJDK_SRC_ZIP) $(OPENJDK_SRC_ZIP)
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	if ! echo "$(OPENJDK_SHA256SUM)  $(OPENJDK_SRC_ZIP)" \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  | $(SHA256SUM) --check ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  if test "x$(enable_downloading)" = "xyes"; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    if [ -e $(OPENJDK_SRC_ZIP) ] ; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      mv $(OPENJDK_SRC_ZIP) $(OPENJDK_SRC_ZIP).old ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    fi ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    $(WGET) $(OPENJDK_URL)/archive/$(OPENJDK_CHANGESET).tar.gz -O $(OPENJDK_SRC_ZIP); \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    if ! echo "$(OPENJDK_SHA256SUM)  $(OPENJDK_SRC_ZIP)" \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      | $(SHA256SUM) --check ; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      echo "ERROR: Bad download of OpenJDK root zip"; false; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    fi; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  else \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    echo "ERROR: No up-to-date OpenJDK root zip available"; exit -1; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  fi ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	fi ;
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_ALT_CORBA_SRC_ZIP_TRUE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	ln -sf $(ALT_CORBA_SRC_ZIP) $(CORBA_SRC_ZIP)
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	if ! echo "$(CORBA_SHA256SUM)  $(CORBA_SRC_ZIP)" \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  | $(SHA256SUM) --check ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  if test "x$(enable_downloading)" = "xyes"; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    if [ $(CORBA_SRC_ZIP) ] ; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      mv $(CORBA_SRC_ZIP) $(CORBA_SRC_ZIP).old ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    fi ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    $(WGET) $(CORBA_URL)/archive/$(CORBA_CHANGESET).tar.gz -O $(CORBA_SRC_ZIP); \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    if ! echo "$(CORBA_SHA256SUM)  $(CORBA_SRC_ZIP)" \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      | $(SHA256SUM) --check ; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      echo "ERROR: Bad download of CORBA zip"; false; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    fi; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  else \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    echo "ERROR: No up-to-date OpenJDK CORBA zip available"; exit -1; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  fi ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	fi ;
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_ALT_JAXP_SRC_ZIP_TRUE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	ln -sf $(ALT_JAXP_SRC_ZIP) $(JAXP_SRC_ZIP)
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	if ! echo "$(JAXP_SHA256SUM)  $(JAXP_SRC_ZIP)" \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  | $(SHA256SUM) --check ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  if test "x$(enable_downloading)" = "xyes"; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    if [ $(JAXP_SRC_ZIP) ] ; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      mv $(JAXP_SRC_ZIP) $(JAXP_SRC_ZIP).old ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    fi ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    $(WGET) $(JAXP_URL)/archive/$(JAXP_CHANGESET).tar.gz -O $(JAXP_SRC_ZIP); \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    if ! echo "$(JAXP_SHA256SUM)  $(JAXP_SRC_ZIP)" \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      | $(SHA256SUM) --check ; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      echo "ERROR: Bad download of JAXP zip"; false; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    fi; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  else \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    echo "ERROR: No up-to-date JAXP root zip available"; exit -1; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  fi ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	fi ;
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_ALT_JAXWS_SRC_ZIP_TRUE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	ln -sf $(ALT_JAXWS_SRC_ZIP) $(JAXWS_SRC_ZIP)
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	if ! echo "$(JAXWS_SHA256SUM)  $(JAXWS_SRC_ZIP)" \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  | $(SHA256SUM) --check ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  if test "x$(enable_downloading)" = "xyes"; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    if [ $(JAXWS_SRC_ZIP) ] ; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      mv $(JAXWS_SRC_ZIP) $(JAXWS_SRC_ZIP).old ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    fi ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    $(WGET) $(JAXWS_URL)/archive/$(JAXWS_CHANGESET).tar.gz -O $(JAXWS_SRC_ZIP); \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    if ! echo "$(JAXWS_SHA256SUM)  $(JAXWS_SRC_ZIP)" \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      | $(SHA256SUM) --check ; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      echo "ERROR: Bad download of JAXWS zip"; false; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    fi; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  else \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    echo "ERROR: No up-to-date OpenJDK JAXWS zip available"; exit -1; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  fi ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	fi ;
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_ALT_JDK_SRC_ZIP_TRUE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	ln -sf $(ALT_JDK_SRC_ZIP) $(JDK_SRC_ZIP)
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	if ! echo "$(JDK_SHA256SUM)  $(JDK_SRC_ZIP)" \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  | $(SHA256SUM) --check ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  if test "x$(enable_downloading)" = "xyes"; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    if [ $(JDK_SRC_ZIP) ] ; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      mv $(JDK_SRC_ZIP) $(JDK_SRC_ZIP).old ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    fi ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    $(WGET) $(JDK_URL)/archive/$(JDK_CHANGESET).tar.gz -O $(JDK_SRC_ZIP); \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    if ! echo "$(JDK_SHA256SUM)  $(JDK_SRC_ZIP)" \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      | $(SHA256SUM) --check ; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      echo "ERROR: Bad download of JDK zip"; false; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    fi; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  else \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    echo "ERROR: No up-to-date OpenJDK JDK zip available"; exit -1; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  fi ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	fi ;
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_ALT_LANGTOOLS_SRC_ZIP_TRUE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	ln -sf $(ALT_LANGTOOLS_SRC_ZIP) $(LANGTOOLS_SRC_ZIP)
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	if ! echo "$(LANGTOOLS_SHA256SUM)  $(LANGTOOLS_SRC_ZIP)" \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  | $(SHA256SUM) --check ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  if test "x$(enable_downloading)" = "xyes"; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    if [ $(LANGTOOLS_SRC_ZIP) ] ; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      mv $(LANGTOOLS_SRC_ZIP) $(LANGTOOLS_SRC_ZIP).old ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    fi ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    $(WGET) $(LANGTOOLS_URL)/archive/$(LANGTOOLS_CHANGESET).tar.gz -O $(LANGTOOLS_SRC_ZIP); \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    if ! echo "$(LANGTOOLS_SHA256SUM)  $(LANGTOOLS_SRC_ZIP)" \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      | $(SHA256SUM) --check ; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      echo "ERROR: Bad download of langtools zip"; false; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    fi; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  else \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    echo "ERROR: No up-to-date OpenJDK langtools zip available"; exit -1; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  fi ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	fi ;
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_ALT_HOTSPOT_SRC_ZIP_TRUE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	ln -sf $(ALT_HOTSPOT_SRC_ZIP) $(HOTSPOT_SRC_ZIP)
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	echo "Using HotSpot build: ${HSBUILD}"
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	if ! echo "$(HS_SHA256SUM)  $(HOTSPOT_SRC_ZIP)" \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  | $(SHA256SUM) --check ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  if test "x$(enable_downloading)" = "xyes"; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    if [ -e $(HOTSPOT_SRC_ZIP) ] ; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      mv $(HOTSPOT_SRC_ZIP) $(HOTSPOT_SRC_ZIP).old ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    fi ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    $(WGET) $(HS_URL)/archive/$(HS_CHANGESET).tar.gz -O $(HOTSPOT_SRC_ZIP) ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    if ! echo "$(HS_SHA256SUM)  $(HOTSPOT_SRC_ZIP)" \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      | $(SHA256SUM) --check ; then \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	      echo "ERROR: Bad download of HotSpot zip"; false; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    fi; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  else \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	    echo "ERROR: No up-to-date OpenJDK HotSpot zip available"; exit -1; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	  fi ; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_BSD_FALSE@@USE_CACIOCAVALLO_FALSE@@USE_CLOSURES_FALSE@@USE_CVMI_FALSE@@USE_HG_FALSE@@USE_JDK7_FALSE@@USE_NIO2_FALSE@	fi
+stamps/download-openjdk.stamp:
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_TRUE@	$(HG) clone $(REV_ARG) $(ICEDTEA_HG_URL) openjdk;
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_TRUE@	for repos in corba jaxp jaxws langtools jdk ; do \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_TRUE@	  $(HG) clone $(REV_ARG) $(ICEDTEA_HG_URL)/$${repos} openjdk/$${repos}; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_TRUE@	done
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_ALT_OPENJDK_SRC_ZIP_TRUE@@USE_HG_FALSE@	ln -sf $(ALT_OPENJDK_SRC_ZIP) $(OPENJDK_SRC_ZIP)
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	if ! echo "$(OPENJDK_SHA256SUM)  $(OPENJDK_SRC_ZIP)" \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  | $(SHA256SUM) --check ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  if test "x$(enable_downloading)" = "xyes"; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    if [ -e $(OPENJDK_SRC_ZIP) ] ; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      mv $(OPENJDK_SRC_ZIP) $(OPENJDK_SRC_ZIP).old ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    fi ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    $(WGET) $(ICEDTEA_URL)/$(OPENJDK_SRC_ZIP); \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    if ! echo "$(OPENJDK_SHA256SUM)  $(OPENJDK_SRC_ZIP)" \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      | $(SHA256SUM) --check ; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      echo "ERROR: Bad download of OpenJDK root zip"; false; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    fi; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  else \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    echo "ERROR: No up-to-date OpenJDK root zip available"; exit -1; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  fi ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	fi ;
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_ALT_CORBA_SRC_ZIP_TRUE@@USE_HG_FALSE@	ln -sf $(ALT_CORBA_SRC_ZIP) $(CORBA_SRC_ZIP)
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	if ! echo "$(CORBA_SHA256SUM)  $(CORBA_SRC_ZIP)" \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  | $(SHA256SUM) --check ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  if test "x$(enable_downloading)" = "xyes"; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    if [ $(CORBA_SRC_ZIP) ] ; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      mv $(CORBA_SRC_ZIP) $(CORBA_SRC_ZIP).old ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    fi ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    $(WGET) $(ICEDTEA_URL)/$(CORBA_SRC_ZIP); \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    if ! echo "$(CORBA_SHA256SUM)  $(CORBA_SRC_ZIP)" \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      | $(SHA256SUM) --check ; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      echo "ERROR: Bad download of CORBA zip"; false; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    fi; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  else \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    echo "ERROR: No up-to-date OpenJDK CORBA zip available"; exit -1; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  fi ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	fi ;
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_ALT_JAXP_SRC_ZIP_TRUE@@USE_HG_FALSE@	ln -sf $(ALT_JAXP_SRC_ZIP) $(JAXP_SRC_ZIP)
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	if ! echo "$(JAXP_SHA256SUM)  $(JAXP_SRC_ZIP)" \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  | $(SHA256SUM) --check ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  if test "x$(enable_downloading)" = "xyes"; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    if [ $(JAXP_SRC_ZIP) ] ; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      mv $(JAXP_SRC_ZIP) $(JAXP_SRC_ZIP).old ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    fi ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    $(WGET) $(ICEDTEA_URL)/$(JAXP_SRC_ZIP); \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    if ! echo "$(JAXP_SHA256SUM)  $(JAXP_SRC_ZIP)" \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      | $(SHA256SUM) --check ; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      echo "ERROR: Bad download of JAXP zip"; false; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    fi; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  else \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    echo "ERROR: No up-to-date JAXP root zip available"; exit -1; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  fi ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	fi ;
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_ALT_JAXWS_SRC_ZIP_TRUE@@USE_HG_FALSE@	ln -sf $(ALT_JAXWS_SRC_ZIP) $(JAXWS_SRC_ZIP)
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	if ! echo "$(JAXWS_SHA256SUM)  $(JAXWS_SRC_ZIP)" \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  | $(SHA256SUM) --check ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  if test "x$(enable_downloading)" = "xyes"; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    if [ $(JAXWS_SRC_ZIP) ] ; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      mv $(JAXWS_SRC_ZIP) $(JAXWS_SRC_ZIP).old ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    fi ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    $(WGET) $(ICEDTEA_URL)/$(JAXWS_SRC_ZIP); \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    if ! echo "$(JAXWS_SHA256SUM)  $(JAXWS_SRC_ZIP)" \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      | $(SHA256SUM) --check ; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      echo "ERROR: Bad download of JAXWS zip"; false; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    fi; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  else \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    echo "ERROR: No up-to-date OpenJDK JAXWS zip available"; exit -1; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  fi ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	fi ;
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_ALT_JDK_SRC_ZIP_TRUE@@USE_HG_FALSE@	ln -sf $(ALT_JDK_SRC_ZIP) $(JDK_SRC_ZIP)
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	if ! echo "$(JDK_SHA256SUM)  $(JDK_SRC_ZIP)" \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  | $(SHA256SUM) --check ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  if test "x$(enable_downloading)" = "xyes"; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    if [ $(JDK_SRC_ZIP) ] ; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      mv $(JDK_SRC_ZIP) $(JDK_SRC_ZIP).old ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    fi ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    $(WGET) $(ICEDTEA_URL)/$(JDK_SRC_ZIP); \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    if ! echo "$(JDK_SHA256SUM)  $(JDK_SRC_ZIP)" \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      | $(SHA256SUM) --check ; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      echo "ERROR: Bad download of JDK zip"; false; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    fi; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  else \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    echo "ERROR: No up-to-date OpenJDK JDK zip available"; exit -1; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  fi ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	fi ;
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_ALT_LANGTOOLS_SRC_ZIP_TRUE@@USE_HG_FALSE@	ln -sf $(ALT_LANGTOOLS_SRC_ZIP) $(LANGTOOLS_SRC_ZIP)
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	if ! echo "$(LANGTOOLS_SHA256SUM)  $(LANGTOOLS_SRC_ZIP)" \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  | $(SHA256SUM) --check ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  if test "x$(enable_downloading)" = "xyes"; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    if [ $(LANGTOOLS_SRC_ZIP) ] ; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      mv $(LANGTOOLS_SRC_ZIP) $(LANGTOOLS_SRC_ZIP).old ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    fi ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    $(WGET) $(ICEDTEA_URL)/$(LANGTOOLS_SRC_ZIP); \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    if ! echo "$(LANGTOOLS_SHA256SUM)  $(LANGTOOLS_SRC_ZIP)" \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      | $(SHA256SUM) --check ; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      echo "ERROR: Bad download of langtools zip"; false; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    fi; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  else \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    echo "ERROR: No up-to-date OpenJDK langtools zip available"; exit -1; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  fi ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	fi ;
 	mkdir -p stamps
 	touch $@
 
-clean-download-openjdk:
+clean-download-openjdk: clean-download-hotspot
 	if [ ! -z $(OPENJDK_SRC_ZIP) ] ; then \
 	  rm -f $(OPENJDK_SRC_ZIP) ; \
 	fi
@@ -1620,9 +1570,6 @@ clean-download-openjdk:
 	fi
 	if [ ! -z $(LANGTOOLS_SRC_ZIP) ] ; then \
 	  rm -f $(LANGTOOLS_SRC_ZIP) ; \
-	fi
-	if [ ! -z $(HOTSPOT_SRC_ZIP) ] ; then \
-	  rm -f $(HOTSPOT_SRC_ZIP) ; \
 	fi
 	rm -f stamps/download-openjdk.stamp
 
@@ -1676,6 +1623,39 @@ clean-download-jamvm:
 	rm -f $(JAMVM_SRC_ZIP)
 	rm -f stamps/download-jamvm.stamp
 
+stamps/download-hotspot.stamp: stamps/download-openjdk.stamp
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_TRUE@	$(HG) clone $(REV_ARG) $(HS_URL) openjdk/hotspot
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_ALT_HOTSPOT_SRC_ZIP_TRUE@@USE_HG_FALSE@	ln -sf $(ALT_HOTSPOT_SRC_ZIP) $(HOTSPOT_SRC_ZIP)
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	echo "Using HotSpot build: ${HSBUILD}"
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	if ! echo "$(HS_SHA256SUM)  $(HOTSPOT_SRC_ZIP)" \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  | $(SHA256SUM) --check ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  if test "x$(enable_downloading)" = "xyes"; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    if [ -e $(HOTSPOT_SRC_ZIP) ] ; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      mv $(HOTSPOT_SRC_ZIP) $(HOTSPOT_SRC_ZIP).old ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    fi ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    if test "x$(HS_TYPE)" = "xhg"; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      $(WGET) $(HS_URL)/archive/$(HS_CHANGESET).tar.gz -O $(HOTSPOT_SRC_ZIP) ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    else \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      $(WGET) $(HS_URL)/$(HOTSPOT_SRC_ZIP) ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@            fi ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    if ! echo "$(HS_SHA256SUM)  $(HOTSPOT_SRC_ZIP)" \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      | $(SHA256SUM) --check ; then \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	      echo "ERROR: Bad download of HotSpot zip"; false; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    fi; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  else \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	    echo "ERROR: No up-to-date OpenJDK HotSpot zip available"; exit -1; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	  fi ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@@USE_HG_FALSE@	fi
+	mkdir -p stamps
+	touch $@
+
+clean-download-hotspot:
+	if [ ! -z $(HOTSPOT_SRC_ZIP) ] ; then \
+	  rm -f $(HOTSPOT_SRC_ZIP) ; \
+	fi
+	rm -f stamps/download-hotspot.stamp
+
 stamps/extract.stamp: stamps/extract-openjdk.stamp \
  stamps/extract-cacao.stamp stamps/remove-intree-libraries.stamp \
  stamps/extract-jamvm.stamp stamps/extract-hotspot.stamp stamps/sanitise-openjdk.stamp
@@ -1694,7 +1674,7 @@ stamps/extract-openjdk.stamp: stamps/download-openjdk.stamp
 @OPENJDK_SRC_DIR_FOUND_FALSE@	      *.zip) $(UNZIP) -q $(OPENJDK_SRC_ZIP) ;; \
 @OPENJDK_SRC_DIR_FOUND_FALSE@	      *.tar.*) $(TAR) xf $(OPENJDK_SRC_ZIP) ;; \
 @OPENJDK_SRC_DIR_FOUND_FALSE@	    esac; \
-@OPENJDK_SRC_DIR_FOUND_FALSE@	    mv `echo $(ICEDTEA_PREFIX)|sed 's#\.#-#'`-$(OPENJDK_CHANGESET) openjdk ; \
+@OPENJDK_SRC_DIR_FOUND_FALSE@	    mv `echo $(ICEDTEA_PREFIX)|$(SED) 's#\.#-#'`-$(OPENJDK_CHANGESET) openjdk ; \
 @OPENJDK_SRC_DIR_FOUND_FALSE@	  else \
 @OPENJDK_SRC_DIR_FOUND_FALSE@	    echo "ERROR: Couldn't extract OpenJDK"; \
 @OPENJDK_SRC_DIR_FOUND_FALSE@	    false; \
@@ -1778,7 +1758,7 @@ clean-extract-openjdk: clean-overlay clean-versioning \
 	rm -rf openjdk
 	rm -f stamps/extract-openjdk.stamp
 
-stamps/extract-hotspot.stamp: stamps/extract-openjdk.stamp
+stamps/extract-hotspot.stamp: stamps/extract-openjdk.stamp stamps/download-hotspot.stamp
 	set -e ; \
 	if [ ! -z $(HOTSPOT_SRC_ZIP) ] ; then \
 	  if test -e ${HOTSPOT_SRC_ZIP} ; \
@@ -2019,13 +1999,10 @@ stamps/versioning.stamp: stamps/patch.stamp
 	echo "DISTRO_NAME=$(DIST_NAME)" >>openjdk/jdk/make/common/shared/Defs.gmk ;
 @HAS_PKGVERSION_TRUE@	  echo "DISTRO_PACKAGE_VERSION=$(PKGVERSION)" \
 @HAS_PKGVERSION_TRUE@	    >>openjdk/jdk/make/common/shared/Defs.gmk ;
-	if test x"$(PROJECT_NAME)" != "xjdk7" && test x"$(PROJECT_NAME)" != "xicedtea"; then \
-	  proj_suffix="-$(PROJECT_NAME)"; \
-	fi ; \
 	if test x"$(VERSION_SUFFIX)" != "x"; then \
 	  ver_suffix="-$(VERSION_SUFFIX)"; \
 	fi ; \
-	sed -i "s#BUILD_VARIANT_RELEASE)#BUILD_VARIANT_RELEASE)$${proj_suffix}$${ver_suffix}#" \
+	$(SED) -i "s#BUILD_VARIANT_RELEASE)#BUILD_VARIANT_RELEASE)$${ver_suffix}#" \
 	  openjdk/jdk/make/common/shared/Defs.gmk;
 	mkdir -p stamps
 	touch $@
@@ -2122,7 +2099,7 @@ clean-patch-boot:
 stamps/native-ecj.stamp:
 	mkdir -p stamps 
 @BUILD_NATIVE_ECJ_TRUE@	${GCJ} $(IT_CFLAGS) -Wl,-Bsymbolic -findirect-dispatch -o native-ecj \
-@BUILD_NATIVE_ECJ_TRUE@	    --main=org.eclipse.jdt.internal.compiler.batch.Main ${ECJ_JAR} -lgcj
+@BUILD_NATIVE_ECJ_TRUE@	    --main=org.eclipse.jdt.internal.compiler.batch.Main -lgcj ${ECJ_JAR}
 	touch $@
 
 clean-native-ecj:
@@ -2132,29 +2109,35 @@ clean-native-ecj:
 # bootstrap/stage1
 stamps/bootstrap-directory-stage1.stamp: stamps/native-ecj.stamp
 	mkdir -p $(STAGE1_BOOT_DIR)/bin stamps/
-	ln -sf $(JAVA) $(STAGE1_BOOT_DIR)/bin/java
-@JAVAH_SUPPORTS_X_OPTIONS_TRUE@	ln -sf $(JAVAH) $(STAGE1_BOOT_DIR)/bin/javah
-@JAVAH_SUPPORTS_X_OPTIONS_FALSE@	ln -sf ../../../javah $(STAGE1_BOOT_DIR)/bin/javah
-	ln -sf $(RMIC) $(STAGE1_BOOT_DIR)/bin/rmic
-	ln -sf $(JAR) $(STAGE1_BOOT_DIR)/bin/jar
-	ln -sf $(NATIVE2ASCII) $(STAGE1_BOOT_DIR)/bin/native2ascii
-	ln -sf ../../../javac $(STAGE1_BOOT_DIR)/bin/javac
-	ln -sf ../../../javap $(STAGE1_BOOT_DIR)/bin/javap
+	ln -sfv $(JAVA) $(STAGE1_BOOT_DIR)/bin/java
+@JAVAH_SUPPORTS_X_OPTIONS_TRUE@	ln -sfv $(JAVAH) $(STAGE1_BOOT_DIR)/bin/javah
+@JAVAH_SUPPORTS_X_OPTIONS_FALSE@	ln -sfv ../../../javah $(STAGE1_BOOT_DIR)/bin/javah
+	ln -sfv $(RMIC) $(STAGE1_BOOT_DIR)/bin/rmic
+	ln -sfv $(JAR) $(STAGE1_BOOT_DIR)/bin/jar
+	ln -sfv $(NATIVE2ASCII) $(STAGE1_BOOT_DIR)/bin/native2ascii
+	ln -sfv ../../../javac $(STAGE1_BOOT_DIR)/bin/javac
+	ln -sfv ../../../javap $(STAGE1_BOOT_DIR)/bin/javap
 	mkdir -p $(STAGE1_BOOT_DIR)/lib/modules
 	mkdir -p $(STAGE1_BOOT_DIR)/jre/lib && \
 	cp $(SYSTEM_JDK_DIR)/jre/lib/rt.jar $(STAGE1_BOOT_RUNTIME) && \
 	chmod u+w $(STAGE1_BOOT_RUNTIME)
 	mkdir -p $(STAGE1_BOOT_DIR)/lib && \
 	if [ -e $(SYSTEM_JDK_DIR)/lib/tools.jar ] ; then \
-	  ln -sf $(SYSTEM_JDK_DIR)/lib/tools.jar $(STAGE1_BOOT_DIR)/lib/tools.jar ; \
+	  ln -sfv $(SYSTEM_JDK_DIR)/lib/tools.jar $(STAGE1_BOOT_DIR)/lib/tools.jar ; \
 	else \
-	  ln -sf $(STAGE1_BOOT_RUNTIME) $(STAGE1_BOOT_DIR)/lib/tools.jar ; \
+	  ln -sfv $(STAGE1_BOOT_RUNTIME) $(STAGE1_BOOT_DIR)/lib/tools.jar ; \
 	fi
-	ln -sf $(SYSTEM_JDK_DIR)/jre/lib/$(JRE_ARCH_DIR) \
-	  $(STAGE1_BOOT_DIR)/jre/lib/ && \
+# Workaround some older ppc64le builds installing to 'ppc64le' rather than 'ppc64'
+	if test -d $(SYSTEM_JDK_DIR)/jre/lib/ppc64le ; then \
+	  ln -sfv $(SYSTEM_JDK_DIR)/jre/lib/ppc64le \
+	    $(STAGE1_BOOT_DIR)/jre/lib/$(JRE_ARCH_DIR) ; \
+	else \
+	  ln -sfv $(SYSTEM_JDK_DIR)/jre/lib/$(JRE_ARCH_DIR) \
+	    $(STAGE1_BOOT_DIR)/jre/lib/ ; \
+	fi
 	if ! test -d $(STAGE1_BOOT_DIR)/jre/lib/$(INSTALL_ARCH_DIR); \
 	  then \
-	  ln -sf ./$(JRE_ARCH_DIR) \
+	  ln -sfv ./$(JRE_ARCH_DIR) \
 	    $(STAGE1_BOOT_DIR)/jre/lib/$(INSTALL_ARCH_DIR); \
 	fi
 	mkdir -p $(STAGE1_BOOT_DIR)/include && \
@@ -2162,7 +2145,7 @@ stamps/bootstrap-directory-stage1.stamp: stamps/native-ecj.stamp
 	  test -r $$i | continue; \
 	  i=`basename $$i`; \
 	  rm -f $(STAGE1_BOOT_DIR)/include/$$i; \
-	  ln -s $(SYSTEM_JDK_DIR)/include/$$i $(STAGE1_BOOT_DIR)/include/$$i; \
+	  ln -sv $(SYSTEM_JDK_DIR)/include/$$i $(STAGE1_BOOT_DIR)/include/$$i; \
 	done;
 	mkdir -p stamps
 	touch $@
@@ -2243,13 +2226,13 @@ stamps/add-systemtap.stamp: stamps/icedtea.stamp
 @ENABLE_SYSTEMTAP_TRUE@	mkdir -p $(BUILD_OUTPUT_DIR)/j2sdk-image/tapset ; \
 @ENABLE_SYSTEMTAP_TRUE@	grep "client IGNORE" $(BUILD_JRE_ARCH_DIR)/jvm.cfg; \
 @ENABLE_SYSTEMTAP_TRUE@	if test $$? -eq 0; then \
-@ENABLE_SYSTEMTAP_TRUE@	  sed -e '/\/client\/libjvm.so/d' \
+@ENABLE_SYSTEMTAP_TRUE@	  $(SED) -e '/\/client\/libjvm.so/d' \
 @ENABLE_SYSTEMTAP_TRUE@	    < $(abs_top_builddir)/tapset/hotspot.stp \
 @ENABLE_SYSTEMTAP_TRUE@	    > $(BUILD_OUTPUT_DIR)/j2sdk-image/tapset/hotspot.stp; \
-@ENABLE_SYSTEMTAP_TRUE@	  sed -e '/\/client\/libjvm.so/d' \
+@ENABLE_SYSTEMTAP_TRUE@	  $(SED) -e '/\/client\/libjvm.so/d' \
 @ENABLE_SYSTEMTAP_TRUE@	    < $(abs_top_builddir)/tapset/hotspot_jni.stp \
 @ENABLE_SYSTEMTAP_TRUE@	    > $(BUILD_OUTPUT_DIR)/j2sdk-image/tapset/hotspot_jni.stp; \
-@ENABLE_SYSTEMTAP_TRUE@	  sed -e '/\/client\/libjvm.so/d' \
+@ENABLE_SYSTEMTAP_TRUE@	  $(SED) -e '/\/client\/libjvm.so/d' \
 @ENABLE_SYSTEMTAP_TRUE@	    < $(abs_top_builddir)/tapset/hotspot_gc.stp \
 @ENABLE_SYSTEMTAP_TRUE@	    > $(BUILD_OUTPUT_DIR)/j2sdk-image/tapset/hotspot_gc.stp; \
 @ENABLE_SYSTEMTAP_TRUE@	else \
@@ -2267,27 +2250,6 @@ stamps/add-systemtap.stamp: stamps/icedtea.stamp
 clean-add-systemtap:
 	rm -rf $(BUILD_OUTPUT_DIR)/j2sdk-image/tapset
 	rm -f stamps/add-systemtap.stamp
-
-stamps/add-pulseaudio.stamp: stamps/icedtea.stamp $(PULSE_JAVA_TARGET)
-@ENABLE_PULSE_JAVA_TRUE@	cp -pPRf $(PULSE_JAVA_NATIVE_BUILDDIR)/libpulse-java.so \
-@ENABLE_PULSE_JAVA_TRUE@	  $(BUILD_OUTPUT_DIR)/j2sdk-image/jre/lib/$(INSTALL_ARCH_DIR)
-@ENABLE_PULSE_JAVA_TRUE@	cp -pPRf $(PULSE_JAVA_NATIVE_BUILDDIR)/libpulse-java.so \
-@ENABLE_PULSE_JAVA_TRUE@	  $(BUILD_OUTPUT_DIR)/j2re-image/lib/$(INSTALL_ARCH_DIR)
-@ENABLE_PULSE_JAVA_TRUE@	cp -pPRf pulse-java.jar \
-@ENABLE_PULSE_JAVA_TRUE@	  $(BUILD_OUTPUT_DIR)/j2sdk-image/jre/lib/ext
-@ENABLE_PULSE_JAVA_TRUE@	cp -pPRf pulse-java.jar \
-@ENABLE_PULSE_JAVA_TRUE@	  $(BUILD_OUTPUT_DIR)/j2re-image/lib/ext
-@ENABLE_PULSE_JAVA_TRUE@	(cd $(PULSE_JAVA_JAVA_SRCDIR) && \
-@ENABLE_PULSE_JAVA_TRUE@	   $(ZIP) -qur $(BUILD_OUTPUT_DIR)/j2sdk-image/src.zip org )
-	touch stamps/add-pulseaudio.stamp
-
-# Note: for simplicity, we don't revert the update of src.zip
-clean-add-pulseaudio:
-	rm -f $(BUILD_OUTPUT_DIR)/j2sdk-image/jre/lib/$(INSTALL_ARCH_DIR)/libpulse-java.so
-	rm -f $(BUILD_OUTPUT_DIR)/j2re-image/lib/$(INSTALL_ARCH_DIR)/libpulse-java.so
-	rm -f $(BUILD_OUTPUT_DIR)/j2sdk-image/jre/lib/ext/pulse-java.jar
-	rm -f $(BUILD_OUTPUT_DIR)/j2re-image/lib/ext/pulse-java.jar
-	rm -f stamps/add-pulseaudio.stamp
 
 stamps/add-nss.stamp: stamps/extract-openjdk.stamp
 	cp -v $(abs_top_builddir)/nss.cfg openjdk/jdk/src/share/lib/security;
@@ -2322,7 +2284,9 @@ clean-check-crypto:
 
 stamps/add-archive.stamp: stamps/icedtea.stamp
 @ENABLE_CACAO_FALSE@@ENABLE_JAMVM_FALSE@@ZERO_BUILD_FALSE@	if [ -e $(BUILD_OUTPUT_DIR)/j2sdk-image/bin/java ] ; then \
-@ENABLE_CACAO_FALSE@@ENABLE_JAMVM_FALSE@@ZERO_BUILD_FALSE@	  $(BUILD_OUTPUT_DIR)/j2sdk-image/bin/java -Xshare:dump ; \
+@ENABLE_CACAO_FALSE@@ENABLE_JAMVM_FALSE@@ZERO_BUILD_FALSE@	  if test "x$(INSTALL_ARCH_DIR)" != "xppc64"; then \
+@ENABLE_CACAO_FALSE@@ENABLE_JAMVM_FALSE@@ZERO_BUILD_FALSE@	    $(BUILD_OUTPUT_DIR)/j2sdk-image/bin/java -Xshare:dump ; \
+@ENABLE_CACAO_FALSE@@ENABLE_JAMVM_FALSE@@ZERO_BUILD_FALSE@	  fi ; \
 @ENABLE_CACAO_FALSE@@ENABLE_JAMVM_FALSE@@ZERO_BUILD_FALSE@	fi
 	touch stamps/add-archive.stamp
 
@@ -2359,13 +2323,13 @@ stamps/add-systemtap-debug.stamp: stamps/icedtea-debug.stamp
 @ENABLE_SYSTEMTAP_TRUE@	mkdir -p $(DEBUG_BUILD_OUTPUT_DIR)/j2sdk-image/tapset ; \
 @ENABLE_SYSTEMTAP_TRUE@	grep "client IGNORE" $(BUILD_JRE_ARCH_DIR)/jvm.cfg; \
 @ENABLE_SYSTEMTAP_TRUE@	if test $$? -eq 0; then \
-@ENABLE_SYSTEMTAP_TRUE@	  sed -e '/\/client\/libjvm.so/d' \
+@ENABLE_SYSTEMTAP_TRUE@	  $(SED) -e '/\/client\/libjvm.so/d' \
 @ENABLE_SYSTEMTAP_TRUE@	    < $(abs_top_builddir)/tapset/hotspot.stp \
 @ENABLE_SYSTEMTAP_TRUE@	    > $(DEBUG_BUILD_OUTPUT_DIR)/j2sdk-image/tapset/hotspot.stp; \
-@ENABLE_SYSTEMTAP_TRUE@	  sed -e '/\/client\/libjvm.so/d' \
+@ENABLE_SYSTEMTAP_TRUE@	  $(SED) -e '/\/client\/libjvm.so/d' \
 @ENABLE_SYSTEMTAP_TRUE@	    < $(abs_top_builddir)/tapset/hotspot_jni.stp \
 @ENABLE_SYSTEMTAP_TRUE@	    > $(DEBUG_BUILD_OUTPUT_DIR)/j2sdk-image/tapset/hotspot_jni.stp; \
-@ENABLE_SYSTEMTAP_TRUE@	  sed -e '/\/client\/libjvm.so/d' \
+@ENABLE_SYSTEMTAP_TRUE@	  $(SED) -e '/\/client\/libjvm.so/d' \
 @ENABLE_SYSTEMTAP_TRUE@	    < $(abs_top_builddir)/tapset/hotspot_gc.stp \
 @ENABLE_SYSTEMTAP_TRUE@	    > $(DEBUG_BUILD_OUTPUT_DIR)/j2sdk-image/tapset/hotspot_gc.stp; \
 @ENABLE_SYSTEMTAP_TRUE@	else \
@@ -2383,27 +2347,6 @@ stamps/add-systemtap-debug.stamp: stamps/icedtea-debug.stamp
 clean-add-systemtap-debug:
 	rm -rf $(DEBUG_BUILD_OUTPUT_DIR)/j2sdk-image/tapset
 	rm -f stamps/add-systemtap-debug.stamp
-
-stamps/add-pulseaudio-debug.stamp: stamps/icedtea-debug.stamp $(PULSE_JAVA_TARGET)
-@ENABLE_PULSE_JAVA_TRUE@	cp -pPRf $(PULSE_JAVA_NATIVE_BUILDDIR)/libpulse-java.so \
-@ENABLE_PULSE_JAVA_TRUE@	  $(DEBUG_BUILD_OUTPUT_DIR)/j2sdk-image/jre/lib/$(INSTALL_ARCH_DIR)
-@ENABLE_PULSE_JAVA_TRUE@	cp -pPRf $(PULSE_JAVA_NATIVE_BUILDDIR)/libpulse-java.so \
-@ENABLE_PULSE_JAVA_TRUE@	  $(DEBUG_BUILD_OUTPUT_DIR)/j2re-image/lib/$(INSTALL_ARCH_DIR)
-@ENABLE_PULSE_JAVA_TRUE@	cp -pPRf pulse-java.jar \
-@ENABLE_PULSE_JAVA_TRUE@	  $(DEBUG_BUILD_OUTPUT_DIR)/j2sdk-image/jre/lib/ext
-@ENABLE_PULSE_JAVA_TRUE@	cp -pPRf pulse-java.jar \
-@ENABLE_PULSE_JAVA_TRUE@	  $(DEBUG_BUILD_OUTPUT_DIR)/j2re-image/lib/ext
-@ENABLE_PULSE_JAVA_TRUE@	(cd $(PULSE_JAVA_JAVA_SRCDIR) && \
-@ENABLE_PULSE_JAVA_TRUE@	   $(ZIP) -qur $(DEBUG_BUILD_OUTPUT_DIR)/j2sdk-image/src.zip org )
-	touch stamps/add-pulseaudio-debug.stamp
-
-# Note: for simplicity, we don't revert the update of src.zip
-clean-add-pulseaudio-debug:
-	rm -f $(DEBUG_BUILD_OUTPUT_DIR)/j2sdk-image/jre/lib/$(INSTALL_ARCH_DIR)/libpulse-java.so
-	rm -f $(DEBUG_BUILD_OUTPUT_DIR)/j2re-image/lib/$(INSTALL_ARCH_DIR)/libpulse-java.so
-	rm -f $(DEBUG_BUILD_OUTPUT_DIR)/j2sdk-image/jre/lib/ext/pulse-java.jar
-	rm -f $(DEBUG_BUILD_OUTPUT_DIR)/j2re-image/lib/ext/pulse-java.jar
-	rm -f stamps/add-pulseaudio-debug.stamp
 
 stamps/add-tzdata-support-debug.stamp: stamps/icedtea-debug.stamp
 @WITH_TZDATA_DIR_TRUE@	if [ -e $(DEBUG_BUILD_OUTPUT_DIR)/j2sdk-image/jre/lib ] ; then \
@@ -2430,7 +2373,9 @@ clean-check-crypto-debug:
 
 stamps/add-archive-debug.stamp: stamps/icedtea-debug.stamp
 @ENABLE_CACAO_FALSE@@ENABLE_JAMVM_FALSE@@ZERO_BUILD_FALSE@	if [ -e $(DEBUG_BUILD_OUTPUT_DIR)/j2sdk-image/bin/java ] ; then \
-@ENABLE_CACAO_FALSE@@ENABLE_JAMVM_FALSE@@ZERO_BUILD_FALSE@	  $(DEBUG_BUILD_OUTPUT_DIR)/j2sdk-image/bin/java -Xshare:dump ; \
+@ENABLE_CACAO_FALSE@@ENABLE_JAMVM_FALSE@@ZERO_BUILD_FALSE@	  if test "x$(INSTALL_ARCH_DIR)" != "xppc64"; then \
+@ENABLE_CACAO_FALSE@@ENABLE_JAMVM_FALSE@@ZERO_BUILD_FALSE@	    $(DEBUG_BUILD_OUTPUT_DIR)/j2sdk-image/bin/java -Xshare:dump ; \
+@ENABLE_CACAO_FALSE@@ENABLE_JAMVM_FALSE@@ZERO_BUILD_FALSE@	  fi ; \
 @ENABLE_CACAO_FALSE@@ENABLE_JAMVM_FALSE@@ZERO_BUILD_FALSE@	fi
 	touch stamps/add-archive-debug.stamp
 
@@ -2440,8 +2385,7 @@ clean-add-archive-debug:
 
 stamps/icedtea-stage2.stamp: stamps/icedtea.stamp stamps/add-cacao.stamp \
  stamps/add-zero.stamp stamps/add-jamvm.stamp stamps/add-systemtap.stamp \
- stamps/add-pulseaudio.stamp stamps/add-tzdata-support.stamp stamps/check-crypto.stamp \
- stamps/add-archive.stamp
+ stamps/add-tzdata-support.stamp stamps/check-crypto.stamp stamps/add-archive.stamp
 	mkdir -p stamps
 	touch $@
 
@@ -2450,9 +2394,8 @@ clean-icedtea-stage2: clean-add-jamvm clean-check-crypto clean-add-archive
 
 stamps/icedtea-debug-stage2.stamp: stamps/icedtea-debug.stamp \
  stamps/add-cacao-debug.stamp stamps/add-zero-debug.stamp stamps/add-jamvm-debug.stamp \
- stamps/add-systemtap-debug.stamp stamps/add-pulseaudio-debug.stamp \
- stamps/add/tzdata-support-debug.stamp stamps/check-crypto-debug.stamp \
- stamps/add-archive-debug.stamp
+ stamps/add-systemtap-debug.stamp stamps/add/tzdata-support-debug.stamp \
+ stamps/check-crypto-debug.stamp stamps/add-archive-debug.stamp
 	mkdir -p stamps
 	touch $@
 
@@ -2484,13 +2427,13 @@ stamps/add-systemtap-boot.stamp: stamps/icedtea-boot.stamp
 @ENABLE_SYSTEMTAP_TRUE@	mkdir -p $(BOOT_BUILD_OUTPUT_DIR)/j2sdk-image/tapset ; \
 @ENABLE_SYSTEMTAP_TRUE@	grep "client IGNORE" $(BUILD_JRE_ARCH_DIR)/jvm.cfg; \
 @ENABLE_SYSTEMTAP_TRUE@	if test $$? -eq 0; then \
-@ENABLE_SYSTEMTAP_TRUE@	  sed -e '/\/client\/libjvm.so/d' \
+@ENABLE_SYSTEMTAP_TRUE@	  $(SED) -e '/\/client\/libjvm.so/d' \
 @ENABLE_SYSTEMTAP_TRUE@	    < $(abs_top_builddir)/tapset/hotspot.stp \
 @ENABLE_SYSTEMTAP_TRUE@	    > $(BOOT_BUILD_OUTPUT_DIR)/j2sdk-image/tapset/hotspot.stp; \
-@ENABLE_SYSTEMTAP_TRUE@	  sed -e '/\/client\/libjvm.so/d' \
+@ENABLE_SYSTEMTAP_TRUE@	  $(SED) -e '/\/client\/libjvm.so/d' \
 @ENABLE_SYSTEMTAP_TRUE@	    < $(abs_top_builddir)/tapset/hotspot_jni.stp \
 @ENABLE_SYSTEMTAP_TRUE@	    > $(BOOT_BUILD_OUTPUT_DIR)/j2sdk-image/tapset/hotspot_jni.stp; \
-@ENABLE_SYSTEMTAP_TRUE@	  sed -e '/\/client\/libjvm.so/d' \
+@ENABLE_SYSTEMTAP_TRUE@	  $(SED) -e '/\/client\/libjvm.so/d' \
 @ENABLE_SYSTEMTAP_TRUE@	    < $(abs_top_builddir)/tapset/hotspot_gc.stp \
 @ENABLE_SYSTEMTAP_TRUE@	    > $(BOOT_BUILD_OUTPUT_DIR)/j2sdk-image/tapset/hotspot_gc.stp; \
 @ENABLE_SYSTEMTAP_TRUE@	else \
@@ -2508,27 +2451,6 @@ stamps/add-systemtap-boot.stamp: stamps/icedtea-boot.stamp
 clean-add-systemtap-boot:
 	rm -rf $(BOOT_BUILD_OUTPUT_DIR)/j2sdk-image/tapset
 	rm -f stamps/add-systemtap-boot.stamp
-
-stamps/add-pulseaudio-boot.stamp: stamps/icedtea-boot.stamp $(PULSE_JAVA_TARGET)
-@ENABLE_PULSE_JAVA_TRUE@	cp -pPRf $(PULSE_JAVA_NATIVE_BUILDDIR)/libpulse-java.so \
-@ENABLE_PULSE_JAVA_TRUE@	  $(BOOT_BUILD_OUTPUT_DIR)/j2sdk-image/jre/lib/$(INSTALL_ARCH_DIR)
-@ENABLE_PULSE_JAVA_TRUE@	cp -pPRf $(PULSE_JAVA_NATIVE_BUILDDIR)/libpulse-java.so \
-@ENABLE_PULSE_JAVA_TRUE@	  $(BOOT_BUILD_OUTPUT_DIR)/j2re-image/lib/$(INSTALL_ARCH_DIR)
-@ENABLE_PULSE_JAVA_TRUE@	cp -pPRf pulse-java.jar \
-@ENABLE_PULSE_JAVA_TRUE@	  $(BOOT_BUILD_OUTPUT_DIR)/j2sdk-image/jre/lib/ext
-@ENABLE_PULSE_JAVA_TRUE@	cp -pPRf pulse-java.jar \
-@ENABLE_PULSE_JAVA_TRUE@	  $(BOOT_BUILD_OUTPUT_DIR)/j2re-image/lib/ext
-@ENABLE_PULSE_JAVA_TRUE@	(cd $(PULSE_JAVA_JAVA_SRCDIR) && \
-@ENABLE_PULSE_JAVA_TRUE@	   $(ZIP) -qur $(BOOT_BUILD_OUTPUT_DIR)/j2sdk-image/src.zip org )
-	touch stamps/add-pulseaudio-boot.stamp
-
-# Note: for simplicity, we don't revert the update of src.zip
-clean-add-pulseaudio-boot:
-	rm -f $(BOOT_BUILD_OUTPUT_DIR)/j2sdk-image/jre/lib/$(INSTALL_ARCH_DIR)/libpulse-java.so
-	rm -f $(BOOT_BUILD_OUTPUT_DIR)/j2re-image/lib/$(INSTALL_ARCH_DIR)/libpulse-java.so
-	rm -f $(BOOT_BUILD_OUTPUT_DIR)/j2sdk-image/jre/lib/ext/pulse-java.jar
-	rm -f $(BOOT_BUILD_OUTPUT_DIR)/j2re-image/lib/ext/pulse-java.jar
-	rm -f stamps/add-pulseaudio-boot.stamp
 
 stamps/add-tzdata-support-boot.stamp: stamps/icedtea-boot.stamp
 @WITH_TZDATA_DIR_TRUE@	if [ -e $(BOOT_BUILD_OUTPUT_DIR)/j2sdk-image/jre/lib ] ; then \
@@ -2555,7 +2477,9 @@ clean-check-crypto-boot:
 
 stamps/add-archive-boot.stamp: stamps/icedtea-boot.stamp
 @ENABLE_CACAO_FALSE@@ENABLE_JAMVM_FALSE@@ZERO_BUILD_FALSE@	if [ -e $(BOOT_BUILD_OUTPUT_DIR)/j2sdk-image/bin/java ] ; then \
-@ENABLE_CACAO_FALSE@@ENABLE_JAMVM_FALSE@@ZERO_BUILD_FALSE@	  $(BOOT_BUILD_OUTPUT_DIR)/j2sdk-image/bin/java -Xshare:dump ; \
+@ENABLE_CACAO_FALSE@@ENABLE_JAMVM_FALSE@@ZERO_BUILD_FALSE@	  if test "x$(INSTALL_ARCH_DIR)" != "xppc64"; then \
+@ENABLE_CACAO_FALSE@@ENABLE_JAMVM_FALSE@@ZERO_BUILD_FALSE@	    $(BOOT_BUILD_OUTPUT_DIR)/j2sdk-image/bin/java -Xshare:dump ; \
+@ENABLE_CACAO_FALSE@@ENABLE_JAMVM_FALSE@@ZERO_BUILD_FALSE@	  fi ; \
 @ENABLE_CACAO_FALSE@@ENABLE_JAMVM_FALSE@@ZERO_BUILD_FALSE@	fi
 	touch $@
 
@@ -2564,14 +2488,13 @@ clean-add-archive-boot:
 	rm -f stamps/add-archive-boot.stamp
 
 stamps/icedtea-stage1.stamp: stamps/icedtea-boot.stamp \
- stamps/add-systemtap-boot.stamp stamps/add-pulseaudio-boot.stamp \
- stamps/add-tzdata-support-boot.stamp stamps/check-crypto-boot.stamp \
- stamps/add-archive-boot.stamp
+ stamps/add-systemtap-boot.stamp stamps/add-tzdata-support-boot.stamp \
+ stamps/check-crypto-boot.stamp stamps/add-archive-boot.stamp
 	mkdir -p stamps
 	touch $@
 
-clean-icedtea-stage1: clean-add-systemtap-boot clean-add-pulseaudio-boot \
- clean-add-tzdata-support-boot clean-check-crypto-boot clean-add-archive-boot
+clean-icedtea-stage1: clean-add-systemtap-boot clean-add-tzdata-support-boot \
+ clean-check-crypto-boot clean-add-archive-boot
 	rm -f stamps/icedtea-stage1.stamp
 
 # Rebuild targets
@@ -2604,65 +2527,6 @@ hotspot:
 @BOOTSTRAPPING_FALSE@	   $(BUILD_OUTPUT_DIR)/j2sdk-image/jre/lib/$(INSTALL_ARCH_DIR)/server
 @BOOTSTRAPPING_FALSE@	@echo "HotSpot is served:" $(BUILD_OUTPUT_DIR)/j2sdk-image
 
-# PulseAudio based mixer
-# (pulse-java)
-
-@ENABLE_PULSE_JAVA_TRUE@stamps/pulse-java.stamp: stamps/pulse-java-jar.stamp $(PULSE_JAVA_NATIVE_BUILDDIR)/libpulse-java.so
-@ENABLE_PULSE_JAVA_TRUE@	mkdir -p stamps
-@ENABLE_PULSE_JAVA_TRUE@	touch $@
-
-@ENABLE_PULSE_JAVA_TRUE@stamps/pulse-java-class.stamp: $(INITIAL_BOOTSTRAP_LINK_STAMP)
-@ENABLE_PULSE_JAVA_TRUE@	mkdir -p $(PULSE_JAVA_CLASS_DIR)
-@ENABLE_PULSE_JAVA_TRUE@	(cd $(PULSE_JAVA_JAVA_SRCDIR); \
-@ENABLE_PULSE_JAVA_TRUE@	 $(BOOT_DIR)/bin/javac $(IT_JAVACFLAGS) -d $(PULSE_JAVA_CLASS_DIR) \
-@ENABLE_PULSE_JAVA_TRUE@	 -bootclasspath $(RUNTIME) org/classpath/icedtea/pulseaudio/*.java \
-@ENABLE_PULSE_JAVA_TRUE@	)
-@ENABLE_PULSE_JAVA_TRUE@	cp  -r $(PULSE_JAVA_JAVA_SRCDIR)/META-INF $(PULSE_JAVA_CLASS_DIR)
-@ENABLE_PULSE_JAVA_TRUE@	chmod -R ug+w $(PULSE_JAVA_CLASS_DIR)/META-INF
-@ENABLE_PULSE_JAVA_TRUE@	mkdir -p stamps
-@ENABLE_PULSE_JAVA_TRUE@	touch $@
-
-@ENABLE_PULSE_JAVA_TRUE@stamps/pulse-java-jar.stamp: stamps/pulse-java-class.stamp
-@ENABLE_PULSE_JAVA_TRUE@	$(BOOT_DIR)/bin/jar cf pulse-java.jar -C $(PULSE_JAVA_CLASS_DIR) .;
-@ENABLE_PULSE_JAVA_TRUE@	mkdir -p stamps
-@ENABLE_PULSE_JAVA_TRUE@	touch $@
-
-@ENABLE_PULSE_JAVA_TRUE@stamps/pulse-java-headers.stamp: stamps/pulse-java-class.stamp
-@ENABLE_PULSE_JAVA_TRUE@	mkdir -p $(PULSE_JAVA_NATIVE_BUILDDIR)
-@ENABLE_PULSE_JAVA_TRUE@	$(BOOT_DIR)/bin/javah -d $(PULSE_JAVA_NATIVE_BUILDDIR) -classpath $(PULSE_JAVA_CLASS_DIR) \
-@ENABLE_PULSE_JAVA_TRUE@	  -J-Xbootclasspath/p:$(PULSE_JAVA_CLASS_DIR) org.classpath.icedtea.pulseaudio.EventLoop ; \
-@ENABLE_PULSE_JAVA_TRUE@	$(BOOT_DIR)/bin/javah -d $(PULSE_JAVA_NATIVE_BUILDDIR) -classpath $(PULSE_JAVA_CLASS_DIR) \
-@ENABLE_PULSE_JAVA_TRUE@	  -J-Xbootclasspath/p:$(PULSE_JAVA_CLASS_DIR) org.classpath.icedtea.pulseaudio.Stream ; \
-@ENABLE_PULSE_JAVA_TRUE@	$(BOOT_DIR)/bin/javah -d $(PULSE_JAVA_NATIVE_BUILDDIR) -classpath $(PULSE_JAVA_CLASS_DIR) \
-@ENABLE_PULSE_JAVA_TRUE@	  -J-Xbootclasspath/p:$(PULSE_JAVA_CLASS_DIR) org.classpath.icedtea.pulseaudio.Operation; \
-@ENABLE_PULSE_JAVA_TRUE@	$(BOOT_DIR)/bin/javah -d $(PULSE_JAVA_NATIVE_BUILDDIR) -classpath $(PULSE_JAVA_CLASS_DIR) \
-@ENABLE_PULSE_JAVA_TRUE@	  -J-Xbootclasspath/p:$(PULSE_JAVA_CLASS_DIR) org.classpath.icedtea.pulseaudio.PulseAudioSourcePort ; \
-@ENABLE_PULSE_JAVA_TRUE@	$(BOOT_DIR)/bin/javah -d $(PULSE_JAVA_NATIVE_BUILDDIR) -classpath $(PULSE_JAVA_CLASS_DIR) \
-@ENABLE_PULSE_JAVA_TRUE@	  -J-Xbootclasspath/p:$(PULSE_JAVA_CLASS_DIR) org.classpath.icedtea.pulseaudio.PulseAudioTargetPort ; \
-@ENABLE_PULSE_JAVA_TRUE@	$(BOOT_DIR)/bin/javah -d $(PULSE_JAVA_NATIVE_BUILDDIR) -classpath $(PULSE_JAVA_CLASS_DIR) \
-@ENABLE_PULSE_JAVA_TRUE@	  -J-Xbootclasspath/p:$(PULSE_JAVA_CLASS_DIR) org.classpath.icedtea.pulseaudio.ContextEvent
-@ENABLE_PULSE_JAVA_TRUE@	mkdir -p stamps
-@ENABLE_PULSE_JAVA_TRUE@	touch $@
-
-@ENABLE_PULSE_JAVA_TRUE@$(PULSE_JAVA_NATIVE_BUILDDIR)/%.o: $(PULSE_JAVA_NATIVE_SRCDIR)/%.c stamps/pulse-java-headers.stamp
-@ENABLE_PULSE_JAVA_TRUE@	$(CC) $(IT_CFLAGS) -fPIC -I$(BOOT_DIR)/include/linux -I$(BOOT_DIR)/include \
-@ENABLE_PULSE_JAVA_TRUE@	 -I$(PULSE_JAVA_NATIVE_BUILDDIR) -o $@ -c $<
-
-@ENABLE_PULSE_JAVA_TRUE@$(PULSE_JAVA_NATIVE_BUILDDIR)/libpulse-java.so: $(PULSE_JAVA_NATIVE_OBJECTS)
-@ENABLE_PULSE_JAVA_TRUE@	$(CC) $(LDFLAGS) -shared $(PULSE_JAVA_NATIVE_OBJECTS) $(LIBPULSE_LIBS) \
-@ENABLE_PULSE_JAVA_TRUE@	 -o $(PULSE_JAVA_NATIVE_BUILDDIR)/libpulse-java.so
-
-clean-pulse-java:
-	rm -rf $(PULSE_JAVA_NATIVE_BUILDDIR)
-	rm -rf $(PULSE_JAVA_CLASS_DIR)
-	rm -f pulse-java.jar
-	if [ -e $(PULSE_JAVA_BUILDDIR) ]; then \
-	  rmdir $(PULSE_JAVA_BUILDDIR) ; \
-	fi
-	rm -f stamps/pulse-java*.stamp
-
-# end of pulse-java
-
 # Rhino support
 
 stamps/rewriter.stamp: $(INITIAL_BOOTSTRAP_LINK_STAMP)
@@ -2685,10 +2549,10 @@ stamps/rewrite-rhino.stamp: stamps/rewriter.stamp $(RHINO_JAR)
 @WITH_RHINO_TRUE@	  org.mozilla sun.org.mozilla && \
 @WITH_RHINO_TRUE@	(cd rhino/rhino.old && \
 @WITH_RHINO_TRUE@	 for files in `find -type f -not -name '*.class'` ; do \
-@WITH_RHINO_TRUE@	   new_file=../rhino.new/`echo $$files|sed -e 's#org#sun/org#'` ; \
+@WITH_RHINO_TRUE@	   new_file=../rhino.new/`echo $$files|$(SED) -e 's#org#sun/org#'` ; \
 @WITH_RHINO_TRUE@	   mkdir -p `dirname $$new_file` ; \
 @WITH_RHINO_TRUE@	   cp -v $$files $$new_file ; \
-@WITH_RHINO_TRUE@	   sed -ie 's#org\.mozilla#sun.org.mozilla#g' $$new_file ; \
+@WITH_RHINO_TRUE@	   $(SED) -ie 's#org\.mozilla#sun.org.mozilla#g' $$new_file ; \
 @WITH_RHINO_TRUE@	 done \
 @WITH_RHINO_TRUE@	) && \
 @WITH_RHINO_TRUE@	(cd rhino/rhino.new && \
@@ -2738,7 +2602,7 @@ stamps/add-jamvm.stamp: stamps/icedtea.stamp stamps/jamvm.stamp
 clean-add-jamvm:
 	rm -rf $(BUILD_JRE_ARCH_DIR)/jamvm
 	if [ -e $(BUILD_JRE_ARCH_DIR)/jvm.cfg ] ; then \
-	  sed -i 's#-jamvm KNOWN#-jamvm ERROR#' $(BUILD_JRE_ARCH_DIR)/jvm.cfg ; \
+	  $(SED) -i 's#-jamvm KNOWN#-jamvm ERROR#' $(BUILD_JRE_ARCH_DIR)/jvm.cfg ; \
 	fi
 	rm -f stamps/add-jamvm.stamp
 
@@ -2753,7 +2617,7 @@ stamps/add-jamvm-debug.stamp: stamps/icedtea-debug.stamp stamps/jamvm.stamp
 clean-add-jamvm-debug:
 	rm -rf $(BUILD_DEBUG_JRE_ARCH_DIR)/jamvm
 	if [ -e $(BUILD_DEBUG_JRE_ARCH_DIR)/jvm.cfg ] ; then \
-	  sed -i 's#-jamvm KNOWN#-jamvm ERROR#' $(BUILD_DEBUG_JRE_ARCH_DIR)/jvm.cfg ; \
+	  $(SED) -i 's#-jamvm KNOWN#-jamvm ERROR#' $(BUILD_DEBUG_JRE_ARCH_DIR)/jvm.cfg ; \
 	fi
 	rm -f stamps/add-jamvm-debug.stamp
 
@@ -2799,7 +2663,7 @@ stamps/add-cacao.stamp: stamps/icedtea.stamp stamps/cacao.stamp
 clean-add-cacao:
 	rm -rf $(BUILD_JRE_ARCH_DIR)/cacao
 	if [ -e $(BUILD_JRE_ARCH_DIR)/jvm.cfg ] ; then \
-	  sed -i 's#-cacao KNOWN#-cacao ERROR#' $(BUILD_JRE_ARCH_DIR)/jvm.cfg ; \
+	  $(SED) -i 's#-cacao KNOWN#-cacao ERROR#' $(BUILD_JRE_ARCH_DIR)/jvm.cfg ; \
 	fi
 	rm -f stamps/add-cacao.stamp
 
@@ -2818,7 +2682,7 @@ stamps/add-cacao-debug.stamp: stamps/icedtea-debug.stamp stamps/cacao.stamp
 clean-add-cacao-debug:
 	rm -rf $(BUILD_DEBUG_JRE_ARCH_DIR)/cacao
 	if [ -e $(BUILD_DEBUG_JRE_ARCH_DIR)/jvm.cfg ] ; then \
-	  sed -i 's#-cacao KNOWN#-cacao ERROR#' $(BUILD_DEBUG_JRE_ARCH_DIR)/jvm.cfg ; \
+	  $(SED) -i 's#-cacao KNOWN#-cacao ERROR#' $(BUILD_DEBUG_JRE_ARCH_DIR)/jvm.cfg ; \
 	fi
 	rm -f stamps/add-cacao-debug.stamp
 
@@ -2852,8 +2716,8 @@ clean-add-zero:
 	rm -rf $(BUILD_JRE_ARCH_DIR)/shark
 	rm -rf zerovm
 	if [ -e $(BUILD_JRE_ARCH_DIR)/jvm.cfg ] ; then \
-	  sed -i 's#-zero KNOWN#-zero ERROR#' $(BUILD_JRE_ARCH_DIR)/jvm.cfg ; \
-	  sed -i 's#-shark KNOWN#-shark ERROR#' $(BUILD_JRE_ARCH_DIR)/jvm.cfg ; \
+	  $(SED) -i 's#-zero KNOWN#-zero ERROR#' $(BUILD_JRE_ARCH_DIR)/jvm.cfg ; \
+	  $(SED) -i 's#-shark KNOWN#-shark ERROR#' $(BUILD_JRE_ARCH_DIR)/jvm.cfg ; \
 	fi
 	rm -f stamps/add-zero.stamp
 
@@ -2885,8 +2749,8 @@ clean-add-zero-debug:
 	rm -rf $(BUILD_DEBUG_JRE_ARCH_DIR)/shark
 	rm -rf zerovm
 	if [ -e $(BUILD_DEBUG_JRE_ARCH_DIR)/jvm.cfg ] ; then \
-	  sed -i 's#-zero KNOWN#-zero ERROR#' $(BUILD_DEBUG_JRE_ARCH_DIR)/jvm.cfg ; \
-	  sed -i 's#-shark KNOWN#-shark ERROR#' $(BUILD_DEBUG_JRE_ARCH_DIR)/jvm.cfg ; \
+	  $(SED) -i 's#-zero KNOWN#-zero ERROR#' $(BUILD_DEBUG_JRE_ARCH_DIR)/jvm.cfg ; \
+	  $(SED) -i 's#-shark KNOWN#-shark ERROR#' $(BUILD_DEBUG_JRE_ARCH_DIR)/jvm.cfg ; \
 	fi
 	rm -f stamps/add-zero-debug.stamp
 
@@ -3030,7 +2894,7 @@ stamps/rt.stamp: stamps/rt-class-files.stamp
 	   cd lib/rt ; \
 	   for dirs in $(ICEDTEA_BOOTSTRAP_RESOURCES) ; \
 	     do \
-	     destpath=`echo $$dirs|sed -e 's#$(LANGTOOLS)/##' -e 's#$(SHARE)/##'` ; \
+	     destpath=`echo $$dirs|$(SED) -e 's#$(LANGTOOLS)/##' -e 's#$(SHARE)/##'` ; \
 	     mkdir -p `dirname $$destpath` ; \
 	     cp -a ../../$$dirs $$destpath ; \
 	   done ; \
@@ -3076,10 +2940,6 @@ add-nss: stamps/add-nss.stamp
 
 add-nss-debug: stamps/add-nss-debug.stamp
 
-add-pulseaudio: stamps/add-pulseaudio.stamp
-
-add-pulseaudio-debug: stamps/add-pulseaudio-debug.stamp
-
 add-systemtap: stamps/add-systemtap.stamp
 
 add-systemtap-debug: stamps/add-systemtap-debug.stamp
@@ -3116,13 +2976,9 @@ download: stamps/download.stamp
 
 download-cacao: stamps/download-cacao.stamp
 
+download-hotspot: stamps/download-hotspot.stamp
+
 download-jamvm: stamps/download-jamvm.stamp
-
-download-jaf-drop: stamps/download-jaf-drop.stamp
-
-download-jaxp-drop: stamps/download-jaxp-drop.stamp
-
-download-jaxws-drop: stamps/download-jaxws-drop.stamp
 
 download-openjdk: stamps/download-openjdk.stamp
 
@@ -3161,8 +3017,6 @@ patch: stamps/patch.stamp
 patch-boot: stamps/patch-boot.stamp
 
 patch-fsg: stamps/patch-fsg.stamp
-
-pulse-java: $(PULSE_JAVA_TARGET)
 
 rewriter: stamps/rewriter.stamp
 

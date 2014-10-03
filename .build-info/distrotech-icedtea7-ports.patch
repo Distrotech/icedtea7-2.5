@@ -1,11 +1,11 @@
 --- a/openjdk/jdk/make/common/Defs-linux.gmk	2014-03-02 13:02:57.740998682 +0200
 +++ b/openjdk/jdk/make/common/Defs-linux.gmk	2014-03-02 13:03:50.804381199 +0200
-@@ -441,11 +441,15 @@
+@@ -455,11 +455,15 @@
  override LIBDL                   = -ldl
  override MOOT_PRIORITIES         = true
  override NO_INTERRUPTIBLE_IO     = true
--ifeq ($(ARCH), amd64)
-+ifneq (,$(findstring $(ARCH),amd64 aarch64))
+-ifeq ($(ARCH), $(findstring $(ARCH), amd64 ppc64))
++ifeq ($(ARCH), $(findstring $(ARCH), amd64 ppc64 aarch64))
  override OPENWIN_LIB             = $(OPENWIN_HOME)/lib64
  else
 +ifeq ($(ARCH), ilp32)
@@ -19,12 +19,12 @@
  override THREADS_FLAG            = native
 --- a/openjdk/hotspot/make/defs.make	2014-03-02 13:00:43.053027109 +0200
 +++ b/openjdk/hotspot/make/defs.make	2014-03-02 13:01:28.253353267 +0200
-@@ -254,7 +254,7 @@
+@@ -258,7 +258,7 @@
  
    # Use uname output for SRCARCH, but deal with platform differences. If ARCH
    # is not explicitly listed below, it is treated as x86.
--  SRCARCH     = $(ARCH/$(filter sparc sparc64 ia64 amd64 x86_64 arm ppc zero,$(ARCH)))
-+  SRCARCH     = $(ARCH/$(filter sparc sparc64 ia64 amd64 x86_64 arm ppc ilp32 aarch64 zero,$(ARCH)))
+-  SRCARCH     = $(ARCH/$(filter sparc sparc64 ia64 amd64 x86_64 arm ppc ppc64 zero,$(ARCH)))
++  SRCARCH     = $(ARCH/$(filter sparc sparc64 ia64 amd64 x86_64 arm ppc ppc64 ilp32 aarch64 zero,$(ARCH)))
    ARCH/       = x86
    ARCH/sparc  = sparc
    ARCH/sparc64= sparc

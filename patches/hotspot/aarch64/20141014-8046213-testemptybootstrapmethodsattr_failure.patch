@@ -1,0 +1,24 @@
+# HG changeset patch
+# User asaha
+# Date 1402377672 25200
+#      Mon Jun 09 22:21:12 2014 -0700
+# Node ID 6358e85321420be7d53b7cb4ac45ff9ea0390c6f
+# Parent  f3c772c55002ccb7313952d067261951322be263
+8046213: Test test/runtime/classFileParserBug/TestEmptyBootstrapMethodsAttr.java Fails
+Reviewed-by: lfoltan
+
+diff -r f3c772c55002 -r 6358e8532142 src/share/vm/classfile/classFileParser.cpp
+--- openjdk/hotspot/src/share/vm/classfile/classFileParser.cpp	Tue Aug 12 17:46:16 2014 -0400
++++ openjdk/hotspot/src/share/vm/classfile/classFileParser.cpp	Mon Jun 09 22:21:12 2014 -0700
+@@ -2780,11 +2780,6 @@
+   ClassFileStream* cfs = stream();
+   u1* current_start = cfs->current();
+ 
+-  guarantee_property(attribute_byte_length > sizeof(u2),
+-                     "Invalid BootstrapMethods attribute length %u in class file %s",
+-                     attribute_byte_length,
+-                     CHECK);
+-
+   cfs->guarantee_more(attribute_byte_length, CHECK);
+ 
+   int attribute_array_length = cfs->get_u2_fast();

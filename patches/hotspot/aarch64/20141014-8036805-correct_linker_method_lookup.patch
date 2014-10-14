@@ -1,0 +1,221 @@
+# HG changeset patch
+# User lfoltan
+# Date 1397593040 14400
+#      Tue Apr 15 16:17:20 2014 -0400
+# Node ID 088ea5eccf62f21f75b311f49102c1d27bc577f9
+# Parent  f26d56905af0d3d8584d7ebc1e77c0515742286c
+8036805: Correct linker method lookup.
+Summary: Correct handling of array of primitive type qualifiers during field and method resolution.
+Reviewed-by: acorn, hseigel, ahgross
+
+diff -r f26d56905af0 -r 088ea5eccf62 src/share/vm/interpreter/linkResolver.cpp
+--- openjdk/hotspot/src/share/vm/interpreter/linkResolver.cpp	Sat Oct 04 21:04:20 2014 +0100
++++ openjdk/hotspot/src/share/vm/interpreter/linkResolver.cpp	Tue Apr 15 16:17:20 2014 -0400
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
++ * Copyright (c) 1997, 2014, Oracle and/or its affiliates. All rights reserved.
+  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+  *
+  * This code is free software; you can redistribute it and/or modify it
+@@ -245,6 +245,12 @@
+ void LinkResolver::lookup_method_in_klasses(methodHandle& result, KlassHandle klass, Symbol* name, Symbol* signature, bool checkpolymorphism, bool in_imethod_resolve, TRAPS) {
+   Method* result_oop = klass->uncached_lookup_method(name, signature);
+ 
++  if (klass->oop_is_array()) {
++    // Only consider klass and super klass for arrays
++    result = methodHandle(THREAD, result_oop);
++    return;
++  }
++
+   // JDK 8, JVMS 5.4.3.4: Interface method resolution should
+   // ignore static and non-public methods of java.lang.Object,
+   // like clone, finalize, registerNatives.
+@@ -283,6 +289,11 @@
+     result = methodHandle(THREAD, super_klass->uncached_lookup_method(name, signature));
+   }
+ 
++  if (klass->oop_is_array()) {
++    // Only consider klass and super klass for arrays
++    return;
++  }
++
+   if (result.is_null()) {
+     Array<Method*>* default_methods = InstanceKlass::cast(klass())->default_methods();
+     if (default_methods != NULL) {
+@@ -539,7 +550,7 @@
+   // 2. lookup method in resolved klass and its super klasses
+   lookup_method_in_klasses(resolved_method, resolved_klass, method_name, method_signature, true, false, CHECK);
+ 
+-  if (resolved_method.is_null()) { // not found in the class hierarchy
++  if (resolved_method.is_null() && !resolved_klass->oop_is_array()) { // not found in the class hierarchy
+     // 3. lookup method in all the interfaces implemented by the resolved klass
+     lookup_method_in_interfaces(resolved_method, resolved_klass, method_name, method_signature, CHECK);
+ 
+@@ -552,16 +563,16 @@
+         CLEAR_PENDING_EXCEPTION;
+       }
+     }
++  }
+ 
+-    if (resolved_method.is_null()) {
+-      // 4. method lookup failed
+-      ResourceMark rm(THREAD);
+-      THROW_MSG_CAUSE(vmSymbols::java_lang_NoSuchMethodError(),
+-                      Method::name_and_sig_as_C_string(resolved_klass(),
+-                                                              method_name,
+-                                                              method_signature),
+-                      nested_exception);
+-    }
++  if (resolved_method.is_null()) {
++    // 4. method lookup failed
++    ResourceMark rm(THREAD);
++    THROW_MSG_CAUSE(vmSymbols::java_lang_NoSuchMethodError(),
++                    Method::name_and_sig_as_C_string(resolved_klass(),
++                                                            method_name,
++                                                            method_signature),
++                    nested_exception);
+   }
+ 
+   // 5. check if method is concrete
+@@ -636,17 +647,18 @@
+   // JDK8: also look for static methods
+   lookup_method_in_klasses(resolved_method, resolved_klass, method_name, method_signature, false, true, CHECK);
+ 
+-  if (resolved_method.is_null()) {
++  if (resolved_method.is_null() && !resolved_klass->oop_is_array()) {
+     // lookup method in all the super-interfaces
+     lookup_method_in_interfaces(resolved_method, resolved_klass, method_name, method_signature, CHECK);
+-    if (resolved_method.is_null()) {
+-      // no method found
+-      ResourceMark rm(THREAD);
+-      THROW_MSG(vmSymbols::java_lang_NoSuchMethodError(),
+-                Method::name_and_sig_as_C_string(resolved_klass(),
+-                                                        method_name,
+-                                                        method_signature));
+-    }
++  }
++
++  if (resolved_method.is_null()) {
++    // no method found
++    ResourceMark rm(THREAD);
++    THROW_MSG(vmSymbols::java_lang_NoSuchMethodError(),
++              Method::name_and_sig_as_C_string(resolved_klass(),
++                                                      method_name,
++                                                      method_signature));
+   }
+ 
+   if (nostatics && resolved_method->is_static()) {
+@@ -779,7 +791,7 @@
+   }
+ 
+   // Resolve instance field
+-  KlassHandle sel_klass(THREAD, InstanceKlass::cast(resolved_klass())->find_field(field, sig, &fd));
++  KlassHandle sel_klass(THREAD, resolved_klass->find_field(field, sig, &fd));
+   // check if field exists; i.e., if a klass containing the field def has been selected
+   if (sel_klass.is_null()) {
+     ResourceMark rm(THREAD);
+diff -r f26d56905af0 -r 088ea5eccf62 src/share/vm/oops/arrayKlass.cpp
+--- openjdk/hotspot/src/share/vm/oops/arrayKlass.cpp	Sat Oct 04 21:04:20 2014 +0100
++++ openjdk/hotspot/src/share/vm/oops/arrayKlass.cpp	Tue Apr 15 16:17:20 2014 -0400
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
++ * Copyright (c) 1997, 2014, Oracle and/or its affiliates. All rights reserved.
+  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+  *
+  * This code is free software; you can redistribute it and/or modify it
+@@ -64,6 +64,13 @@
+   return NULL;
+ }
+ 
++// find field according to JVM spec 5.4.3.2, returns the klass in which the field is defined
++Klass* ArrayKlass::find_field(Symbol* name, Symbol* sig, fieldDescriptor* fd) const {
++  // There are no fields in an array klass but look to the super class (Object)
++  assert(super(), "super klass must be present");
++  return super()->find_field(name, sig, fd);
++}
++
+ Method* ArrayKlass::uncached_lookup_method(Symbol* name, Symbol* signature) const {
+   // There are no methods in an array klass but the super class (Object) has some
+   assert(super(), "super klass must be present");
+diff -r f26d56905af0 -r 088ea5eccf62 src/share/vm/oops/arrayKlass.hpp
+--- openjdk/hotspot/src/share/vm/oops/arrayKlass.hpp	Sat Oct 04 21:04:20 2014 +0100
++++ openjdk/hotspot/src/share/vm/oops/arrayKlass.hpp	Tue Apr 15 16:17:20 2014 -0400
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
++ * Copyright (c) 1997, 2014, Oracle and/or its affiliates. All rights reserved.
+  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+  *
+  * This code is free software; you can redistribute it and/or modify it
+@@ -28,6 +28,7 @@
+ #include "memory/universe.hpp"
+ #include "oops/klass.hpp"
+ 
++class fieldDescriptor;
+ class klassVtable;
+ 
+ // ArrayKlass is the abstract baseclass for all array classes
+@@ -85,6 +86,9 @@
+   virtual oop multi_allocate(int rank, jint* sizes, TRAPS);
+   objArrayOop allocate_arrayArray(int n, int length, TRAPS);
+ 
++  // find field according to JVM spec 5.4.3.2, returns the klass in which the field is defined
++  Klass* find_field(Symbol* name, Symbol* sig, fieldDescriptor* fd) const;
++
+   // Lookup operations
+   Method* uncached_lookup_method(Symbol* name, Symbol* signature) const;
+ 
+diff -r f26d56905af0 -r 088ea5eccf62 src/share/vm/oops/klass.cpp
+--- openjdk/hotspot/src/share/vm/oops/klass.cpp	Sat Oct 04 21:04:20 2014 +0100
++++ openjdk/hotspot/src/share/vm/oops/klass.cpp	Tue Apr 15 16:17:20 2014 -0400
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
++ * Copyright (c) 1997, 2014, Oracle and/or its affiliates. All rights reserved.
+  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+  *
+  * This code is free software; you can redistribute it and/or modify it
+@@ -128,6 +128,15 @@
+   return is_subclass_of(k);
+ }
+ 
++Klass* Klass::find_field(Symbol* name, Symbol* sig, fieldDescriptor* fd) const {
++#ifdef ASSERT
++  tty->print_cr("Error: find_field called on a klass oop."
++                " Likely error: reflection method does not correctly"
++                " wrap return value in a mirror object.");
++#endif
++  ShouldNotReachHere();
++  return NULL;
++}
+ 
+ Method* Klass::uncached_lookup_method(Symbol* name, Symbol* signature) const {
+ #ifdef ASSERT
+diff -r f26d56905af0 -r 088ea5eccf62 src/share/vm/oops/klass.hpp
+--- openjdk/hotspot/src/share/vm/oops/klass.hpp	Sat Oct 04 21:04:20 2014 +0100
++++ openjdk/hotspot/src/share/vm/oops/klass.hpp	Tue Apr 15 16:17:20 2014 -0400
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
++ * Copyright (c) 1997, 2014, Oracle and/or its affiliates. All rights reserved.
+  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+  *
+  * This code is free software; you can redistribute it and/or modify it
+@@ -91,6 +91,7 @@
+ class klassVtable;
+ class ParCompactionManager;
+ class KlassSizeStats;
++class fieldDescriptor;
+ 
+ class Klass : public Metadata {
+   friend class VMStructs;
+@@ -421,6 +422,7 @@
+   virtual void initialize(TRAPS);
+   // lookup operation for MethodLookupCache
+   friend class MethodLookupCache;
++  virtual Klass* find_field(Symbol* name, Symbol* signature, fieldDescriptor* fd) const;
+   virtual Method* uncached_lookup_method(Symbol* name, Symbol* signature) const;
+  public:
+   Method* lookup_method(Symbol* name, Symbol* signature) const {

@@ -1,0 +1,30 @@
+# HG changeset patch
+# User zgu
+# Date 1402928626 14400
+#      Mon Jun 16 10:23:46 2014 -0400
+# Node ID e6b2c9c464d11d2b54d61c693d447f3cb8670663
+# Parent  77e62c1876767e336b1b47c62e45b9db39808a72
+8038903: More native monitor monitoring
+Summary: Moved ntive monitor monitoring flags to experimental
+Reviewed-by: acorn, hseigel, mschoene
+
+diff -r 77e62c187676 -r e6b2c9c464d1 src/share/vm/runtime/globals.hpp
+--- openjdk/hotspot/src/share/vm/runtime/globals.hpp	Mon Apr 21 10:36:31 2014 -1000
++++ openjdk/hotspot/src/share/vm/runtime/globals.hpp	Mon Jun 16 10:23:46 2014 -0400
+@@ -1147,11 +1147,11 @@
+           "Prevent spurious or premature wakeups from object.wait "         \
+           "(Solaris only)")                                                 \
+                                                                             \
+-  product(intx, NativeMonitorTimeout, -1, "(Unstable)")                     \
+-                                                                            \
+-  product(intx, NativeMonitorFlags, 0, "(Unstable)")                        \
+-                                                                            \
+-  product(intx, NativeMonitorSpinLimit, 20, "(Unstable)")                   \
++  experimental(intx, NativeMonitorTimeout, -1, "(Unstable)")                \
++                                                                            \
++  experimental(intx, NativeMonitorFlags, 0, "(Unstable)")                   \
++                                                                            \
++  experimental(intx, NativeMonitorSpinLimit, 20, "(Unstable)")              \
+                                                                             \
+   develop(bool, UsePthreads, false,                                         \
+           "Use pthread-based instead of libthread-based synchronization "   \

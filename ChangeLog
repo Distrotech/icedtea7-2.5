@@ -1,3 +1,51 @@
+2014-10-14  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
+	* patches/hotspot/aarch64/20140715-8030763-validate_global_memory_allocation.patch,
+	* patches/hotspot/aarch64/20140715-8032536-jvm_resolves_wrong_method.patch,
+	* patches/hotspot/aarch64/20140715-8035119-fix_exceptions_to_bytecode_verification.patch,
+	* patches/hotspot/aarch64/20140715-8036800-attribute_oom_to_right_code.patch,
+	* patches/hotspot/aarch64/20140715-8037076-check_constant_pool_constants.patch,
+	* patches/hotspot/aarch64/20140715-8037157-verify_init_call.patch,
+	* patches/hotspot/aarch64/20140715-8037167-better_method_signature_resolution.patch,
+	* patches/hotspot/aarch64/20140715-8043454-8037157_test_case_fix.patch:
+	Remove patches included in latest AArch64 drop.
+	* Makefile.am:
+	(CORBA_CHANGESET): Update to icedtea-2.5.3 tag.
+	(JAXP_CHANGESET): Likewise.
+	(JAXWS_CHANGESET): Likewise.
+	(JDK_CHANGESET): Likewise.
+	(LANGTOOLS_CHANGESET): Likewise.
+	(OPENJDK_CHANGESET): Likewise.
+	(CORBA_SHA256SUM): Likewise.
+	(JAXP_SHA256SUM): Likewise.
+	(JAXWS_SHA256SUM): Likewise.
+	(JDK_SHA256SUM): Likewise.
+	(LANGTOOLS_SHA256SUM): Likewise.
+	(OPENJDK_SHA256SUM): Likewise.
+	(ICEDTEA_PATCHES): Remove old AArch64 security patches and
+	add new ones from the 2014/10/14 update.
+	* NEWS: List changes from u71 and AArch64 port. Set release
+	date to today.
+	* configure.ac: Bump to 2.5.3.
+	* hotspot.map.in: Update to icedtea-2.5.3 tag for default.
+	Update AArch64 to jdk7u60_b04_aarch64_834 tag.
+	* patches/boot/ecj-multicatch.patch:
+	Remove defunct RSAClientKeyExchange patch. Add new cases
+	in CipherInputStream and CipherOutputStream.
+	* patches/boot/ecj-stringswitch.patch: Add new case in
+	AnnotationInvocationHandler.
+	* patches/hotspot/aarch64/20141014-8015256-better_class_accessibility.patch,
+	* patches/hotspot/aarch64/20141014-8036533-method_for_correct_defaults.patch,
+	* patches/hotspot/aarch64/20141014-8036805-correct_linker_method_lookup.patch,
+	* patches/hotspot/aarch64/20141014-8038898-safer_safepoints.patch,
+	* patches/hotspot/aarch64/20141014-8038903-more_native_monitor_monitoring.patch,
+	* patches/hotspot/aarch64/20141014-8041717-issue_with_class_file_parser.patch,
+	* patches/hotspot/aarch64/20141014-8042603-safepointpolloffset.patch,
+	* patches/hotspot/aarch64/20141014-8044269-analysis_of_archive_files.patch,
+	* patches/hotspot/aarch64/20141014-8046213-testemptybootstrapmethodsattr_failure.patch,
+	* patches/hotspot/aarch64/20141014-8050485-super_causes_verifyerror.patch:
+	OpenJDK 8 version of 2014/10/14 HotSpot security patches for AArch64.
+
 2014-10-01  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
 	* Makefile.am:

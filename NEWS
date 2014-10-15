@@ -63,6 +63,7 @@ New in release 2.5.3 (2014-10-14):
   - PR2003: --disable-system-gtk option broken by refactoring in PR1736
   - PR2009: Checksum of policy JAR files changes on every build
   - PR2014: Use version from hotspot.map to create tarball filename
+  - PR2015: Update hotspot.map documentation in INSTALL
   - PR2025: LCMS_CFLAGS & LCMS_LIBS should not be used unless SYSTEM_LCMS is enabled
   - RH1015432: java-1.7.0-openjdk: Fails on PPC with StackOverflowError (revised comprehensive fix)
 * CACAO

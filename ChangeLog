@@ -1,5 +1,11 @@
 2014-10-14  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
+	* Makefile.am:
+	(JDK_UPDATE_VERSION): Bump to u71.
+	(BUILD_VERSION): Set to b14.
+
+2014-10-14  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
 	* INSTALL: Update section on hotspot.map
 	to reflect recent changes.
 	* Makefile.am:

@@ -64,6 +64,8 @@ New in release 2.5.3 (2014-10-14):
   - PR2009: Checksum of policy JAR files changes on every build
   - PR2025: LCMS_CFLAGS & LCMS_LIBS should not be used unless SYSTEM_LCMS is enabled
   - RH1015432: java-1.7.0-openjdk: Fails on PPC with StackOverflowError (revised comprehensive fix)
+* CACAO
+  - PR2030, G453612, CA172: ARM hardfloat support for CACAO
 * AArch64 port
   - AArch64 C2 instruct for smull
   - Add frame anchor fences.

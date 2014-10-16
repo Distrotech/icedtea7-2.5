@@ -14,6 +14,36 @@ CVE-XXXX-YYYY: http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=XXXX-YYYY
 
 New in release 2.5.4 (2015-01-XX):
 
+* Backports
+  - S6545422: [TESTBUG] NativeErrors.java uses wrong path name in exec
+  - S6653795: C2 intrinsic for Unsafe.getAddress performs pointer sign extension on 32-bit systems
+  - S7169142: CookieHandler does not work with localhost
+  - S7185456: (ann) Optimize Annotation handling in java/sun.reflect.* code for small number of annotations
+  - S8001105: findVirtual of Object[].clone produces internal error
+  - S8005232: (JEP-149) Class Instance size reduction
+  - S8012026: [macosx] Component.getMousePosition() does not work in an applet on MacOS
+  - S8015421: NegativeArraySizeException occurs in ChunkedOutputStream() with Integer.MAX_VALUE
+  - S8021372: NetworkInterface.getNetworkInterfaces() returns duplicate hardware address
+  - S8022721: TEST_BUG: AnnotationTypeDeadlockTest.java throws java.lang.IllegalStateException: unexpected condition
+  - S8026792: HOTSPOT: licensee reports a JDK8 build failure after 8005849/8005008 fixes integrated.
+  - S8027359: XML parser returns incorrect parsing results
+  - S8028627: Unsynchronized code path from javax.crypto.Cipher to the WeakHashMap used by JceSecurity to store codebase mappings
+  - S8028726: (prefs) Check src/solaris/native/java/util/FileSystemPreferences.c for JNI pending exceptions
+  - S8029153: [TESTBUG] test/compiler/7141637/SpreadNullArg.java fails because it expects NullPointerException
+  - S8031502: JSR292: IncompatibleClassChangeError in LambdaForm for CharSequence.toString() method handle type converter
+  - S8032078: [macosx] CPlatformWindow.setWindowState throws RuntimeException, if windowState=ICONIFIED|MAXIMIZED_BOTH
+  - S8032669: Mouse release not being delivered to Swing component in 7u45
+  - S8032788: ImageIcon constructor throws an NPE and hangs when passed a null String parameter
+  - S8032909: XSLT string-length returns incorrect length when string includes complementary chars
+  - S8034200: Test java/net/CookieHandler/LocalHostCookie.java fails after fix of JDK-7169142
+  - S8036863: Update jdk7 testlibrary to match jdk8 in hotspot
+  - S8040168: Set hotspot version to hs24.66 and build to b01 for 7u66
+  - S8041132: Increment hsx 24.66 build to b02 for 7u66-b09
+  - S8041408: Increment hsx 24.55 build to b04 for 7u55-b34
+  - S8044603: Increment minor version of HSx for 7u71 and initialize the build number
+  - S8050485: super() in a try block in a ctor causes VerifyError
+  - S8057184: JCK8's api/javax_swing/JDesktopPane/descriptions.html#getset failed with GTKLookAndFeel on Linux and Solaris
+
 New in release 2.5.3 (2014-10-14):
 
 * Security fixes

@@ -7181,3 +7181,15 @@ diff -Nru openjdk-boot.orig/jdk/test/java/util/Random/DistinctSeeds.java openjdk
          List<Thread> threads = new ArrayList<Thread>();
          for (int i = 0; i < threadCount; i++) {
              RandomCollector r = new RandomCollector();
+diff -Nru openjdk-boot.orig/jdk/src/share/classes/javax/swing/JDesktopPane.java openjdk-boot/jdk/src/share/classes/javax/swing/JDesktopPane.java
+--- openjdk-boot.orig/jdk/src/share/classes/javax/swing/JDesktopPane.java	2014-10-16 16:01:29.000000000 +0100
++++ openjdk-boot/jdk/src/share/classes/javax/swing/JDesktopPane.java	2014-10-16 16:53:18.417845002 +0100
+@@ -267,7 +267,7 @@
+ 
+     private static Collection<JInternalFrame> getAllFrames(Container parent) {
+         int i, count;
+-        Collection<JInternalFrame> results = new LinkedHashSet<>();
++        Collection<JInternalFrame> results = new LinkedHashSet<JInternalFrame>();
+         count = parent.getComponentCount();
+         for (i = 0; i < count; i++) {
+             Component next = parent.getComponent(i);

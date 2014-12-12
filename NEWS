@@ -18,7 +18,9 @@ New in release 2.5.4 (2015-01-XX):
   - S6545422: [TESTBUG] NativeErrors.java uses wrong path name in exec
   - S6653795: C2 intrinsic for Unsafe.getAddress performs pointer sign extension on 32-bit systems
   - S7169142: CookieHandler does not work with localhost
+  - S7172012, PR2067: Make test-in-build an option (Queens)
   - S7185456: (ann) Optimize Annotation handling in java/sun.reflect.* code for small number of annotations
+  - S8000897, RH1155012: VM crash in CompileBroker
   - S8001105: findVirtual of Object[].clone produces internal error
   - S8005232: (JEP-149) Class Instance size reduction
   - S8012026: [macosx] Component.getMousePosition() does not work in an applet on MacOS
@@ -27,6 +29,7 @@ New in release 2.5.4 (2015-01-XX):
   - S8022721: TEST_BUG: AnnotationTypeDeadlockTest.java throws java.lang.IllegalStateException: unexpected condition
   - S8026792: HOTSPOT: licensee reports a JDK8 build failure after 8005849/8005008 fixes integrated.
   - S8027359: XML parser returns incorrect parsing results
+  - S8028623, PR2112, RH1168693: SA: hash codes in SymbolTable mismatching java_lang_String::hash_code for extended characters.
   - S8028627: Unsynchronized code path from javax.crypto.Cipher to the WeakHashMap used by JceSecurity to store codebase mappings
   - S8028726: (prefs) Check src/solaris/native/java/util/FileSystemPreferences.c for JNI pending exceptions
   - S8029153: [TESTBUG] test/compiler/7141637/SpreadNullArg.java fails because it expects NullPointerException
@@ -43,6 +46,12 @@ New in release 2.5.4 (2015-01-XX):
   - S8044603: Increment minor version of HSx for 7u71 and initialize the build number
   - S8050485: super() in a try block in a ctor causes VerifyError
   - S8057184: JCK8's api/javax_swing/JDesktopPane/descriptions.html#getset failed with GTKLookAndFeel on Linux and Solaris
+  - S8067364, PR2145, RH114622: Printing to Postscript doesn't support dieresis
+* Bug fixes
+  - PR2069: Type-punning warnings still evident on RHEL 5
+  - PR2094, RH1163501: 2048-bit DH upper bound too small for Fedora infrastructure
+  - PR2123: SunEC provider crashes when built using system NSS
+  - PR2135: Race condition in SunEC provider with system NSS
 
 New in release 2.5.3 (2014-10-14):
 

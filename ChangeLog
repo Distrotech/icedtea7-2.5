@@ -1,3 +1,38 @@
+2015-01-05  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
+	* Makefile.am:
+	(CORBA_CHANGESET): Update to icedtea-2.5.4pre03.
+	(JAXP_CHANGESET): Likewise.
+	(JAXWS_CHANGESET): Likewise.
+	(JDK_CHANGESET): Likewise.
+	(LANGTOOLS_CHANGESET): Likewise.
+	(OPENJDK_CHANGESET): Likewise.
+	(CORBA_SHA256SUM): Likewise.
+	(JAXP_SHA256SUM): Likewise.
+	(JAXWS_SHA256SUM): Likewise.
+	(JDK_SHA256SUM): Likewise.
+	(LANGTOOLS_SHA256SUM): Likewise.
+	(OPENJDK_SHA256SUM): Likewise.
+	* NEWS: Updated.
+	* configure.ac: Bump to 2.5.4pre03.
+	* hotspot.map.in: Update to icedtea-2.5.4pre03.
+	* patches/boot/pr64174.patch: Drop the Lithuanian
+	changeover date now, as it's in the past.
+
+2014-12-04  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
+	* Makefile.am:
+	(ICEDTEA_BOOT_PATCHES): Add workaround for bug
+	in parsing end-of-year dates (Classpath PR64174).
+	* acinclude.m4:
+	(IT_PR64174_CHECK): Detect if the boot JDK suffers
+	from PR64174 and apply the patch if so.
+	* configure.ac: Call IT_PR64174_CHECK.
+	* patches/boot/pr64174.patch: Drop the Latvian
+	Euro changeover date, which is in the past anyway,
+	and move Lithuania's two hours forward so it enters
+	2015 and avoids the bug.
+
 2014-12-05  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
 	PR2124: Synchronise elliptic curves in

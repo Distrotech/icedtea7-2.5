@@ -18,7 +18,7 @@ New in release 2.5.4 (2015-01-XX):
   - S6545422: [TESTBUG] NativeErrors.java uses wrong path name in exec
   - S6653795: C2 intrinsic for Unsafe.getAddress performs pointer sign extension on 32-bit systems
   - S7028073: The currency symbol for Peru is wrong
-  - S7077119, PR2165: remove past transition dates from CurrencyData.properties file
+  - S7077119, PR2165, G534118: remove past transition dates from CurrencyData.properties file
   - S7085757: Currency Data: ISO 4217 Amendment 152
   - S7169142: CookieHandler does not work with localhost
   - S7172012, PR2067: Make test-in-build an option (Queens)

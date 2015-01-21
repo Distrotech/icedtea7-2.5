@@ -14,10 +14,31 @@ CVE-XXXX-YYYY: http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=XXXX-YYYY
 
 New in release 2.5.4 (2015-01-XX):
 
+* Security fixes
+  - S8046656: Update protocol support
+  - S8047125, CVE-2015-0395: (ref) More phantom object references
+  - S8047130: Fewer escapes from escape analysis
+  - S8048035, CVE-2015-0400: Ensure proper proxy protocols
+  - S8049253: Better GC validation
+  - S8050807, CVE-2015-0383: Better performing performance data handling
+  - S8054367, CVE-2015-0412: More references for endpoints
+  - S8055304, CVE-2015-0407: More boxing for DirectoryComboBoxModel
+  - S8055309, CVE-2015-0408: RMI needs better transportation considerations
+  - S8055479: TLAB stability
+  - S8055489, CVE-2014-6585: Better substitution formats
+  - S8056264, CVE-2014-6587: Multicast support improvements
+  - S8056276, CVE-2014-6591: Fontmanager feature improvements
+  - S8057555, CVE-2014-6593: Less cryptic cipher suite management
+  - S8058982, CVE-2014-6601: Better verification of an exceptional invokespecial
+  - S8059485, CVE-2015-0410: Resolve parsing ambiguity
+  - S8061210, CVE-2014-3566: Issues in TLS
 * Backports
+  - S6461635: [TESTBUG] BasicTests.sh test fails intermittently
   - S6545422: [TESTBUG] NativeErrors.java uses wrong path name in exec
   - S6653795: C2 intrinsic for Unsafe.getAddress performs pointer sign extension on 32-bit systems
   - S7028073: The currency symbol for Peru is wrong
+  - S7047033: (smartcardio) Card.disconnect(boolean reset) does not reset when reset is true
+  - S7183753: [TEST] Some colon in the diff for this test
   - S7077119, PR2165, G534118: remove past transition dates from CurrencyData.properties file
   - S7085757: Currency Data: ISO 4217 Amendment 152
   - S7169142: CookieHandler does not work with localhost
@@ -34,12 +55,14 @@ New in release 2.5.4 (2015-01-XX):
   - S8021121: ISO 4217 Amendment Number 156
   - S8021372: NetworkInterface.getNetworkInterfaces() returns duplicate hardware address
   - S8022721: TEST_BUG: AnnotationTypeDeadlockTest.java throws java.lang.IllegalStateException: unexpected condition
+  - S8025051: Update resource files for TimeZone display names
   - S8026792: HOTSPOT: licensee reports a JDK8 build failure after 8005849/8005008 fixes integrated.
   - S8027359: XML parser returns incorrect parsing results
   - S8028623, PR2112, RH1168693: SA: hash codes in SymbolTable mismatching java_lang_String::hash_code for extended characters.
   - S8028627: Unsynchronized code path from javax.crypto.Cipher to the WeakHashMap used by JceSecurity to store codebase mappings
   - S8028726: (prefs) Check src/solaris/native/java/util/FileSystemPreferences.c for JNI pending exceptions
   - S8029153: [TESTBUG] test/compiler/7141637/SpreadNullArg.java fails because it expects NullPointerException
+  - S8031046: Native Windows ccache might still get unsupported ticket
   - S8031502: JSR292: IncompatibleClassChangeError in LambdaForm for CharSequence.toString() method handle type converter
   - S8032078: [macosx] CPlatformWindow.setWindowState throws RuntimeException, if windowState=ICONIFIED|MAXIMIZED_BOTH
   - S8032669: Mouse release not being delivered to Swing component in 7u45
@@ -48,12 +71,36 @@ New in release 2.5.4 (2015-01-XX):
   - S8034200: Test java/net/CookieHandler/LocalHostCookie.java fails after fix of JDK-7169142
   - S8036863: Update jdk7 testlibrary to match jdk8 in hotspot
   - S8040168: Set hotspot version to hs24.66 and build to b01 for 7u66
+  - S8040617: [macosx] Large JTable cell results in a OutOfMemoryException
   - S8041132: Increment hsx 24.66 build to b02 for 7u66-b09
   - S8041408: Increment hsx 24.55 build to b04 for 7u55-b34
+  - S8041572: [macosx] huge native memory leak in AWTWindow.m
+  - S8041990: [macosx] Language specific keys does not work in applets when opened outside the browser
+  - S8043610: Sorting columns in JFileChooser fails with AppContext NPE
   - S8044603: Increment minor version of HSx for 7u71 and initialize the build number
+  - S8046343: (smartcardio) CardTerminal.connect('direct') does not work on MacOSX
+  - S8049250: Need a flag to invert the Card.disconnect(reset) argument
+  - S8049343: (tz) Support tzdata2014g
+  - S8049758: Increment minor version of HSx for 7u75 and initialize the build number
   - S8050485: super() in a try block in a ctor causes VerifyError
+  - S8051359: JPopupMenu creation in headless mode with JDK9b23 causes NPE
+  - S8051614: smartcardio TCK tests fail due to lack of 'reset' permission
   - S8055222: Currency update needed for ISO 4217 Amendment #159
+  - S8056211: api/java_awt/Event/InputMethodEvent/serial/index.html#Input[serial2002] failure
   - S8057184: JCK8's api/javax_swing/JDesktopPane/descriptions.html#getset failed with GTKLookAndFeel on Linux and Solaris
+  - S8058715: stability issues when being launched as an embedded JVM via JNI
+  - S8059206: (tz) Support tzdata2014i
+  - S8060474: Resolve more parsing ambiguity
+  - S8061685: Increment hsx 24.75 build to b02 for 7u75-b06
+  - S8061785: [TEST_BUG] serviceability/sa/jmap-hashcode/Test8028623.java has utf8 character corrupted by earlier merge
+  - S8061826: Part of JDK-8060474 should be reverted
+  - S8062561: Test bug8055304 fails if file system default directory has read access
+  - S8062807: Exporting RMI objects fails when run under restrictive SecurityManager
+  - S8064300: Increment hsx 24.75 build to b03 for 7u75-b06
+  - S8064560: (tz) Support tzdata2014j
+  - S8065608: 7u75 l10n resource file translation update
+  - S8065787: Increment hsx 24.75 build to b04 for 7u75-b10
+  - S8066747: Backing out Japanese translation change in awt_ja.properties
   - S8067364, PR2145, RH114622: Printing to Postscript doesn't support dieresis
 * Bug fixes
   - PR2069: Type-punning warnings still evident on RHEL 5

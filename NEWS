@@ -103,6 +103,7 @@ New in release 2.5.4 (2015-01-XX):
   - S8066747: Backing out Japanese translation change in awt_ja.properties
   - S8067364, PR2145, RH114622: Printing to Postscript doesn't support dieresis
 * Bug fixes
+  - PR2064: Unset OS before running OpenJDK build
   - PR2069: Type-punning warnings still evident on RHEL 5
   - PR2094, RH1163501: 2048-bit DH upper bound too small for Fedora infrastructure
   - PR2123: SunEC provider crashes when built using system NSS

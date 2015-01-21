@@ -109,6 +109,7 @@ New in release 2.5.4 (2015-01-XX):
   - PR2123: SunEC provider crashes when built using system NSS
   - PR2124: Synchronise elliptic curves in sun.security.ec.NamedCurve with those listed by NSS
   - PR2135: Race condition in SunEC provider with system NSS
+  - PR2161: RHEL 6 has a version of GIO which meets the version criteria, but has no g_settings_*
 
 New in release 2.5.3 (2014-10-14):
 

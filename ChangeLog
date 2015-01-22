@@ -1,5 +1,9 @@
 2015-01-21  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
+	* NEWS: Set release date.
+
+2015-01-21  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
 	* patches/hotspot/default/systemtap_gc.patch:
 	Remove unused patch.
 	* Makefile.am:

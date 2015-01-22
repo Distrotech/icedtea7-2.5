@@ -112,6 +112,7 @@ New in release 2.5.4 (2015-01-XX):
   - PR2161: RHEL 6 has a version of GIO which meets the version criteria, but has no g_settings_*
 * JamVM
   - PR2050: JamVM lacks JVM_FindClassFromCaller introduced by security patch in 2.5.3
+  - PR2171: JamVM builds with executable stack, causing failures on SELinux & PaX kernels
 
 New in release 2.5.3 (2014-10-14):
 

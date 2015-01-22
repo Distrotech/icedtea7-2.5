@@ -285,24 +285,6 @@ ICEDTEA_PATCHES += patches/rh1022017.patch
 endif
 endif
 
-if WITH_ALT_HSBUILD
-ICEDTEA_PATCHES += patches/hotspot/aarch64/werror.patch \
-	patches/hotspot/aarch64/20141014-8015256-better_class_accessibility.patch \
-	patches/hotspot/aarch64/20141014-8036533-method_for_correct_defaults.patch \
-	patches/hotspot/aarch64/20141014-8036805-correct_linker_method_lookup.patch \
-	patches/hotspot/aarch64/20141014-8038898-safer_safepoints.patch \
-	patches/hotspot/aarch64/20141014-8038903-more_native_monitor_monitoring.patch \
-	patches/hotspot/aarch64/20141014-8041717-issue_with_class_file_parser.patch \
-	patches/hotspot/aarch64/20141014-8042603-safepointpolloffset.patch \
-	patches/hotspot/aarch64/20141014-8044269-analysis_of_archive_files.patch \
-	patches/hotspot/aarch64/20141014-8046213-testemptybootstrapmethodsattr_failure.patch \
-	patches/hotspot/aarch64/20141014-8050485-super_causes_verifyerror.patch
-if ENABLE_SYSTEMTAP
-ICEDTEA_PATCHES += \
-	patches/hotspot/aarch64/systemtap_gc.patch
-endif
-endif
-
 ICEDTEA_PATCHES += $(DISTRIBUTION_PATCHES)
 
 # Bootstrapping patches
@@ -613,13 +595,6 @@ ICEDTEA_ENV += \
        INFINALITY_SUPPORT="true"
 endif
 
-# This seems illogical, but it actually just
-# turns off the creation of separate debuginfo files.
-if WITH_ALT_HSBUILD
-ICEDTEA_ENV += \
-	FULL_DEBUG_SYMBOLS=0
-endif
-
 # OpenJDK boot build environment.
 ICEDTEA_ENV_BOOT = $(ICEDTEA_ENV) \
 	BOOTCLASSPATH_CLS_RT="-bootclasspath $(CLS_DIR_BOOT):$(RUNTIME)" \
@@ -781,7 +756,6 @@ JTREG_SRCS = $(top_srcdir)/test/jtreg/com/sun/javatest/cof/i18n.properties \
 EXTRA_DIST = $(GENERATED_FILES) $(top_srcdir)/patches/*.patch \
 	$(top_srcdir)/patches/boot/*.patch \
 	$(top_srcdir)/patches/cacao/*.patch \
-	$(top_srcdir)/patches/hotspot/*/*.patch \
 	$(top_srcdir)/patches/jamvm/*.patch \
 	tools-copy contrib overlays \
 	jconsole.desktop policytool.desktop \

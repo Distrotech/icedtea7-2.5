@@ -552,3 +552,54 @@ diff -Nru openjdk-boot.orig/jdk/src/share/classes/sun/tools/jconsole/Resources.j
              // Missing VK is okay
              return 0;
          }
+diff -Nru openjdk-boot.orig/jdk/src/share/classes/sun/security/provider/SecureRandom.java openjdk-boot/jdk/src/share/classes/sun/security/provider/SecureRandom.java
+--- openjdk-boot.orig/jdk/src/share/classes/sun/security/provider/SecureRandom.java	2015-01-27 03:06:33.100525224 +0000
++++ openjdk-boot/jdk/src/share/classes/sun/security/provider/SecureRandom.java	2015-01-27 03:15:51.615360901 +0000
+@@ -94,14 +94,22 @@
+      * and sets the seed, if given.
+      */
+     private void init(byte[] seed) {
++        Exception ex = null;
++
+         try {
+             /*
+              * Use the local SUN implementation to avoid native
+              * performance overhead.
+              */
+             digest = MessageDigest.getInstance("SHA", "SUN");
+-        } catch (NoSuchProviderException | NoSuchAlgorithmException e) {
+-            // Fallback to any available.
++        } catch (NoSuchProviderException e) {
++            ex = e;
++        } catch (NoSuchAlgorithmException e) {
++            ex = e;
++        }
++
++        // Fallback to any available.
++        if (ex != null) {
+             try {
+                 digest = MessageDigest.getInstance("SHA");
+             } catch (NoSuchAlgorithmException exc) {
+@@ -265,6 +273,7 @@
+      */
+     private void readObject(java.io.ObjectInputStream s)
+         throws IOException, ClassNotFoundException {
++	Exception ex = null;
+ 
+         s.defaultReadObject ();
+ 
+@@ -274,7 +283,13 @@
+              * performance overhead.
+              */
+             digest = MessageDigest.getInstance("SHA", "SUN");
+-        } catch (NoSuchProviderException | NoSuchAlgorithmException e) {
++        } catch (NoSuchProviderException e) {
++	    ex = e;
++        } catch (NoSuchAlgorithmException e) {
++	    ex = e;
++	}
++
++	if (ex != null) {
+             // Fallback to any available.
+             try {
+                 digest = MessageDigest.getInstance("SHA");

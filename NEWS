@@ -12,6 +12,62 @@ JEPX - http://openjdk.java.net/jeps/X
 
 CVE-XXXX-YYYY: http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=XXXX-YYYY
 
+New in release 2.5.5 (2015-04-XX):
+
+* Backports
+  - S7142035: assert in j.l.instrument agents during shutdown when daemon thread is running
+  - S7160837: DigestOutputStream does not turn off digest calculation when "close()" is called
+  - S7195480: javax.smartcardio does not detect cards on Mac OS X
+  - S8001472: api/java_awt/Window/indexTGF_* tests fail because expected colors aren't equal
+  - S8011646: SEGV in compiled code with loop predication
+  - S8012637: Adjust CipherInputStream class to work in AEAD/GCM mode
+  - S8016545: java.beans.XMLEncoder.writeObject output is wrong
+  - S8019324: assert(_f2 == 0 || _f2 == f2) failed: illegal field change
+  - S8019623: Lack of synchronization in AppContext.getAppContext()
+  - S8021804: Certpath validation fails if validity period of root cert does not include validity period of intermediate cert
+  - S8022070: Compilation error in stubGenerator_sparc.cpp with some compilers
+  - S8024061: Exception thrown when drag and drop between two components is executed quickly
+  - S8028616: Htmleditorkit parser doesn't handle leading slash (/)
+  - S8028617: Dvorak keyboard mapping not honored when ctrl key pressed
+  - S8029837: NPE seen in XMLDocumentFragmentScannerImpl.setProperty since 7u40b33
+  - S8031290: Adjust call to getisax() for additional words returned
+  - S8032872: [macosx] Cannot select from JComboBox in a JWindow
+  - S8032874: ArrayIndexOutOfBoundsException in JTable while clearing data in JTable
+  - S8032878: Editable combos in table do not behave as expected
+  - S8033113: wsimport fails on WSDL:header parameter name customization
+  - S8033696: "assert(thread != NULL) failed: just checking" due to Thread::current() and JNI pthread interaction
+  - S8036022: D3D: rendering with XOR composite causes InternalError.
+  - S8036709: Java 7 jarsigner displays warning about cert policy tree
+  - S8036819: JAB: mneumonics not read for textboxes
+  - S8036983: JAB:Multiselection Ctrl+CursorUp/Down and ActivateDescenderPropertyChanged event
+  - S8037477: Reproducible hang of JAWS and webstart application with JAB 2.0.4
+  - S8038925: Java with G1 crashes in dump_instance_fields using jmap or jcmd without fullgc
+  - S8039050: Crash in C2 compiler at Node::rematerialize
+  - S8039298: assert(base == NULL || t_adr->isa_rawptr() || ! phase->type(base)->higher_equal(TypePtr::NULL_PTR))
+  - S8039319: (smartcardio) Card.transmitControlCommand() does not work on Mac OS X
+  - S8041451: com.sun.jndi.ldap.Connection:ReadTimeout should abandon ldap request
+  - S8042059: Various fixes to linux/sparc
+  - S8042857: 14 stuck threads waiting for notification on LDAPRequest
+  - S8043200: Decrease the preference mode of RC4 in the enabled cipher suite list
+  - S8043205: Incorrect system traps.h include path
+  - S8043206: Fix signed vs. unsigned comparison warning in copy_sparc.hpp
+  - S8043207: Add const to Address argument for Assembler::swap
+  - S8043210: Add _BIG_ENDIAN define on linux/sparc
+  - S8043507: javax.smartcardio.CardTerminals.list() fails on MacOSX
+  - S8044602: Increment minor version of HSx for 7u72 and initialize the build number
+  - S8044659: Java SecureRandom on SPARC T4 much slower than on x86/Linux
+  - S8046769: Set T family feature bit on Niagara systems
+  - S8048080: (smartcardio) javax.smartcardio.Card.openLogicalChannel() dosn't work on MacOSX
+  - S8049081: Increment hsx 24.72 build to b02 for 7u72-b03
+  - S8049542: C2: assert(size_in_words <= (julong)max_jint) failed: no overflow
+  - S8049787: Increment hsx 24.72 build to b03 for 7u72-b04
+  - S8050158: Introduce system property to maintain RC4 preference order
+  - S8050165: linux-sparcv9: NMT detail causes assert((intptr_t*)younger_sp[FP->sp_offset_in_saved_window()] == (intptr_t*)((intptr_t)sp - STACK_BIAS)) failed: younger_sp must be valid
+  - S8050167: linux-sparcv9: hs_err file does not show any stack information
+  - S8055714: Increment hsx 24.72 build to b04 for 7u72-b11
+  - S8056211: api/java_awt/Event/InputMethodEvent/serial/index.html#Input[serial2002] failure
+  - S8068405: GenerateCurrencyData throws RuntimeException for old data
+
 New in release 2.5.4 (2015-01-21):
 
 * Security fixes
@@ -38,11 +94,11 @@ New in release 2.5.4 (2015-01-21):
   - S6653795: C2 intrinsic for Unsafe.getAddress performs pointer sign extension on 32-bit systems
   - S7028073: The currency symbol for Peru is wrong
   - S7047033: (smartcardio) Card.disconnect(boolean reset) does not reset when reset is true
-  - S7183753: [TEST] Some colon in the diff for this test
   - S7077119, PR2165, G534118: remove past transition dates from CurrencyData.properties file
   - S7085757: Currency Data: ISO 4217 Amendment 152
   - S7169142: CookieHandler does not work with localhost
   - S7172012, PR2067: Make test-in-build an option (Queens)
+  - S7183753: [TEST] Some colon in the diff for this test
   - S7185456: (ann) Optimize Annotation handling in java/sun.reflect.* code for small number of annotations
   - S7195759: ISO 4217 Amendment 154
   - S8000897, RH1155012: VM crash in CompileBroker

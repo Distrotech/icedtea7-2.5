@@ -1,3 +1,31 @@
+2015-04-03  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
+	* Makefile.am:
+	(CORBA_CHANGESET): Update to icedtea-2.5.5pre02.
+	(JAXP_CHANGESET): Likewise.
+	(JAXWS_CHANGESET): Likewise.
+	(JDK_CHANGESET): Likewise.
+	(LANGTOOLS_CHANGESET): Likewise.
+	(OPENJDK_CHANGESET): Likewise.
+	(CORBA_SHA256SUM): Likewise.
+	(JAXP_SHA256SUM): Likewise.
+	(JAXWS_SHA256SUM): Likewise.
+	(JDK_SHA256SUM): Likewise.
+	(LANGTOOLS_SHA256SUM): Likewise.
+	(OPENJDK_SHA256SUM): Likewise.
+	(ICEDTEA_BOOT_PATCHES): Turn on new underscored literals
+	patch when the compiler doesn't support them.
+	* NEWS: Updated.
+	* acinclude.m4:
+	(IT_UNDERSCORE_CHECK): Check that the compiler supports
+	underscored literals.
+	* configure.ac:
+	Bump to 2.5.5pre02 and run IT_UNDERSCORE_CHECK.
+	* hotspot.map.in: Update to icedtea-2.5.5pre01.
+	* patches/boot/ecj-underscored_literals.patch:
+	New patch to remove underscored literals in
+	sun.security.ssl.ServerHandshaker
+
 2015-01-27  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
 	* Makefile.am,

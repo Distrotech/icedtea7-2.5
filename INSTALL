@@ -360,8 +360,9 @@ of the requested build.
 
 Currently, IcedTea 2.x supports the 'default' HotSpot tree, which is
 part of the IcedTea forest for the particular minor release series
-being used, and 'aarch64', which uses snapshots of the AArch64 HotSpot
-port available at http://hg.openjdk.java.net/aarch64-port/jdk7u
+being used, and 'aarch64', which uses snapshots of the HotSpot tree
+from the forthcoming 2.6.0 release of IcedTea. The latter is the default
+on both the ARM 32 and AArch64 architectures.
 
 JavaScript Support
 ==================

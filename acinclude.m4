@@ -928,7 +928,7 @@ AC_DEFUN_ONCE([IT_WITH_GCJ],
 AC_DEFUN_ONCE([IT_WITH_HOTSPOT_BUILD],
 [
   AC_REQUIRE([IT_ENABLE_ZERO_BUILD])
-  if test "x$JRE_ARCH_DIR" = "xaarch64"; then
+  if test "x$JRE_ARCH_DIR" = "xaarch64" -o "x$JRE_ARCH_DIR" = "xarm"; then
     DEFAULT_BUILD="aarch64"
   else
     DEFAULT_BUILD="default"

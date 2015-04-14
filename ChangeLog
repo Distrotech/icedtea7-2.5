@@ -1,3 +1,14 @@
+2015-04-15  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
+	PR2297: Use the IcedTea 2.6.0 HotSpot
+	for ARM32 by default
+	* INSTALL: Update HotSpot build
+	documentation accordingly.
+	* NEWS: Updated.
+	* acinclude.m4:
+	(IT_WITH_HOTSPOT_BUILD): Use 'aarch64'
+	when JRE_ARCH_DIR is either arm or aarch64.
+
 2015-04-14  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
 	* NEWS: Updated.

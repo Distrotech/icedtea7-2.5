@@ -1,3 +1,9 @@
+2015-04-14  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
+	* NEWS: Updated.
+	* hotspot.map.in: Update aarch64 HotSpot
+	to icedtea-2.6.0pre21's.
+
 2015-04-11  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
 	* Makefile.am:

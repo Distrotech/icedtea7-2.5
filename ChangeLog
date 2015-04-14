@@ -1,3 +1,28 @@
+2015-04-11  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
+	* Makefile.am:
+	(JDK_UPDATE_VERSION): Bump to 79.
+	(BUILD_VERSION): Bump to b14.
+	(CORBA_CHANGESET): Update to icedtea-2.5.5.
+	(JAXP_CHANGESET): Likewise.
+	(JAXWS_CHANGESET): Likewise.
+	(JDK_CHANGESET): Likewise.
+	(LANGTOOLS_CHANGESET): Likewise.
+	(OPENJDK_CHANGESET): Likewise.
+	(CORBA_SHA256SUM): Likewise.
+	(JAXP_SHA256SUM): Likewise.
+	(JAXWS_SHA256SUM): Likewise.
+	(JDK_SHA256SUM): Likewise.
+	(LANGTOOLS_SHA256SUM): Likewise.
+	(OPENJDK_SHA256SUM): Likewise.
+	* NEWS: Updated.
+	* configure.ac:	Bump to 2.5.5.
+	* hotspot.map.in: Update to icedtea-2.5.5.
+	* patches/boot/ecj-diamond.patch:
+	Regenerated. Add cases for
+	sun.security.pkcs12.PKCS12KeyStore and
+	com.sun.org.apache.xalan.internal.xsltc.compiler.XSLTC
+
 2015-04-03  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
 	* Makefile.am:
@@ -21,7 +46,7 @@
 	underscored literals.
 	* configure.ac:
 	Bump to 2.5.5pre02 and run IT_UNDERSCORE_CHECK.
-	* hotspot.map.in: Update to icedtea-2.5.5pre01.
+	* hotspot.map.in: Update to icedtea-2.5.5pre02.
 	* patches/boot/ecj-underscored_literals.patch:
 	New patch to remove underscored literals in
 	sun.security.ssl.ServerHandshaker

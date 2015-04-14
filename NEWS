@@ -14,9 +14,26 @@ CVE-XXXX-YYYY: http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=XXXX-YYYY
 
 New in release 2.5.5 (2015-04-XX):
 
+* Security fixes
+  - S8059064: Better G1 log caching
+  - S8060461: Fix for JDK-8042609 uncovers additional issue
+  - S8064601, CVE-2015-0480: Improve jar file handling
+  - S8065286: Fewer subtable substitutions
+  - S8065291: Improved font lookups
+  - S8066479: Better certificate chain validation
+  - S8067050: Better font consistency checking
+  - S8067684: Better font substitutions
+  - S8067699, CVE-2015-0469: Better glyph storage
+  - S8068320, CVE-2015-0477: Limit applet requests
+  - S8068720, CVE-2015-0488: Better certificate options checking
+  - S8069198: Upgrade image library
+  - S8071726, CVE-2015-0478: Better RSA optimizations
+  - S8071818: Better vectorization on SPARC
+  - S8071931, CVE-2015-0460: Return of the phantom menace
 * Backports
   - S6584008, PR2193, RH1173326: jvmtiStringPrimitiveCallback should not be invoked when string value is null
   - S6956398, PR2250: make ephemeral DH key match the length of the certificate key
+  - S7090424: TestGlyphVectorLayout failed automately with java.lang.StackOverflowError
   - S7142035: assert in j.l.instrument agents during shutdown when daemon thread is running
   - S7160837: DigestOutputStream does not turn off digest calculation when "close()" is called
   - S7195480: javax.smartcardio does not detect cards on Mac OS X
@@ -47,9 +64,14 @@ New in release 2.5.5 (2015-04-XX):
   - S8039050: Crash in C2 compiler at Node::rematerialize
   - S8039298: assert(base == NULL || t_adr->isa_rawptr() || ! phase->type(base)->higher_equal(TypePtr::NULL_PTR))
   - S8039319: (smartcardio) Card.transmitControlCommand() does not work on Mac OS X
+  - S8040228: TransformerConfigurationException occurs with security manager, FSP and XSLT Ext
+  - S8040790: [TEST_BUG] tools/javac/innerClassFile/Driver.sh fails to cleanup files after it
   - S8041451: com.sun.jndi.ldap.Connection:ReadTimeout should abandon ldap request
+  - S8041740: Test sun/security/tools/keytool/ListKeychainStore.sh fails on Mac
+  - S8041979: sun/jvmstat/monitor/MonitoredVm/CR6672135.java failing on all platforms
   - S8042059: Various fixes to linux/sparc
   - S8042857: 14 stuck threads waiting for notification on LDAPRequest
+  - S8043123: Hard crash with access violation exception when blitting to very large image
   - S8043200: Decrease the preference mode of RC4 in the enabled cipher suite list
   - S8043205: Incorrect system traps.h include path
   - S8043206: Fix signed vs. unsigned comparison warning in copy_sparc.hpp
@@ -68,8 +90,21 @@ New in release 2.5.5 (2015-04-XX):
   - S8050167: linux-sparcv9: hs_err file does not show any stack information
   - S8055714: Increment hsx 24.72 build to b04 for 7u72-b11
   - S8056211: api/java_awt/Event/InputMethodEvent/serial/index.html#Input[serial2002] failure
+  - S8060072: Increment minor version of HSx for 7u79 and initialize the build number
+  - S8064454: [TEST_BUG] Test tools/javac/innerClassFile/Driver.sh fails for Mac and Linux
+  - S8064532: 7u76 build failed with # 8041979
+  - S8065072: sun/net/www/http/HttpClient/StreamingRetry.java failed intermittently
+  - S8065373: [macosx] jdk8, jdk7u60 Regression in Graphics2D drawing of derived Fonts
+  - S8065709: Deadlock in awt/logging apparently introduced by 8019623
+  - S8065991: LogManager unecessarily calls JavaAWTAccess from within a critical section
   - S8068405: GenerateCurrencyData throws RuntimeException for old data
+  - S8071591: java/util/logging/LogManagerAppContextDeadlock.java test started to fail due to JDK-8065991
+  - S8072039: jdk7u79 l10n resource file translation update
+  - S8072042: (tz) Support tzdata2015a
+  - S8073226: Increment hsx 24.79 build to b02 for 7u79-b10
   - S8074312, PR2254: Enable hotspot builds on 4.x Linux kernels
+  - S8074662: Update 3rd party readme and license for LibPNG v 1.6.16
+  - S8075211: [TEST_BUG] Test sun/net/www/http/HttpClient/StreamingRetry.java fails with compilation error
 * Bug fixes
   - PR2196, RH1164762: jhat man page has broken URL
   - PR2200: Support giflib 5.1.0

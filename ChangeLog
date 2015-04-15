@@ -1,3 +1,7 @@
+2015-04-15  Andrew John Hughes  <gnu.andrew@redhat.com>
+
+	* NEWS: Set 2.5.5 release date.
+
 2015-04-15  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
 	PR2297: Use the IcedTea 2.6.0 HotSpot

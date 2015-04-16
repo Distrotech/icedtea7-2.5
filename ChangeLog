@@ -1,3 +1,8 @@
+2015-04-16  Andrew John Hughes  <gnu.andrew@redhat.com>
+
+	* NEWS: Minor corrections to 2.5.5
+	release notes.
+
 2015-04-15  Andrew John Hughes  <gnu.andrew@redhat.com>
 
 	* NEWS: Add section for 2.5.6.

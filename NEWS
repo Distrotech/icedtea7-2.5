@@ -25,6 +25,8 @@ New in release 2.5.6 (2015-07-XX):
   - S8072385, PR2387: Only the first DNSName entry is checked for endpoint identification
   - S8078654, PR2333: CloseTTFontFileFunc callback should be removed
   - S8078666, PR2326: JVM fastdebug build compiled with GCC 5 asserts with "widen increases"
+* Bug fixes
+  - PR2328: GCJ uses ppc64el named libarch directory on ppc64le
 * PPC & AIX port
   - S8069590: AIX port of "8050807: Better performing performance data handling"
   - S8078482, PR2307: ppc: pass thread to throw_AbstractMethodError

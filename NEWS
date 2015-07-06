@@ -14,6 +14,22 @@ CVE-XXXX-YYYY: http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=XXXX-YYYY
 
 New in release 2.5.6 (2015-07-XX):
 
+* Backports
+  - S4890063, PR2305, RH1214835: HPROF: default text truncated when using doe=n option
+  - S6991580, PR2308: IPv6 Nameservers in resolv.conf throws NumberFormatException
+  - S8021120, PR2301: TieredCompilation can be enabled even if TIERED is undefined
+  - S8029607, PR2418: Type of Service (TOS) cannot be set in IPv6 header
+  - S8043129, PR2338: JAF initialisation in SAAJ clashing with the one in javax.mail
+  - S8048212, PR2418: Two tests failed with "java.net.SocketException: Bad protocol option" on Windows after 8029607
+  - S8048214, PR2357: Linker error when compiling G1SATBCardTableModRefBS after include order changes
+  - S8072385, PR2387: Only the first DNSName entry is checked for endpoint identification
+  - S8078654, PR2333: CloseTTFontFileFunc callback should be removed
+  - S8078666, PR2326: JVM fastdebug build compiled with GCC 5 asserts with "widen increases"
+* PPC & AIX port
+  - S8069590: AIX port of "8050807: Better performing performance data handling"
+  - S8078482, PR2307: ppc: pass thread to throw_AbstractMethodError
+  - S8080190: PPC64: Fix wrong rotate instructions in the .ad file
+
 New in release 2.5.5 (2015-04-14):
 
 * Security fixes

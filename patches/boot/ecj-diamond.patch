@@ -5669,6 +5669,15 @@ diff -Nru openjdk-boot.orig/jdk/src/share/classes/sun/security/ssl/ClientHandsha
              for (CipherSuite suite : cipherSuites.collection()) {
                  if (suite != CipherSuite.C_SCSV) {
                      cipherList.add(suite);
+@@ -1548,7 +1548,7 @@
+                 if ((subAltDnsName != null) && !subAltDnsName.isEmpty()) {
+                     if (subAltDnsNames == null) {
+                         subAltDnsNames =
+-                                new HashSet<>(subjectAltNames.size());
++                                new HashSet<String>(subjectAltNames.size());
+                     }
+                     subAltDnsNames.add(subAltDnsName);
+                 }
 diff -Nru openjdk-boot.orig/jdk/src/share/classes/sun/security/ssl/HandshakeMessage.java openjdk-boot/jdk/src/share/classes/sun/security/ssl/HandshakeMessage.java
 --- openjdk-boot.orig/jdk/src/share/classes/sun/security/ssl/HandshakeMessage.java	2015-04-06 15:23:57.000000000 +0100
 +++ openjdk-boot/jdk/src/share/classes/sun/security/ssl/HandshakeMessage.java	2015-04-06 16:15:01.453764550 +0100

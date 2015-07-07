@@ -1,3 +1,7 @@
+2015-07-07  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
+	* configure.ac: Set version to 2.5.6pre01.
+
 2015-07-06  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
 	* INSTALL: Update list of detected

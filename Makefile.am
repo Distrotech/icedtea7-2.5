@@ -120,6 +120,15 @@ ICEDTEA_BOOTSTRAP_CLASSES += \
 	$(SHARE)/javax/rmi/ssl/SslRMIServerSocketFactory.java
 endif
 
+#IT2367 - Util is not public in sun.management; cannot be accessed from outside package
+if LACKS_SUN_MANAGEMENT_UTIL
+# Presence of com.sun.mirror API indicates an Oracle JDK with a private sun.management.Util
+if !LACKS_COM_SUN_MIRROR_TYPE_TYPEMIRROR
+ICEDTEA_BOOTSTRAP_CLASSES += \
+	$(SHARE)/sun/management/Util.java
+endif
+endif
+
 # Settings for javac
 
 if NO_BYTECODE7
@@ -319,7 +328,8 @@ ICEDTEA_BOOT_PATCHES = \
 	patches/boot/ecj-trywithresources.patch \
 	patches/boot/ecj-autoboxing.patch \
 	patches/boot/xsltproc.patch \
-	patches/boot/ecj-odd.patch
+	patches/boot/ecj-odd.patch \
+	patches/boot/prefer_source.patch
 
 if !DISABLE_BOOTSTRAP_TOOLS
 ICEDTEA_BOOT_PATCHES += \

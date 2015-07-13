@@ -1,3 +1,23 @@
+2015-07-13  Andrew John Hughes  <gnu.andrew@member.fsf.org>
+
+	PR2367: 7 no longer builds with 6 - Util is
+	not public in sun.management
+	* Makefile.am:
+	(ICEDTEA_BOOTSTRAP_CLASSES): Pre-build
+	sun.management.Util if running on an
+	Oracle JDK with an inaccessible version.
+	(ICEDTEA_BOOT_PATCHES): Add -Xprefer:source
+	patch.
+	* NEWS: Updated.
+	* configure.ac:
+	Check for sun.management.Util class.
+	* patches/boot/prefer_source.patch:
+	Add -Xprefer:source option to javac invocations
+	for sun.security.other, java.util.jar,
+	sun.security.pkcs11, com.sun.crypto.provider and
+	sun.nio.cs so that newer interfaces in OpenJDK 7
+	are picked up instead of outdated boot JDK ones.
+
 2015-07-07  Andrew John Hughes  <gnu.andrew@member.fsf.org>
 
 	* configure.ac: Set version to 2.5.6pre01.

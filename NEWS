@@ -30,6 +30,8 @@ New in release 2.5.6 (2015-07-XX):
   - PR2341: Update README & INSTALL files
   - PR2367: 7 no longer builds with 6 - Util is not public in sun.management
   - PR2395: Path to jvm.cfg is wrong in add-systemtap-boot
+* CACAO
+  - PR2380: Raise javadoc and JAVAC_FLAGS memory limits for CACAO
 * PPC & AIX port
   - S8069590: AIX port of "8050807: Better performing performance data handling"
   - S8078482, PR2307: ppc: pass thread to throw_AbstractMethodError

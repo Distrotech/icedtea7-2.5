@@ -19,18 +19,25 @@ New in release 2.5.6 (2015-07-XX):
   - S6991580, PR2308: IPv6 Nameservers in resolv.conf throws NumberFormatException
   - S8021120, PR2301: TieredCompilation can be enabled even if TIERED is undefined
   - S8029607, PR2418: Type of Service (TOS) cannot be set in IPv6 header
+  - S8039921, PR2421: SHA1WithDSA with key > 1024 bits not working
   - S8043129, PR2338: JAF initialisation in SAAJ clashing with the one in javax.mail
   - S8048212, PR2418: Two tests failed with "java.net.SocketException: Bad protocol option" on Windows after 8029607
   - S8048214, PR2357: Linker error when compiling G1SATBCardTableModRefBS after include order changes
+  - S8065238, PR2478: javax.naming.NamingException after upgrade to JDK 8
   - S8072385, PR2387: Only the first DNSName entry is checked for endpoint identification
+  - S8074761, PR2470: Empty optional parameters of LDAP query are not interpreted as empty
   - S8078654, PR2333: CloseTTFontFileFunc callback should be removed
   - S8078666, PR2326: JVM fastdebug build compiled with GCC 5 asserts with "widen increases"
+  - S8081315, PR2405: Avoid giflib interlacing workaround with giflib 5.0.0 on
+  - S8081475, PR2494: SystemTap does not work when JDK is compiled with GCC 5
 * Bug fixes
   - PR2328: GCJ uses ppc64el named libarch directory on ppc64le
   - PR2341: Update README & INSTALL files
   - PR2367: 7 no longer builds with 6 - Util is not public in sun.management
   - PR2390: Make elliptic curve removal optional
   - PR2395: Path to jvm.cfg is wrong in add-systemtap-boot
+  - PR2458: Policy JAR files should be timestamped with the date of the policy file they hold
+  - PR2482, RH489586, RH1236619: OpenJDK can't handle spaces in zone names in /etc/sysconfig/clock
   - PR2499: Update remove-intree-libraries.sh script
   - PR2507, G541462: Only apply PaX markings by default on running PaX kernels
 * CACAO

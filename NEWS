@@ -31,6 +31,7 @@ New in release 2.5.6 (2015-07-XX):
   - PR2367: 7 no longer builds with 6 - Util is not public in sun.management
   - PR2390: Make elliptic curve removal optional
   - PR2395: Path to jvm.cfg is wrong in add-systemtap-boot
+  - PR2499: Update remove-intree-libraries.sh script
 * CACAO
   - PR2380: Raise javadoc and JAVAC_FLAGS memory limits for CACAO
 * PPC & AIX port

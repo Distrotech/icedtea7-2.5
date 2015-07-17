@@ -32,6 +32,7 @@ New in release 2.5.6 (2015-07-XX):
   - PR2390: Make elliptic curve removal optional
   - PR2395: Path to jvm.cfg is wrong in add-systemtap-boot
   - PR2499: Update remove-intree-libraries.sh script
+  - PR2507, G541462: Only apply PaX markings by default on running PaX kernels
 * CACAO
   - PR2380: Raise javadoc and JAVAC_FLAGS memory limits for CACAO
 * JamVM

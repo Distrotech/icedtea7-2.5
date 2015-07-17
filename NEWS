@@ -34,6 +34,8 @@ New in release 2.5.6 (2015-07-XX):
   - PR2499: Update remove-intree-libraries.sh script
 * CACAO
   - PR2380: Raise javadoc and JAVAC_FLAGS memory limits for CACAO
+* JamVM
+  - PR2500: Add executable stack markings to callNative.S on JamVM
 * PPC & AIX port
   - S8069590: AIX port of "8050807: Better performing performance data handling"
   - S8078482, PR2307: ppc: pass thread to throw_AbstractMethodError

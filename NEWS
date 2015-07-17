@@ -29,6 +29,7 @@ New in release 2.5.6 (2015-07-XX):
   - PR2328: GCJ uses ppc64el named libarch directory on ppc64le
   - PR2341: Update README & INSTALL files
   - PR2367: 7 no longer builds with 6 - Util is not public in sun.management
+  - PR2390: Make elliptic curve removal optional
   - PR2395: Path to jvm.cfg is wrong in add-systemtap-boot
 * CACAO
   - PR2380: Raise javadoc and JAVAC_FLAGS memory limits for CACAO

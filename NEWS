@@ -53,7 +53,6 @@ New in release 2.5.6 (2015-07-XX):
   - S8021120, PR2301: TieredCompilation can be enabled even if TIERED is undefined
   - S8027058: sun/management/jmxremote/bootstrap/RmiBootstrapTest.sh Failed to initialize connector
   - S8027561: [macosx] Cleanup "may not respond to selector" warnings in native code
-  - S8028617: Dvorak keyboard mapping not honored when ctrl key pressed
   - S8029607, PR2418: Type of Service (TOS) cannot be set in IPv6 header
   - S8029868: Fix KSS issues in sun.lwawt.macosx
   - S8039921, PR2421: SHA1WithDSA with key > 1024 bits not working
@@ -111,6 +110,29 @@ New in release 2.5.6 (2015-07-XX):
   - PR2380: Raise javadoc and JAVAC_FLAGS memory limits for CACAO
 * JamVM
   - PR2500: Add executable stack markings to callNative.S on JamVM
+* AArch64 port
+  - Changes to make aix compile after the merge
+  - S8025613, PR2437: clang: remove -Wno-unused-value
+  - S8035938: Memory leak in JvmtiEnv::GetConstantPool
+  - S8058113: Execution of OnOutOfMemoryError command hangs on linux-sparc
+  - S8068674: Increment minor version of HSx for 7u85 and initialize the build number
+  - S8069593: Changes to JavaThread::_thread_state must use acquire and release
+  - S8071423: Increment hsx 24.80 build to b08 for 7u80-b07
+  - S8071807: Increment hsx 24.80 build to b09 for 7u80-b08
+  - S8072639: Increment hsx 24.80 build to b10 for 7u80-b09
+  - S8074349: AARCH64: C2 generates poor code for some byte and character stores
+  - S8075045: AARCH64: Stack banging should use store rather than load
+  - S8075136: Unnecessary sign extension for byte array access
+  - S8075324: Costs of memory operands in aarch64.ad are inconsistent
+  - S8075443: AARCH64: Missed L2I optimizations in C2
+  - S8075930: AARCH64: Use FP Register in C2
+  - S8076212, PR2314: AllocateHeap() and ReallocateHeap() should be inlined.
+  - S8076467: AARCH64: assertion fail with -XX:+UseG1GC
+  - S8078529: Increment the build value to b02 for hs24.85 in 8u85
+  - S8079203: AARCH64: Need to cater for different partner implementations
+  - S8080586: aarch64: hotspot test compiler/codegen/7184394/TestAESMain.java fails
+  - S8081622: Increment the build value to b03 for hs24.85 in 8u51
+  - S8087120, RH1206656, PR2553: [GCC5] java.lang.StackOverflowError on Zero JVM initialization on non x86 platforms.
 * PPC & AIX port
   - S8069590: AIX port of "8050807: Better performing performance data handling"
   - S8078482, PR2307: ppc: pass thread to throw_AbstractMethodError

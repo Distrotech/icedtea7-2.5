@@ -293,6 +293,10 @@ if !USE_NON_NSS_CURVES
 ICEDTEA_PATCHES += patches/rh1022017.patch
 endif
 
+if !WITH_ALT_HSBUILD
+ICEDTEA_PATCHES += patches/pr2553.patch
+endif
+
 ICEDTEA_PATCHES += $(DISTRIBUTION_PATCHES)
 
 # Bootstrapping patches
